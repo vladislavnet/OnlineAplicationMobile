@@ -11,12 +11,13 @@
             </Grid.RowDefinitions>
 
             <StackLayout Orientation="Vertical" Grid.Row="1">
-                <Entry Placeholder="Email" Keyboard="Email"/>
-                <Label Text="" IsVisible="False"/>
-                <Entry Placeholder="Пароль" IsPassword="True"/>
-                <Label Text="" IsVisible="False"/>
-                <Button Text="Войти"/>
-                <Button Text="Регистрация"/>
+                <Label HorizontalTextAlignment="Center">Авторизация</Label>
+                <Entry Placeholder="Email" Keyboard="Email" Text="{Binding Email, Mode=TwoWay}"/>
+                <Label Text="{Binding EmailValidateMessage, Mode=OneWay}" IsVisible="{Binding EmailIsVisible, Mode=OneWay}"/>
+                <Entry Placeholder="Пароль" IsPassword="True" Text="{Binding Password, Mode=TwoWay}"/>
+                <Label Text="{Binding PasswordValidateMessage, Mode=OneWay}" IsVisible="{Binding PasswordIsVisible, Mode=OneWay}"/>
+                <Button Text="Войти" Command="{Binding LoginCommand}" CommandParameter="{Binding}"/>
+                <Button Text="Регистрация" Command="{Binding RegisterCommand}" CommandParameter="{Binding}"/>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

@@ -21,7 +21,8 @@ namespace OnlineApplicationMobile.UI.Views
         public LoginPage()
         {
             InitializeComponent();
-            ViewModel = new LoginViewModel(this);
+            loginViewModel = new LoginViewModel(this, this.Navigation);
+            ViewModel = loginViewModel;
         }
 
         public IViewModel ViewModel 
@@ -30,29 +31,9 @@ namespace OnlineApplicationMobile.UI.Views
             set => BindingContext = value; 
         }
 
-        public void DisplayAlertMessage(string message)
+        public async void DisplayAlertMessage(string message)
         {
-            DisplayAlert(AlertMessageTemplate.AlertTemplate, message, AlertMessageTemplate.OkTemplate);
-        }
-
-        public void PopModalPage()
-        {
-            Navigation.PopModalAsync().RunSynchronously();
-        }
-
-        public void PopPage()
-        {
-            Navigation.PopAsync().RunSynchronously();
-        }
-
-        public void PushModalPage(Page page)
-        {
-            Navigation.PushModalAsync(page).RunSynchronously();
-        }
-
-        public void PushPage(Page page)
-        {
-            Navigation.PushAsync(page).RunSynchronously();
+            await DisplayAlert(AlertMessageTemplate.AlertTemplate, message, AlertMessageTemplate.OkTemplate);
         }
     }
 }

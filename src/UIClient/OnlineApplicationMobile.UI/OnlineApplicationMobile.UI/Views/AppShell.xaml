@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OnlineApplicationMobile.UI.Views.AppShell"
+             xmlns:pages="clr-namespace:OnlineApplicationMobile.UI.Views">
+    <FlyoutItem Title="Профиль">
+        <Tab Title="Профиль">
+            <ShellContent x:Name="profile">
+            </ShellContent>
+        </Tab>
+    </FlyoutItem>
+    <FlyoutItem Title="Мои заявки">
+        <Tab Title="Мои заявки">
+            <ShellContent x:Name="applications">
+            </ShellContent>
+        </Tab>
+    </FlyoutItem>
+    <FlyoutItem Title="Организации">
+        <Tab Title="Организации">
+            <ShellContent x:Name="organizations">
+            </ShellContent>
+        </Tab>
+    </FlyoutItem>
+</Shell>      
+    

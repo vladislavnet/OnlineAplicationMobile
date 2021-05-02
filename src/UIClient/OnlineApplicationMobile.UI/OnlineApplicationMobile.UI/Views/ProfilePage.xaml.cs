@@ -4,22 +4,24 @@ using OnlineApplicationMobile.UI.ViewModel.Interfaces;
 using OnlineApplicationMobile.UI.Views.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
-namespace OnlineApplicationMobile.UI
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+namespace OnlineApplicationMobile.UI.Views
 {
-    public partial class MainPage : ContentPage, IView
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class ProfilePage : ContentPage, IView
     {
-        private readonly MainViewModel mainViewModel;
-        public MainPage()
+        private readonly ProfileViewModel profileViewModel;
+        public ProfilePage()
         {
             InitializeComponent();
-            mainViewModel = new MainViewModel(this, this.Navigation);
-            ViewModel = mainViewModel;
+            profileViewModel = new ProfileViewModel(this, Navigation);
+            ViewModel = profileViewModel;
         }
 
         public IViewModel ViewModel

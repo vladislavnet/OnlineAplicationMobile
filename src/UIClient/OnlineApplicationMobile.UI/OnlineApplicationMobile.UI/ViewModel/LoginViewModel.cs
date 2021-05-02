@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace OnlineApplicationMobile.UI.ViewModel
 {
@@ -19,19 +20,35 @@ namespace OnlineApplicationMobile.UI.ViewModel
         private bool emailIsVisible;
         private bool passwordIsVisible;
 
-        public LoginViewModel(IView view)
+        public LoginViewModel(IView view, INavigation navigation) : base(navigation)
         {
             View = view;
             View.ViewModel = this;
 
-            EmailIsVisible = false;
-            PasswordIsVisible = false;
+            clearValidateField();
         }
 
         /// <summary>
         /// Команда для Авторизации.
         /// </summary>
-        public ICommand LoginCommand { get; protected set; }
+        public ICommand LoginCommand
+        {
+            get => new Command(() =>
+            {
+                toLogin();
+            });
+        }
+
+        /// <summary>
+        /// Команда для регистрации.
+        /// </summary>
+        public ICommand RegisterCommand 
+        {
+            get => new Command(() => 
+            {
+                View.DisplayAlertMessage("POSOSI VLAD");
+            });
+        }
 
         /// <summary>
         /// Email.
@@ -65,7 +82,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
         public string EmailValidateMessage
         {
             get => emailValidateMessage;
-            set
+            protected set
             {
                 emailValidateMessage = value;
                 OnPropertyChanged(nameof(EmailValidateMessage));
@@ -78,7 +95,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
         public string PasswordValidateMessage
         {
             get => passwordValidateMessage;
-            set
+            protected set
             {
                 passwordValidateMessage = value;
                 OnPropertyChanged(nameof(PasswordValidateMessage));
@@ -91,7 +108,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
         public bool EmailIsVisible
         {
             get => emailIsVisible;
-            set
+            protected set
             {
                 emailIsVisible = value;
                 OnPropertyChanged(nameof(EmailIsVisible));
@@ -104,7 +121,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
         public bool PasswordIsVisible
         {
             get => passwordIsVisible;
-            set
+            protected set
             {
                 passwordIsVisible = value;
                 OnPropertyChanged(nameof(PasswordIsVisible));
@@ -125,6 +142,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
                 return;
 
             View.DisplayAlertMessage("Авторизован");
+            PushPage(GetNavigatedPage(new MainPage()));
         }
 
         /// <summary>
@@ -133,6 +151,8 @@ namespace OnlineApplicationMobile.UI.ViewModel
         /// <returns>Флаг валидации.</returns>
         private bool validateToLogin()
         {
+            clearValidateField();
+
             var flag = true;
 
             if (string.IsNullOrWhiteSpace(Email))
@@ -150,6 +170,14 @@ namespace OnlineApplicationMobile.UI.ViewModel
             }
 
             return flag;
+        }
+
+        private void clearValidateField()
+        {
+            EmailValidateMessage = string.Empty;
+            PasswordValidateMessage = string.Empty;
+            EmailIsVisible = false;
+            PasswordIsVisible = false;
         }
     }
 }

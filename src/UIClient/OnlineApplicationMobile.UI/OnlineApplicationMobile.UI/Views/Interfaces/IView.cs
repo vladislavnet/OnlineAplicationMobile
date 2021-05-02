@@ -8,13 +8,5 @@ namespace OnlineApplicationMobile.UI.Views.Interfaces
         IViewModel ViewModel { get; set; }
 
         void DisplayAlertMessage(string message);
-
-        void PushPage(Page page);
-
-        void PopPage();
-
-        void PushModalPage(Page page);
-
-        void PopModalPage();
     }
 }

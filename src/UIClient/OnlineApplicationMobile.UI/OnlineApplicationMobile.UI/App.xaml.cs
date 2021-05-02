@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OnlineApplicationMobile.UI.Views;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -9,8 +10,8 @@ namespace OnlineApplicationMobile.UI
         public App()
         {
             InitializeComponent();
-
-            MainPage = new NavigationPage(new MainPage());
+            Startup.Init();
+            MainPage = new AppShell();
         }
 
         protected override void OnStart()
