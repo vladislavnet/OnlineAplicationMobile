@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Application\OnlineApplicationMobile.HttpService\OnlineApplicationMobile.HttpService.csproj" />
+    <ProjectReference Include="..\..\..\Infrastructure\OnlineApplicationMobile.Infrastructure\OnlineApplicationMobile.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,10 +36,7 @@
     <EmbeddedResource Update="Views\AppShell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\AppShellDetail.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\AppShellFlyout.xaml">
+    <EmbeddedResource Update="Views\EditProfilePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\LoginPage.xaml">

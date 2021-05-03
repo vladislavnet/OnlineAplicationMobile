@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OnlineApplicationMobile.UI.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,10 +16,14 @@ namespace OnlineApplicationMobile.UI.Views
         public AppShell()
         {
             InitializeComponent();
-            
-            profile.Content = new NavigationPage(new ProfilePage());
+            Routing.RegisterRoute(RoutingTemplate.LoginTemplate, typeof(LoginPage));
+            Routing.RegisterRoute(RoutingTemplate.ProfileTemplate, typeof(ProfilePage));
 
+            NavigationGlobalObject.Navigation = Navigation;
+
+            profile.Content = new ProfilePage();
             CurrentItem = profile;
+
         }
 
     }

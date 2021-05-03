@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Extensions.DependencyInjection;
 using OnlineApplicationMobile.HttpService.Implementation;
 using OnlineApplicationMobile.HttpService.Interfaces;
+using OnlineApplicationMobile.UI.Views;
 
 namespace OnlineApplicationMobile.UI
 {
@@ -17,6 +18,10 @@ namespace OnlineApplicationMobile.UI
             services.AddSingleton<IOrganizationHttpService, OrganizationHttpService>();
             services.AddSingleton<ICommonHttpService, CommonHttpService>();
             services.AddSingleton<IHttpService, HttpService.Implementation.HttpService>();
+
+            services.AddSingleton<LoginPage>();
+            services.AddSingleton<ProfilePage>();
+
             return services;
         }
 
@@ -29,6 +34,11 @@ namespace OnlineApplicationMobile.UI
             ServiceProvider = serviceProvider;
 
             return serviceProvider;
+        }
+
+        public static T GetService<T>()
+        {
+            return ServiceProvider.GetService<T>();
         }
     }
 }

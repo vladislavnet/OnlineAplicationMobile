@@ -1,5 +1,9 @@
-﻿using OnlineApplicationMobile.UI.ViewModel.Interfaces;
+﻿using OnlineApplicationMobile.HttpService.Interfaces;
+using OnlineApplicationMobile.HttpService.Requests;
+using OnlineApplicationMobile.UI.ViewModel.Interfaces;
+using OnlineApplicationMobile.UI.Views;
 using OnlineApplicationMobile.UI.Views.Interfaces;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace OnlineApplicationMobile.UI.ViewModel
@@ -20,13 +24,18 @@ namespace OnlineApplicationMobile.UI.ViewModel
 
         public ProfileViewModel(IView view, INavigation navigation) : base(navigation)
         {
-            View = view;          
+            View = view;
+            View.ViewModel = this;
+            Initialize();
         }
-        
-        /// <summary>
-        /// Предаствление.
-        /// </summary>
-        public IView View { get; set; }
+
+        public ICommand EditProfileCommand
+        {
+            get => new Command(() =>
+            {
+                PushPage(new EditProfilePage());
+            });
+        }
 
         /// <summary>
         /// Email.
@@ -130,6 +139,16 @@ namespace OnlineApplicationMobile.UI.ViewModel
                 addressString = value;
                 OnPropertyChanged(nameof(AddressString));
             }
+        }
+
+
+        public void Initialize()
+        {
+            var httpService = Startup.GetService<IHttpService>();
+
+            var response = httpService.GetInfoCurrentClientJKH(new RequestBase());
+
+            ToNextAction(response.StatusCode, string.Empty, () => { });
         }
     }
 }

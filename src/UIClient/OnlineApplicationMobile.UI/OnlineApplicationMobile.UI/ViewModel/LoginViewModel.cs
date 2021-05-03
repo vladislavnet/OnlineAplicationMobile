@@ -1,4 +1,9 @@
-﻿using OnlineApplicationMobile.UI.ViewModel.Interfaces;
+﻿using OnlineApplicationMobile.HttpService.Implementation;
+using OnlineApplicationMobile.HttpService.Interfaces;
+using OnlineApplicationMobile.HttpService.Requests;
+using OnlineApplicationMobile.Infrastructure.Globals;
+using OnlineApplicationMobile.UI.ViewModel.Interfaces;
+using OnlineApplicationMobile.UI.Views;
 using OnlineApplicationMobile.UI.Views.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -24,7 +29,6 @@ namespace OnlineApplicationMobile.UI.ViewModel
         {
             View = view;
             View.ViewModel = this;
-
             clearValidateField();
         }
 
@@ -128,10 +132,6 @@ namespace OnlineApplicationMobile.UI.ViewModel
             }
         }
 
-        /// <summary>
-        /// Предаствление.
-        /// </summary>
-        public IView View { get; set; }
 
         /// <summary>
         /// Метод для авторизации пользователя.
@@ -141,8 +141,17 @@ namespace OnlineApplicationMobile.UI.ViewModel
             if (!validateToLogin())
                 return;
 
-            View.DisplayAlertMessage("Авторизован");
-            PushPage(GetNavigatedPage(new MainPage()));
+            var httpService = Startup.GetService<IHttpService>();
+            var response = httpService.Authorization(new AuthorizationRequest
+            {
+                Email = Email,
+                Password = Password
+            });
+
+            CurrentUser.SetToken(response.Token);
+
+            View.DisplayAlertMessage(response.Message);
+            PopModalPage();
         }
 
         /// <summary>

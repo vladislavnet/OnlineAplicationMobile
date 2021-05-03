@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OnlineApplicationMobile.UI.Views.EditProfilePage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Entry Text="{Binding LastName}" Placeholder="Фимилия"/>
+                <Entry Text="{Binding FirstName}" Placeholder="Имя"/>
+                <Entry Text="{Binding MiddleName}" Placeholder="Отчество"/>
+                <StackLayout Orientation="Horizontal" Margin="0">
+                    <Label Text="Дата рождения" VerticalTextAlignment="Center" Margin="0,0,10,0"/>
+                    <DatePicker Date="{Binding BirthDate}"/>
+                </StackLayout>
+                <Entry Text="{Binding Telephone}" Placeholder="Телефон"/>
+                <Entry Text="{Binding NumberPersonalAccount}" Placeholder="Номер лицевого счёта"/>
+                <Label Text="Адрес" />
+                <Entry x:Name="regionEntry"
+                       Placeholder="Регион"
+                       TextChanged="regionEntry_TextChanged" 
+                       Text="{Binding Region}" 
+                       Unfocused="regionEntry_Unfocused"
+                       Focused="regionEntry_Focused"/>
+                <ListView x:Name="searchRegionListView"
+                          ItemsSource="{Binding SearchRegionCollection}" 
+                          SelectedItem="{Binding SelectedRegionCollection}"
+                          IsVisible="{Binding IsVisibleSearchRegionCollection}"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -69,7 +69,7 @@ namespace OnlineApplicationMobile.Infrastructure.Globals
         /// <summary>
         /// Устанавливает информацию текущего пользоваетеля.
         /// </summary>
-        /// <param name="clientJKH">Клиент ЖКХ</param>
+        /// <param name="clientJKH">Клиент ЖКХ.</param>
         public static void SetCurrentUser(ClientJKH clientJKH)
         {
             if (clientJKH == null || clientJKH?.User == null)

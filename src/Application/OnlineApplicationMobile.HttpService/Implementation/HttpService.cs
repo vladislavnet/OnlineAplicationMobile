@@ -25,11 +25,27 @@ namespace OnlineApplicationMobile.HttpService.Implementation
             _commonHttpService = commonHttpService;
         }
 
+        /// <inheritdoc />
+        public AuthorizationResponse Authorization(AuthorizationRequest request)
+        {
+            return _userHttpService.Authorization(request);
+        }
 
         /// <inheritdoc />
         public GetInfoCurrentClientJKHResponse GetInfoCurrentClientJKH(RequestBase request)
         {
             return _userHttpService.GetInfoCurrentClientJKH(request);
+        }
+
+        /// <inheritdoc />
+        public SearchAddressingObjectsResponse GetSearchAddressingObjects(SearchAddressingObjectsRequest request)
+        {
+            return _commonHttpService.GetSearchAddressingObjects(request);
+        }
+
+        public ResponseBase PutInfoCurrentClientJKH(PutInfoCurrentClientJKHRequest request)
+        {
+            return _userHttpService.PutInfoCurrentClientJKH(request);
         }
     }
 }

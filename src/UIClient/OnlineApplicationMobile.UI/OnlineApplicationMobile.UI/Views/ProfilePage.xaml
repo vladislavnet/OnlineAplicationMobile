@@ -3,10 +3,42 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OnlineApplicationMobile.UI.Views.ProfilePage">
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical">
-            <Label Text="Это профиль"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView>
+            <StackLayout Orientation="Vertical">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Email:"/>
+                    <Label Text="{Binding Email, Mode=OneWay}"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Фамилия:"/>
+                    <Label Text="{Binding LastName, Mode=OneWay}"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Имя:"/>
+                    <Label Text="{Binding FirstName, Mode=OneWay}"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Отчество:"/>
+                    <Label Text="{Binding MiddleName, Mode=OneWay}"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Дата рождения:"/>
+                    <Label Text="{Binding BirthDate, Mode=OneWay}"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Телефон:"/>
+                    <Label Text="{Binding Telephone, Mode=OneWay}"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Номер лицевого счёта:"/>
+                    <Label Text="{Binding NumberPersonalAccount, Mode=OneWay}"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Адрес:"/>
+                    <Label Text="{Binding AddressString, Mode=OneWay}"/>
+                </StackLayout>
+                <Button Text="Редактировать" Command="{Binding EditProfileCommand}"/>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

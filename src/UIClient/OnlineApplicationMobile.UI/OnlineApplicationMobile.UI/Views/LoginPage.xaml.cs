@@ -17,12 +17,10 @@ namespace OnlineApplicationMobile.UI.Views
     public partial class LoginPage : ContentPage, IView
     {
         private readonly LoginViewModel loginViewModel;
-
         public LoginPage()
         {
             InitializeComponent();
-            loginViewModel = new LoginViewModel(this, this.Navigation);
-            ViewModel = loginViewModel;
+            loginViewModel = new LoginViewModel(this, NavigationGlobalObject.Navigation);
         }
 
         public IViewModel ViewModel 

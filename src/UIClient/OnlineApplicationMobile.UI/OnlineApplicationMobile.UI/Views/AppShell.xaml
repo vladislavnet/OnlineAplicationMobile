@@ -21,5 +21,11 @@
             </ShellContent>
         </Tab>
     </FlyoutItem>
+    <FlyoutItem Title="Авторизация" IsVisible="False">
+        <Tab Title="Авторизация">
+            <ShellContent x:Name="login">
+            </ShellContent>
+        </Tab>
+    </FlyoutItem>
 </Shell>      
     

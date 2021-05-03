@@ -14,12 +14,9 @@ namespace OnlineApplicationMobile.UI
 {
     public partial class MainPage : ContentPage, IView
     {
-        private readonly MainViewModel mainViewModel;
         public MainPage()
         {
             InitializeComponent();
-            mainViewModel = new MainViewModel(this, this.Navigation);
-            ViewModel = mainViewModel;
         }
 
         public IViewModel ViewModel

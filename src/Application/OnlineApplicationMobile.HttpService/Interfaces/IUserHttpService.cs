@@ -14,5 +14,19 @@ namespace OnlineApplicationMobile.HttpService.Interfaces
         /// <param name="request">Запрос на получение информации.</param>
         /// <returns>Ответ на получение информации.</returns>
         GetInfoCurrentClientJKHResponse GetInfoCurrentClientJKH(RequestBase request);
+
+        /// <summary>
+        /// Авторизация пользователя.
+        /// </summary>
+        /// <param name="request">Запрос на авторизацию.</param>
+        /// <returns>Ответ на авторизацию.</returns>
+        AuthorizationResponse Authorization(AuthorizationRequest request);
+
+        /// <summary>
+        /// Обновление информации текущего пользователя.
+        /// </summary>
+        /// <param name="request">Запрос.</param>
+        /// <returns>Ответ.</returns>
+        ResponseBase PutInfoCurrentClientJKH(PutInfoCurrentClientJKHRequest request);
     }
 }

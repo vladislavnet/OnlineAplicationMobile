@@ -20,8 +20,7 @@ namespace OnlineApplicationMobile.UI.Views
         public ProfilePage()
         {
             InitializeComponent();
-            profileViewModel = new ProfileViewModel(this, Navigation);
-            ViewModel = profileViewModel;
+            profileViewModel = new ProfileViewModel(this, NavigationGlobalObject.Navigation);
         }
 
         public IViewModel ViewModel
