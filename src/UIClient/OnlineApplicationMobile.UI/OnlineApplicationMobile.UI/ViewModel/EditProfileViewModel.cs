@@ -1,8 +1,11 @@
 ﻿using OnlineApplicationMobile.Domain.Entities;
 using OnlineApplicationMobile.Domain.Enums;
+using OnlineApplicationMobile.HttpService.DTO;
+using OnlineApplicationMobile.HttpService.DTO.Builders;
 using OnlineApplicationMobile.HttpService.Interfaces;
 using OnlineApplicationMobile.HttpService.Requests;
 using OnlineApplicationMobile.Infrastructure.Globals;
+using OnlineApplicationMobile.UI.ModelView;
 using OnlineApplicationMobile.UI.ViewModel.Interfaces;
 using OnlineApplicationMobile.UI.Views.Interfaces;
 using System;
@@ -23,7 +26,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
         private string firstName;
         private string lastName;
         private string middleName;
-        private DateTime birthDate;
+        private DateTime? birthDate;
         private string telephone;
         private string numberPersonalAccount;
         private string region;
@@ -38,6 +41,16 @@ namespace OnlineApplicationMobile.UI.ViewModel
         private List<string> searchLocalityCollection;
         private List<string> searchStreetCollection;
 
+        private List<TypeAddressingObjectModelView> regionTypesAddressingObject;
+        private List<TypeAddressingObjectModelView> districtTypesAddressingObject;
+        private List<TypeAddressingObjectModelView> localityTypesAddressingObject;
+        private List<TypeAddressingObjectModelView> streetTypesAddressingObject;
+
+        private TypeAddressingObjectModelView selectedRegionTypeAddressingObject;
+        private TypeAddressingObjectModelView selectedDistrictTypeAddressingObject;
+        private TypeAddressingObjectModelView selectedLocalityTypeAddressingObject;
+        private TypeAddressingObjectModelView selectedStreetTypeAddressingObject;
+
         private string selectedRegionCollection;
         private string selectedDistrictCollection;
         private string selectedLocalityCollection;
@@ -50,6 +63,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
 
         private string firstNameValidateMessage;
         private string lastNameValidateMessage;
+        private string middleNameValidateMessage;
         private string birthDateValidateMessage;
         private string telephoneValidateMessage;
         private string numberPersonalAccountValidateMessage;
@@ -60,10 +74,25 @@ namespace OnlineApplicationMobile.UI.ViewModel
         private string houseNumberValidateMessage;
         private string apartamentNumberValidateMessage;
 
+        private bool firstNameValidateMessageIsVisible;
+        private bool lastNameValidateMessageIsVisible;
+        private bool middleNameValidateMessageIsVisible;
+        private bool birthDateValidateMessageIsVisible;
+        private bool telephoneValidateMessageIsVisible;
+        private bool numberPersonalAccountValidateMessageIsVisible;
+        private bool regionValidateMessageIsVisible;
+        private bool districtValidateMessageIsVisible;
+        private bool localityValidateMessageIsVisible;
+        private bool streetValidateMessageIsVisible;
+        private bool houseNumberValidateMessageIsVisible;
+        private bool apartamentNumberValidateMessageIsVisible;
+
         public EditProfileViewModel(IView view, INavigation navigation) : base(navigation)
         {
             View = view;
             View.ViewModel = this;
+            initialize();
+            clearValidateMessage();
         }
 
         /// <summary>
@@ -73,7 +102,35 @@ namespace OnlineApplicationMobile.UI.ViewModel
         {
             get => new Command(() =>
             {
-                
+                clearValidateMessage();
+
+                if (!validateDataEditUser())
+                    return;
+
+                var httpService = Startup.GetService<IHttpService>();
+
+                var response = httpService.PutInfoCurrentClientJKH(new PutInfoCurrentClientJKHRequest
+                {
+                    FirstName = FirstName,
+                    LastName = LastName,
+                    MiddleName = !string.IsNullOrWhiteSpace(MiddleName) ? MiddleName : null,
+                    BirthDate = BirthDate != null ? BirthDate : null,
+                    Telephone = !string.IsNullOrWhiteSpace(Telephone) ? MiddleName : null,
+                    NumberPersonalAccount = NumberPersonalAccount,
+                    Address = buildAddress()
+                });
+
+                Action action = () =>
+                {
+                    PopPage();
+                };
+
+                Action errorAction = () =>
+                {
+                    DisplayMessage(response.Message);
+                };
+
+                ToNextAction(response.StatusCode, action, errorAction);
             });
         }
 
@@ -119,7 +176,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
         /// <summary>
         /// Дата рождения.
         /// </summary>
-        public DateTime BirthDate
+        public DateTime? BirthDate
         {
             get => birthDate;
             set
@@ -317,6 +374,110 @@ namespace OnlineApplicationMobile.UI.ViewModel
         }
 
         /// <summary>
+        /// Типы адресных объектов для региона.
+        /// </summary>
+        public List<TypeAddressingObjectModelView> RegionTypesAddressingObject
+        {
+            get => regionTypesAddressingObject;
+            set
+            {
+                regionTypesAddressingObject = value;
+                OnPropertyChanged(nameof(RegionTypesAddressingObject));
+            }
+        }
+
+        /// <summary>
+        /// Типы адресных объектов для района.
+        /// </summary>
+        public List<TypeAddressingObjectModelView> DistrictTypesAddressingObject
+        {
+            get => districtTypesAddressingObject;
+            set
+            {
+                districtTypesAddressingObject = value;
+                OnPropertyChanged(nameof(DistrictTypesAddressingObject));
+            }
+        }
+
+        /// <summary>
+        /// Типы адресных объектов для населённого пункта.
+        /// </summary>
+        public List<TypeAddressingObjectModelView> LocalityTypesAddressingObject
+        {
+            get => localityTypesAddressingObject;
+            set
+            {
+                localityTypesAddressingObject = value;
+                OnPropertyChanged(nameof(LocalityTypesAddressingObject));
+            }
+        }
+
+        /// <summary>
+        /// Типы адресных объектов для улицы.
+        /// </summary>
+        public List<TypeAddressingObjectModelView> StreetTypesAddressingObject
+        {
+            get => streetTypesAddressingObject;
+            set
+            {
+                streetTypesAddressingObject = value;
+                OnPropertyChanged(nameof(StreetTypesAddressingObject));
+            }
+        }
+
+        /// <summary>
+        /// Выбранный тип адресного объекта для региона.
+        /// </summary>
+        public TypeAddressingObjectModelView SelectedRegionTypeAddressingObject
+        {
+            get => selectedRegionTypeAddressingObject;
+            set
+            {
+                selectedRegionTypeAddressingObject = value;
+                OnPropertyChanged(nameof(SelectedRegionTypeAddressingObject));
+            }
+        }
+
+        /// <summary>
+        /// Выбранный тип адресного объекта для района.
+        /// </summary>
+        public TypeAddressingObjectModelView SelectedDistrictTypeAddressingObject
+        {
+            get => selectedDistrictTypeAddressingObject;
+            set
+            {
+                selectedDistrictTypeAddressingObject = value;
+                OnPropertyChanged(nameof(SelectedDistrictTypeAddressingObject));
+            }
+        }
+
+        /// <summary>
+        /// Выбранный тип адресного объекта для населённого пункта.
+        /// </summary>
+        public TypeAddressingObjectModelView SelectedLocalityTypeAddressingObject
+        {
+            get => selectedLocalityTypeAddressingObject;
+            set
+            {
+                selectedLocalityTypeAddressingObject = value;
+                OnPropertyChanged(nameof(SelectedLocalityTypeAddressingObject));
+            }
+        }
+
+        /// <summary>
+        /// Выбранный тип адресного объекта для улицы.
+        /// </summary>
+        public TypeAddressingObjectModelView SelectedStreetTypeAddressingObject
+        {
+            get => selectedStreetTypeAddressingObject;
+            set
+            {
+                selectedStreetTypeAddressingObject = value;
+                OnPropertyChanged(nameof(SelectedStreetTypeAddressingObject));
+            }
+        }
+
+        /// <summary>
         /// Выбранный из списка поиска регион.
         /// </summary>
         public string SelectedRegionCollection
@@ -456,6 +617,19 @@ namespace OnlineApplicationMobile.UI.ViewModel
         }
 
         /// <summary>
+        /// Валидационное сообщение для отчества.
+        /// </summary>
+        public string MiddleNameValidateMessage
+        {
+            get => middleNameValidateMessage;
+            set
+            {
+                middleNameValidateMessage = value;
+                OnPropertyChanged(nameof(MiddleNameValidateMessage));
+            }
+        }
+
+        /// <summary>
         /// Валидационное сообщение для дня рождении.
         /// </summary>
         public string BirthDateValidateMessage
@@ -494,6 +668,246 @@ namespace OnlineApplicationMobile.UI.ViewModel
             }
         }
 
+        /// <summary>
+        /// Валидационное сообщение для Региона.
+        /// </summary>
+        public string RegionValidateMessage
+        {
+            get => regionValidateMessage;
+            set
+            {
+                regionValidateMessage = value;
+                OnPropertyChanged(nameof(RegionValidateMessage));
+            }
+        }
+
+        /// <summary>
+        /// Валидационное сообщение для Района.
+        /// </summary>
+        public string DistrictValidateMessage
+        {
+            get => districtValidateMessage;
+            set
+            {
+                districtValidateMessage = value;
+                OnPropertyChanged(nameof(DistrictValidateMessage));
+            }
+        }
+
+        /// <summary>
+        /// Валидационное сообщение для Населённого пункта.
+        /// </summary>
+        public string LocalityValidateMessage
+        {
+            get => localityValidateMessage;
+            set
+            {
+                localityValidateMessage = value;
+                OnPropertyChanged(nameof(LocalityValidateMessage));
+            }
+        }
+
+        /// <summary>
+        /// Валидационное сообщение для Улицы.
+        /// </summary>
+        public string StreetValidateMessage
+        {
+            get => streetValidateMessage;
+            set
+            {
+                streetValidateMessage = value;
+                OnPropertyChanged(nameof(StreetValidateMessage));
+            }
+        }
+
+        /// <summary>
+        /// Валидационное сообщение для Номера дома.
+        /// </summary>
+        public string HouseNumberValidateMessage
+        {
+            get => houseNumberValidateMessage;
+            set
+            {
+                houseNumberValidateMessage = value;
+                OnPropertyChanged(nameof(HouseNumberValidateMessage));
+            }
+        }
+
+        /// <summary>
+        /// Валидационное сообщение для Номера квартиры.
+        /// </summary>
+        public string ApartamentNumberValidateMessage
+        {
+            get => apartamentNumberValidateMessage;
+            set
+            {
+                apartamentNumberValidateMessage = value;
+                OnPropertyChanged(nameof(ApartamentNumberValidateMessage));
+            }
+        }
+
+        /// <summary>
+        /// Флаг видимости валидационного сообщения для имени.
+        /// </summary>
+        public bool FirstNameValidateMessageIsVisible
+        {
+            get => firstNameValidateMessageIsVisible;
+            set
+            {
+                firstNameValidateMessageIsVisible = value;
+                OnPropertyChanged(nameof(FirstNameValidateMessageIsVisible));
+            }
+        }
+
+        /// <summary>
+        /// Флаг видимости валидационного сообщения для фамилии.
+        /// </summary>
+        public bool LastNameValidateMessageIsVisible
+        {
+            get => lastNameValidateMessageIsVisible;
+            set
+            {
+                lastNameValidateMessageIsVisible = value;
+                OnPropertyChanged(nameof(LastNameValidateMessageIsVisible));
+            }
+        }
+
+        /// <summary>
+        /// Флаг видимости валидационного сообщения для отчества.
+        /// </summary>
+        public bool MiddleNameValidateMessageIsVisible
+        {
+            get => middleNameValidateMessageIsVisible;
+            set
+            {
+                middleNameValidateMessageIsVisible = value;
+                OnPropertyChanged(nameof(MiddleNameValidateMessageIsVisible));
+            }
+        }
+
+        /// <summary>
+        /// Флаг видимости валидационного сообщения для даты рождения.
+        /// </summary>
+        public bool BirthDateValidateMessageIsVisible
+        {
+            get => birthDateValidateMessageIsVisible;
+            set
+            {
+                birthDateValidateMessageIsVisible = value;
+                OnPropertyChanged(nameof(BirthDateValidateMessageIsVisible));
+            }
+        }
+
+        /// <summary>
+        /// Флаг видимости валидационного сообщения для телефона.
+        /// </summary>
+        public bool TelephoneValidateMessageIsVisible
+        {
+            get => telephoneValidateMessageIsVisible;
+            set
+            {
+                telephoneValidateMessageIsVisible = value;
+                OnPropertyChanged(nameof(TelephoneValidateMessageIsVisible));
+            }
+        }
+
+        /// <summary>
+        /// Флаг видимости валидационного сообщения для номера лицевого счёта.
+        /// </summary>
+        public bool NumberPersonalAccountValidateMessageIsVisible
+        {
+            get => numberPersonalAccountValidateMessageIsVisible;
+            set
+            {
+                numberPersonalAccountValidateMessageIsVisible = value;
+                OnPropertyChanged(nameof(NumberPersonalAccountValidateMessageIsVisible));
+            }
+        }
+
+        /// <summary>
+        /// Флаг видимости валидационного сообщения для региона.
+        /// </summary>
+        public bool RegionValidateMessageIsVisible
+        {
+            get => regionValidateMessageIsVisible;
+            set
+            {
+                regionValidateMessageIsVisible = value;
+                OnPropertyChanged(nameof(RegionValidateMessageIsVisible));
+            }
+        }
+
+        /// <summary>
+        /// Флаг видимости валидационного сообщения для района.
+        /// </summary>
+        public bool DistrictValidateMessageIsVisible
+        {
+            get => districtValidateMessageIsVisible;
+            set
+            {
+                districtValidateMessageIsVisible = value;
+                OnPropertyChanged(nameof(DistrictValidateMessageIsVisible));
+            }
+        }
+
+        /// <summary>
+        /// Флаг видимости валидационного сообщения для населённого пункта.
+        /// </summary>
+        public bool LocalityValidateMessageIsVisible
+        {
+            get => localityValidateMessageIsVisible;
+            set
+            {
+                localityValidateMessageIsVisible = value;
+                OnPropertyChanged(nameof(LocalityValidateMessageIsVisible));
+            }
+        }
+
+        /// <summary>
+        /// Флаг видимости валидационного сообщения для улицы.
+        /// </summary>
+        public bool StreetValidateMessageIsVisible
+        {
+            get => streetValidateMessageIsVisible;
+            set
+            {
+                streetValidateMessageIsVisible = value;
+                OnPropertyChanged(nameof(StreetValidateMessageIsVisible));
+            }
+        }
+
+        /// <summary>
+        /// Флаг видимости валидационного сообщения номера дома.
+        /// </summary>
+        public bool HouseNumberValidateMessageIsVisible
+        {
+            get => houseNumberValidateMessageIsVisible;
+            set
+            {
+                houseNumberValidateMessageIsVisible = value;
+                OnPropertyChanged(nameof(HouseNumberValidateMessageIsVisible));
+            }
+        }
+
+        /// <summary>
+        /// Флаг видимости валидационного сообщения номера квартиры.
+        /// </summary>
+        public bool ApartamentNumberValidateMessageIsVisible
+        {
+            get => apartamentNumberValidateMessageIsVisible;
+            set
+            {
+                apartamentNumberValidateMessageIsVisible = value;
+                OnPropertyChanged(nameof(ApartamentNumberValidateMessageIsVisible));
+            }
+        }
+
+        /// <summary>
+        /// Получение массива наименования адресных объектов.
+        /// </summary>
+        /// <param name="name">Наименование адресного объекта.</param>
+        /// <param name="level">Уровень типа адресного объекта.</param>
+        /// <returns>Массив наименований адресных объектов.</returns>
         private List<string> GetSearchCollection(string name, LevelAddressingObjectEnum level)
         {
             var httpService = Startup.GetService<IHttpService>();
@@ -510,6 +924,10 @@ namespace OnlineApplicationMobile.UI.ViewModel
             return response.addressingObjectsShort != null ? response.addressingObjectsShort.Select(x => x.Name).ToList() : new List<string>();
         }
 
+        /// <summary>
+        /// Вывод сообщения пользователю.
+        /// </summary>
+        /// <param name="httpStatusCode">Код состояния HTTP.</param>
         private void displayMessageGetSearchCollection(HttpStatusCode httpStatusCode)
         {
             switch (httpStatusCode)
@@ -524,6 +942,186 @@ namespace OnlineApplicationMobile.UI.ViewModel
                     View.DisplayAlertMessage($"У вас нет прав на доступ к ресурсу.");
                     break;
             }
+        }
+
+        /// <summary>
+        /// Валидация данных перед редактировании.
+        /// </summary>
+        /// <returns>Флаг валидации.</returns>
+        private bool validateDataEditUser()
+        {
+            bool flag = true;
+
+            if (string.IsNullOrWhiteSpace(FirstName))
+            {
+                FirstNameValidateMessage = "Введите имя.";
+                FirstNameValidateMessageIsVisible = true;
+                flag = false;
+            }
+
+            if (string.IsNullOrWhiteSpace(LastName))
+            {
+                LastNameValidateMessage = "Введите фамилию.";
+                LastNameValidateMessageIsVisible = true;
+                flag = false;
+            }
+
+            if (string.IsNullOrWhiteSpace(NumberPersonalAccount))
+            {
+                NumberPersonalAccountValidateMessage = "Введите номер лицевого счёта.";
+                NumberPersonalAccountValidateMessageIsVisible = true;
+                flag = false;
+            }
+
+            if (string.IsNullOrWhiteSpace(Region) || SelectedRegionTypeAddressingObject == null)
+            {
+                RegionValidateMessage = "Введите регион и его тип.";
+                RegionValidateMessageIsVisible = true;
+                flag = false;
+            }
+
+            if (string.IsNullOrWhiteSpace(District) || SelectedDistrictTypeAddressingObject == null)
+            {
+                DistrictValidateMessage = "Введите район и его тип.";
+                DistrictValidateMessageIsVisible = true;
+                flag = false;
+            }
+
+            if (string.IsNullOrWhiteSpace(Locality) || SelectedLocalityTypeAddressingObject == null)
+            {
+                LocalityValidateMessage = "Введите населённый пункт и его тип.";
+                LocalityValidateMessageIsVisible = true;
+                flag = false;
+            }
+
+            if (string.IsNullOrWhiteSpace(Street) || SelectedStreetTypeAddressingObject == null)
+            {
+                StreetValidateMessage = "Введите улицу и его тип.";
+                StreetValidateMessageIsVisible = true;
+                flag = false;
+            }
+
+            return flag;
+        }
+
+        /// <summary>
+        /// Очищение валидационных сообщении.
+        /// </summary>
+        private void clearValidateMessage()
+        {
+            FirstNameValidateMessage = string.Empty;
+            LastNameValidateMessage = string.Empty;
+            MiddleNameValidateMessage = string.Empty;
+            BirthDateValidateMessage = string.Empty;
+            TelephoneValidateMessage = string.Empty;
+            NumberPersonalAccountValidateMessage = string.Empty;
+            RegionValidateMessage = string.Empty;
+            DistrictValidateMessage = string.Empty;
+            LocalityValidateMessage = string.Empty;
+            StreetValidateMessage = string.Empty;
+            HouseNumberValidateMessage = string.Empty;
+            ApartamentNumberValidateMessage = string.Empty;
+
+            FirstNameValidateMessageIsVisible = false;
+            LastNameValidateMessageIsVisible = false;
+            MiddleNameValidateMessageIsVisible = false;
+            BirthDateValidateMessageIsVisible = false;
+            TelephoneValidateMessageIsVisible = false;
+            NumberPersonalAccountValidateMessageIsVisible = false;
+            RegionValidateMessageIsVisible = false;
+            DistrictValidateMessageIsVisible = false;
+            LocalityValidateMessageIsVisible = false;
+            StreetValidateMessageIsVisible = false;
+            HouseNumberValidateMessageIsVisible = false;
+            ApartamentNumberValidateMessageIsVisible = false;
+        }
+
+        /// <summary>
+        /// Инициализирует данные.
+        /// </summary>
+        private void initialize()
+        {
+            var httpService = Startup.GetService<IHttpService>();
+
+            var requestRegion = buildTypesAddressingObjectRequest(LevelAddressingObjectEnum.Region);
+            var requestDistrict = buildTypesAddressingObjectRequest(LevelAddressingObjectEnum.District);
+            var requestLocality = buildTypesAddressingObjectRequest(LevelAddressingObjectEnum.Locality);
+            var requestStreet = buildTypesAddressingObjectRequest(LevelAddressingObjectEnum.Street);
+
+            var regionTypesAddressingObjectResponse = httpService.GetTypesAddressingObject(requestRegion).TypesAddressingObject;
+            var districtTypesAddressingObjectResponse = httpService.GetTypesAddressingObject(requestDistrict).TypesAddressingObject;
+            var localityTypesAddressingObjectResponse = httpService.GetTypesAddressingObject(requestLocality).TypesAddressingObject;
+            var streetTypesAddressingObjectResponse = httpService.GetTypesAddressingObject(requestStreet).TypesAddressingObject;
+
+            RegionTypesAddressingObject = mapTypeAddressingObjectModelView(regionTypesAddressingObjectResponse).ToList();
+            DistrictTypesAddressingObject = mapTypeAddressingObjectModelView(districtTypesAddressingObjectResponse).ToList();
+            LocalityTypesAddressingObject = mapTypeAddressingObjectModelView(localityTypesAddressingObjectResponse).ToList();
+            LocalityTypesAddressingObject = mapTypeAddressingObjectModelView(streetTypesAddressingObjectResponse).ToList();
+        }
+
+        /// <summary>
+        /// Возвращает запрос на получение типов адресных объектов по уровню адресации.
+        /// </summary>
+        /// <param name="level">Уровень адресации.</param>
+        /// <returns>Запрос на получение типов адресных объектов.</returns>
+        private GetTypesAddressingObjectRequest buildTypesAddressingObjectRequest(LevelAddressingObjectEnum level)
+        {
+            return new GetTypesAddressingObjectRequest
+            {
+                Token = CurrentUser.Token,
+                Level = (int)level
+            };
+        }
+
+        /// <summary>
+        /// Маппинг типов адресных объектов.
+        /// </summary>
+        /// <param name="typesAddressingObject">Типы адресных объектов.</param>
+        private IEnumerable<TypeAddressingObjectModelView> mapTypeAddressingObjectModelView(TypeAddressingObjectDto[] typesAddressingObject)
+        {
+            return typesAddressingObject.Select(x => new TypeAddressingObjectModelView
+            {
+                Id = x.Id,
+                Name = x.Name,
+                ShortName = x.ShortName
+            });
+        }
+
+        /// <summary>
+        /// Возвращает адрес для редактирования.
+        /// </summary>
+        /// <returns>Адрес.</returns>
+        private AddressDto buildAddress()
+        {
+            return new AddressDtoBuilder().BuildAddUserAddress(new AddressDtoBuilder.AddUserAddress
+            {
+                Region = Region,
+                TypeRegion = buildTypeAddressingObject(SelectedRegionTypeAddressingObject),
+                District = District,
+                TypeDistrict = buildTypeAddressingObject(SelectedDistrictTypeAddressingObject),
+                Locality = Locality,
+                TypeLocality = buildTypeAddressingObject(SelectedLocalityTypeAddressingObject),
+                Street = Street,
+                TypeStreet = buildTypeAddressingObject(SelectedStreetTypeAddressingObject),
+                NumberHouse = HouseNumber,
+                ApartamentNumber = ApartamentNumber
+            });
+        }
+
+        /// <summary>
+        /// Возвращает тип адресного объекта для редактирования.
+        /// </summary>
+        /// <param name="typeAddressingObject"></param>
+        /// <returns></returns>
+        private TypeAddressingObjectDto buildTypeAddressingObject(TypeAddressingObjectModelView typeAddressingObject)
+        {
+            return new TypeAddressingObjectDto 
+            { 
+                Id = typeAddressingObject.Id,
+                Name = typeAddressingObject.Name,
+                ShortName = typeAddressingObject.ShortName
+            };
+
         }
     }
 }

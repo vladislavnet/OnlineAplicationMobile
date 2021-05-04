@@ -13,27 +13,27 @@ namespace OnlineApplicationMobile.HttpService.Requests
         /// <summary>
         /// Имя.
         /// </summary>
-        public string FirstName { get; private set; }
+        public string FirstName { get; set; }
 
         /// <summary>
         /// Фамилия.
         /// </summary>
-        public string LastName { get; private set; }
+        public string LastName { get; set; }
 
         /// <summary>
         /// Отчество.
         /// </summary>
-        public string MiddleName { get; private set; }
+        public string MiddleName { get; set; }
 
         /// <summary>
         /// Дата рождения.
         /// </summary>
-        public DateTime? BirthDate { get; private set; }
+        public DateTime? BirthDate { get; set; }
 
         /// <summary>
         /// Телефон.
         /// </summary>
-        public string Telephone { get; private set; }
+        public string Telephone { get; set; }
 
         /// <summary>
         /// Номер лицевого счёта.

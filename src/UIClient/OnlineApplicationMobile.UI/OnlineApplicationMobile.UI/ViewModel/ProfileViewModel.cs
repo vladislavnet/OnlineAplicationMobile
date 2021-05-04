@@ -148,7 +148,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
 
             var response = httpService.GetInfoCurrentClientJKH(new RequestBase());
 
-            ToNextAction(response.StatusCode, string.Empty, () => { });
+            ToNextAction(response.StatusCode, () => { }, () => { });
         }
     }
 }

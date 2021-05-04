@@ -11,5 +11,12 @@ namespace OnlineApplicationMobile.HttpService.Interfaces
         /// <param name="request">Запрос.</param>
         /// <returns>Ответ.</returns>
         SearchAddressingObjectsResponse GetSearchAddressingObjects(SearchAddressingObjectsRequest request);
+
+        /// <summary>
+        /// Возращает массив адресных объектов.
+        /// </summary>
+        /// <param name="request">Запрос.</param>
+        /// <returns>Ответ.</returns>
+        GetTypesAddressingObjectResponse GetTypesAddressingObject(GetTypesAddressingObjectRequest request);
     }
 }

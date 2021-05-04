@@ -43,6 +43,13 @@ namespace OnlineApplicationMobile.HttpService.Implementation
             return _commonHttpService.GetSearchAddressingObjects(request);
         }
 
+        /// <inheritdoc />
+        public GetTypesAddressingObjectResponse GetTypesAddressingObject(GetTypesAddressingObjectRequest request)
+        {
+            return _commonHttpService.GetTypesAddressingObject(request);
+        }
+
+        /// <inheritdoc />
         public ResponseBase PutInfoCurrentClientJKH(PutInfoCurrentClientJKHRequest request)
         {
             return _userHttpService.PutInfoCurrentClientJKH(request);

@@ -59,18 +59,26 @@ namespace OnlineApplicationMobile.UI.ViewModel
             return new NavigationPage(page);
         }
 
-        public void ToNextAction(HttpStatusCode httpStatusCode, string message, Action action)
+        public void ToNextAction(HttpStatusCode httpStatusCode, Action action, Action actionError)
         {
             switch (httpStatusCode)
             {
                 case HttpStatusCode.Forbidden:
-                    View.DisplayAlertMessage("Авторизуруйтесь");
+                    DisplayMessage("Авторизуруйтесь");
                     PushModalPage(Startup.GetService<LoginPage>());
                     break;
                 case HttpStatusCode.InternalServerError:
-                    View.DisplayAlertMessage($"{(!string.IsNullOrWhiteSpace(message) ? message : "Произошла ошибка на сервере")}");
+                    actionError.Invoke();
+                    break;
+                case HttpStatusCode.OK:
+                    action.Invoke();
                     break;
             }                  
+        }
+
+        public void DisplayMessage(string message)
+        {
+            View.DisplayAlertMessage(message);
         }
     }
 }
