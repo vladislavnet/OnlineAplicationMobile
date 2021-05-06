@@ -34,10 +34,6 @@ namespace OnlineApplicationMobile.UI.Views
             await DisplayAlert(AlertMessageTemplate.AlertTemplate, message, AlertMessageTemplate.OkTemplate);
         }
 
-        private void regionEntry_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            
-        }
 
         private void regionEntry_Unfocused(object sender, FocusEventArgs e)
         {
@@ -53,6 +49,57 @@ namespace OnlineApplicationMobile.UI.Views
             else
             {
                 editProfileViewModel.IsVisibleSearchRegionCollection = false;
+            }
+        }
+
+        private void districtEntry_Unfocused(object sender, FocusEventArgs e)
+        {
+            editProfileViewModel.IsVisibleSearchDistrictCollection = false;
+        }
+
+        private void districtEntry_Focused(object sender, FocusEventArgs e)
+        {
+            if (editProfileViewModel.SearchDistrictCollection != null && editProfileViewModel.SearchDistrictCollection.Any())
+            {
+                editProfileViewModel.IsVisibleSearchDistrictCollection = true;
+            }
+            else
+            {
+                editProfileViewModel.IsVisibleSearchDistrictCollection = false;
+            }
+        }
+
+        private void localityEntry_Unfocused(object sender, FocusEventArgs e)
+        {
+            editProfileViewModel.IsVisibleSearchLocalityCollection = false;
+        }
+
+        private void localityEntry_Focused(object sender, FocusEventArgs e)
+        {
+            if (editProfileViewModel.SearchLocalityCollection != null && editProfileViewModel.SearchLocalityCollection.Any())
+            {
+                editProfileViewModel.IsVisibleSearchLocalityCollection = true;
+            }
+            else
+            {
+                editProfileViewModel.IsVisibleSearchLocalityCollection = false;
+            }
+        }
+
+        private void streetEntry_Unfocused(object sender, FocusEventArgs e)
+        {
+            editProfileViewModel.IsVisibleSearchStreetCollection = false;
+        }
+
+        private void streetEntry_Focused(object sender, FocusEventArgs e)
+        {
+            if (editProfileViewModel.SearchStreetCollection != null && editProfileViewModel.SearchStreetCollection.Any())
+            {
+                editProfileViewModel.IsVisibleSearchStreetCollection = true;
+            }
+            else
+            {
+                editProfileViewModel.IsVisibleSearchStreetCollection = false;
             }
         }
     }

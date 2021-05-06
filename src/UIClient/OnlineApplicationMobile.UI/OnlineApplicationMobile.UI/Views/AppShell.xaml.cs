@@ -18,10 +18,12 @@ namespace OnlineApplicationMobile.UI.Views
             InitializeComponent();
             Routing.RegisterRoute(RoutingTemplate.LoginTemplate, typeof(LoginPage));
             Routing.RegisterRoute(RoutingTemplate.ProfileTemplate, typeof(ProfilePage));
+            Routing.RegisterRoute(RoutingTemplate.UserApplicationsTemplate, typeof(UserApplicationsPage));
 
             NavigationGlobalObject.Navigation = Navigation;
 
             profile.Content = new ProfilePage();
+            applications.Content = new UserApplicationsPage();
             CurrentItem = profile;
 
         }

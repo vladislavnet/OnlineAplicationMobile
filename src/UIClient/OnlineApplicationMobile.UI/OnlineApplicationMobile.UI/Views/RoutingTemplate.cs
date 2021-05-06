@@ -8,5 +8,6 @@ namespace OnlineApplicationMobile.UI.Views
     {
         public static string LoginTemplate = "Login";
         public static string ProfileTemplate = "Profile";
+        public static string UserApplicationsTemplate = "Applications";
     }
 }

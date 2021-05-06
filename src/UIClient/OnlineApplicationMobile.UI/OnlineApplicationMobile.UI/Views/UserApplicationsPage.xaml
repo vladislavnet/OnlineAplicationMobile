@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OnlineApplicationMobile.UI.Views.UserApplicationsPage"
+             Title="Мои заявки">
+    <ContentPage.Content>
+        <ListView ItemsSource="{Binding Applications}"
+                  SelectedItem="{Binding SelectedApplication}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.View>
+                            <StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding OrganizationName}"/>
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Статус: "/>
+                                    <Label Text="{Binding GetStatusString}" />
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Дата и время публикации: "/>
+                                    <Label Text="{Binding CreatedAt, StringFormat='{0:G}'}" />
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Дата и время обновления: "/>
+                                    <Label Text="{Binding UpdatedAt, StringFormat='{0:G}'}" />
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>

@@ -9,6 +9,7 @@ namespace OnlineApplicationMobile.Domain.Enums
         Region = 1,
         District = 2,
         Locality = 3,
-        Street = 4
+        Street = 4,
+        Undefined = 99,
     }
 }

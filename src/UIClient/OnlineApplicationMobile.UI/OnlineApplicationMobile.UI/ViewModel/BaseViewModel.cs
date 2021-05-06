@@ -1,4 +1,6 @@
-﻿using OnlineApplicationMobile.UI.Views;
+﻿using OnlineApplicationMobile.HttpService.Requests;
+using OnlineApplicationMobile.Infrastructure.Globals;
+using OnlineApplicationMobile.UI.Views;
 using OnlineApplicationMobile.UI.Views.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -79,6 +81,11 @@ namespace OnlineApplicationMobile.UI.ViewModel
         public void DisplayMessage(string message)
         {
             View.DisplayAlertMessage(message);
+        }
+
+        public RequestBase BuildRequestBase()
+        {
+            return new RequestBase { Token = CurrentUser.Token };
         }
     }
 }

@@ -32,6 +32,12 @@ namespace OnlineApplicationMobile.HttpService.Implementation
         }
 
         /// <inheritdoc />
+        public GetApplicationsCurrentClientJKHResponse GetApplicationsCurrentClientJKH(RequestBase request)
+        {
+            return _applicationHttpService.GetApplicationsCurrentClientJKH(request);
+        }
+
+        /// <inheritdoc />
         public GetInfoCurrentClientJKHResponse GetInfoCurrentClientJKH(RequestBase request)
         {
             return _userHttpService.GetInfoCurrentClientJKH(request);

@@ -1,30 +1,96 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="OnlineApplicationMobile.UI.Views.EditProfilePage">
+             x:Class="OnlineApplicationMobile.UI.Views.EditProfilePage"
+             Title="Редактирования профиля">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
                 <Entry Text="{Binding LastName}" Placeholder="Фимилия"/>
+                <Label Text="{Binding LastNameValidateMessage}" IsVisible="{Binding LastNameValidateMessageIsVisible}"/>
                 <Entry Text="{Binding FirstName}" Placeholder="Имя"/>
+                <Label Text="{Binding FirstNameValidateMessage}" IsVisible="{Binding FirtNameValidateMessageIsVisible}"/>
                 <Entry Text="{Binding MiddleName}" Placeholder="Отчество"/>
+                <Label Text="{Binding MiddleNameValidateMessage}" IsVisible="{Binding MiddleNameValidateMessageIsVisible}"/>
                 <StackLayout Orientation="Horizontal" Margin="0">
                     <Label Text="Дата рождения" VerticalTextAlignment="Center" Margin="0,0,10,0"/>
                     <DatePicker Date="{Binding BirthDate}"/>
                 </StackLayout>
+                <Label Text="{Binding BirthDateValidateMessage}" IsVisible="{Binding BirthDateValidateMessageIsVisible}"/>
                 <Entry Text="{Binding Telephone}" Placeholder="Телефон"/>
+                <Label Text="{Binding TelephoneValidateMessage}" IsVisible="{Binding TelephoneValidateMessageIsVisible}"/>
                 <Entry Text="{Binding NumberPersonalAccount}" Placeholder="Номер лицевого счёта"/>
+                <Label Text="{Binding NumberPersonalAccountValidateMessage}" IsVisible="{Binding NumberPersonalAccountValidateMessageIsVisible}"/>
+                
                 <Label Text="Адрес" />
-                <Entry x:Name="regionEntry"
-                       Placeholder="Регион"
-                       TextChanged="regionEntry_TextChanged" 
-                       Text="{Binding Region}" 
-                       Unfocused="regionEntry_Unfocused"
-                       Focused="regionEntry_Focused"/>
+                
+                <StackLayout Orientation="Horizontal">
+                    <Picker ItemsSource="{Binding RegionTypesAddressingObject}"
+                            SelectedItem="{Binding SelectedRegionTypeAddressingObject}"/>
+                    <Entry x:Name="regionEntry"
+                           Placeholder="Регион"
+                           Text="{Binding Region}" 
+                           Unfocused="regionEntry_Unfocused"
+                           Focused="regionEntry_Focused"/>
+                </StackLayout>
                 <ListView x:Name="searchRegionListView"
                           ItemsSource="{Binding SearchRegionCollection}" 
                           SelectedItem="{Binding SelectedRegionCollection}"
                           IsVisible="{Binding IsVisibleSearchRegionCollection}"/>
+                <Label Text="{Binding RegionValidateMessage}" IsVisible="{Binding RegionValidateMessageIsVisible}"/>
+
+                <StackLayout Orientation="Horizontal">
+                    <Picker ItemsSource="{Binding DistrictTypesAddressingObject}"
+                            SelectedItem="{Binding SelectedDistrictTypeAddressingObject}"/>
+                    <Entry x:Name="districtEntry"
+                           Placeholder="Район"
+                           Text="{Binding District}" 
+                           Unfocused="districtEntry_Unfocused"
+                           Focused="districtEntry_Focused"/>
+                </StackLayout>
+                <ListView x:Name="searchDistrictListView"
+                          ItemsSource="{Binding SearchDistrictCollection}" 
+                          SelectedItem="{Binding SelectedDistrictCollection}"
+                          IsVisible="{Binding IsVisibleSearchDistrictCollection}"/>
+                <Label Text="{Binding DistrictValidateMessage}" IsVisible="{Binding DistrictValidateMessageIsVisible}"/>
+
+                <StackLayout Orientation="Horizontal">
+                    <Picker ItemsSource="{Binding LocalityTypesAddressingObject}"
+                            SelectedItem="{Binding SelectedLocalityTypeAddressingObject}"/>
+                    <Entry x:Name="localityEntry"
+                           Placeholder="Населённый пункт"
+                           Text="{Binding Locality}" 
+                           Unfocused="localityEntry_Unfocused"
+                           Focused="localityEntry_Focused"/>
+                </StackLayout>
+                <ListView x:Name="searchLocalityListView"
+                          ItemsSource="{Binding SearchLocalityCollection}" 
+                          SelectedItem="{Binding SelectedLocalityCollection}"
+                          IsVisible="{Binding IsVisibleSearchLocalityCollection}"/>
+                <Label Text="{Binding LocalityValidateMessage}" IsVisible="{Binding LocalityValidateMessageIsVisible}"/>
+
+                <StackLayout Orientation="Horizontal">
+                    <Picker ItemsSource="{Binding StreetTypesAddressingObject}"
+                            SelectedItem="{Binding SelectedStreetTypeAddressingObject}"/>
+                    <Entry x:Name="streetEntry"
+                           Placeholder="Улица"
+                           Text="{Binding Street}" 
+                           Unfocused="streetEntry_Unfocused"
+                           Focused="streetEntry_Focused"/>
+                </StackLayout>
+                <ListView x:Name="searchStreetListView"
+                          ItemsSource="{Binding SearchStreetCollection}" 
+                          SelectedItem="{Binding SelectedStreetCollection}"
+                          IsVisible="{Binding IsVisibleSearchStreetCollection}"/>
+                <Label Text="{Binding StreetValidateMessage}" IsVisible="{Binding StreetValidateMessageIsVisible}"/>
+
+                <Entry Text="{Binding HouseNumber}" Placeholder="Номер дома"/>
+                <Label Text="{Binding HouseNumberValidateMessage}" IsVisible="{Binding HouseNumberValidateMessageIsVisible}"/>
+
+                <Entry Text="{Binding ApartamentNumber}" Placeholder="Номер дома"/>
+                <Label Text="{Binding ApartamentNumberValidateMessage}" IsVisible="{Binding ApartamentNumberValidateMessageIsVisible}"/>
+
+                <Button Text="Сохранить" Command="{Binding EditUserCommand}"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
