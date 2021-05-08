@@ -3,6 +3,7 @@ using OnlineApplicationMobile.HttpService.Interfaces;
 using OnlineApplicationMobile.Infrastructure.Helpers;
 using OnlineApplicationMobile.UI.ModelView;
 using OnlineApplicationMobile.UI.ViewModel.Interfaces;
+using OnlineApplicationMobile.UI.Views;
 using OnlineApplicationMobile.UI.Views.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
         {
             View = view;
             View.ViewModel = this;
+            initialize();
         }
 
         /// <summary>
@@ -46,7 +48,9 @@ namespace OnlineApplicationMobile.UI.ViewModel
             set
             {
                 selectedApplication = value;
-                OnPropertyChanged(nameof(SelectedApplication));
+
+                if (selectedApplication != null)
+                    PushPage(new ApplicationDetailPage(selectedApplication.Id));
             }
         }
 

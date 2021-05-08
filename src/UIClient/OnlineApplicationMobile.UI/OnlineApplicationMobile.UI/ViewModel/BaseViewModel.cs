@@ -1,5 +1,7 @@
-﻿using OnlineApplicationMobile.HttpService.Requests;
+﻿using OnlineApplicationMobile.HttpService.DTO;
+using OnlineApplicationMobile.HttpService.Requests;
 using OnlineApplicationMobile.Infrastructure.Globals;
+using OnlineApplicationMobile.UI.ModelView;
 using OnlineApplicationMobile.UI.Views;
 using OnlineApplicationMobile.UI.Views.Interfaces;
 using System;
@@ -86,6 +88,20 @@ namespace OnlineApplicationMobile.UI.ViewModel
         public RequestBase BuildRequestBase()
         {
             return new RequestBase { Token = CurrentUser.Token };
+        }
+
+        public string GetUserToken()
+        {
+            return CurrentUser.Token;
+        }
+
+        public ServiceTypeModelView MapServiceType(ServiceTypeDto serviceType)
+        {
+            return new ServiceTypeModelView
+            {
+                Id = serviceType.Id,
+                Title = serviceType.Title
+            };
         }
     }
 }

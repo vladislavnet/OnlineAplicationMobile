@@ -32,6 +32,12 @@ namespace OnlineApplicationMobile.HttpService.Implementation
         }
 
         /// <inheritdoc />
+        public GetApplicationDetailCurrentClientJKHResponse GetApplicationDetailCurrentClientJKH(GetApplicationDetailCurrentClientJKHRequest request)
+        {
+            return _applicationHttpService.GetApplicationDetailCurrentClientJKH(request);
+        }
+
+        /// <inheritdoc />
         public GetApplicationsCurrentClientJKHResponse GetApplicationsCurrentClientJKH(RequestBase request)
         {
             return _applicationHttpService.GetApplicationsCurrentClientJKH(request);
@@ -44,6 +50,12 @@ namespace OnlineApplicationMobile.HttpService.Implementation
         }
 
         /// <inheritdoc />
+        public GetOrganizationsByUserResponse GetOrganizationsByUser(RequestBase request)
+        {
+            return _organizationHttpService.GetOrganizationsByUser(request);
+        }
+
+        /// <inheritdoc />
         public SearchAddressingObjectsResponse GetSearchAddressingObjects(SearchAddressingObjectsRequest request)
         {
             return _commonHttpService.GetSearchAddressingObjects(request);
@@ -53,6 +65,12 @@ namespace OnlineApplicationMobile.HttpService.Implementation
         public GetTypesAddressingObjectResponse GetTypesAddressingObject(GetTypesAddressingObjectRequest request)
         {
             return _commonHttpService.GetTypesAddressingObject(request);
+        }
+
+        /// <inheritdoc />
+        public ResponseBase PostCommentApplication(PostCommentApplicationRequest request)
+        {
+            return _applicationHttpService.PostCommentApplication(request);
         }
 
         /// <inheritdoc />

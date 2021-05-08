@@ -1,8 +1,5 @@
 ﻿using OnlineApplicationMobile.HttpService.Requests;
 using OnlineApplicationMobile.HttpService.Responses;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace OnlineApplicationMobile.HttpService.Interfaces
 {
@@ -14,5 +11,19 @@ namespace OnlineApplicationMobile.HttpService.Interfaces
         /// <param name="request">Запрос.</param>
         /// <returns>Ответ.</returns>
         GetApplicationsCurrentClientJKHResponse GetApplicationsCurrentClientJKH(RequestBase request);
+
+        /// <summary>
+        /// Получение детильной информации заявки текущего клиента ЖКХ.
+        /// </summary>
+        /// <param name="request">Запрос.</param>
+        /// <returns>Ответ.</returns>
+        GetApplicationDetailCurrentClientJKHResponse GetApplicationDetailCurrentClientJKH(GetApplicationDetailCurrentClientJKHRequest request);
+
+        /// <summary>
+        /// Добавление комментария к заявке.
+        /// </summary>
+        /// <param name="request">Запрос.</param>
+        /// <returns>Ответ.</returns>
+        ResponseBase PostCommentApplication(PostCommentApplicationRequest request);
     }
 }

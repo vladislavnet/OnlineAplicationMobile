@@ -5,7 +5,8 @@
              Title="Мои заявки">
     <ContentPage.Content>
         <ListView ItemsSource="{Binding Applications}"
-                  SelectedItem="{Binding SelectedApplication}">
+                  SelectedItem="{Binding SelectedApplication}" 
+                  RowHeight="120">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
