@@ -3,29 +3,37 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OnlineApplicationMobile.UI.Views.AppShell"
              xmlns:pages="clr-namespace:OnlineApplicationMobile.UI.Views">
-    <FlyoutItem Title="Профиль">
+    <FlyoutItem Title="Профиль" Route="Profile">
         <Tab Title="Профиль">
             <ShellContent x:Name="profile">
             </ShellContent>
         </Tab>
+
     </FlyoutItem>
-    <FlyoutItem Title="Мои заявки">
+    <FlyoutItem Title="Мои заявки" Route="UserApplications">
         <Tab Title="Мои заявки">
             <ShellContent x:Name="applications">
             </ShellContent>
         </Tab>
     </FlyoutItem>
-    <FlyoutItem Title="Организации">
-        <Tab Title="Организации">
-            <ShellContent x:Name="organizations">
+    <FlyoutItem Title="Рекомендованные организации" Route="RecomendedOrganizations">
+        <Tab Title="Рекомендованные организации">
+            <ShellContent x:Name="recomendedOrganizations">
             </ShellContent>
         </Tab>
     </FlyoutItem>
-    <FlyoutItem Title="Авторизация" IsVisible="False">
+    <FlyoutItem Title="Поиск организации" Route="SearchOrganizations">
+        <Tab Title="Поиск организации" >
+            <ShellContent x:Name="searchOrganizations">
+            </ShellContent>
+        </Tab>
+    </FlyoutItem>
+    <FlyoutItem Title="Авторизация" Route="Login">
         <Tab Title="Авторизация">
             <ShellContent x:Name="login">
             </ShellContent>
         </Tab>
     </FlyoutItem>
+
 </Shell>      
     

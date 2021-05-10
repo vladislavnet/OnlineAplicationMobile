@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OnlineApplicationMobile.UI.Views.RegisterPage"
+             Title="Регистрация">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Entry Text="{Binding Email}" Placeholder="Email"/>
+                <Label Text="{Binding EmailValidateMessage}" IsVisible="{Binding EmailValidateMessageIsVisible}"/>
+                
+                <Entry Text="{Binding Password1}" Placeholder="Пароль" IsPassword="True"/>
+                <Label Text="{Binding Password1ValidateMessage}" IsVisible="{Binding Password1ValidateMessageIsVisible}"/>
+                
+                <Entry Text="{Binding Password2}" Placeholder="Подтверждение пароля" IsPassword="True"/>
+                <Label Text="{Binding Password2ValidateMessage}" IsVisible="{Binding Password2ValidateMessageIsVisible}"/>
+
+                <Entry Text="{Binding LastName}" Placeholder="Фамилия"/>
+                <Label Text="{Binding LastNameValidateMessage}" IsVisible="{Binding LastNameValidateMessageIsVisible}"/>
+
+                <Entry Text="{Binding FirstName}" Placeholder="Имя"/>
+                <Label Text="{Binding FirstNameValidateMessage}" IsVisible="{Binding FirstNameValidateMessageIsVisible}"/>
+
+                <Entry Text="{Binding MiddleName}" Placeholder="Отчество"/>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Дата рождения: "/>
+                    <DatePicker Date="{Binding BirthDate}"/>
+                </StackLayout>
+
+                <Entry Text="{Binding Telephone}" Placeholder="Отчество"/>
+
+                <Button Text="Зарегистрировать" Command="{Binding RegisterCommand}"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,5 +1,6 @@
 ﻿using OnlineApplicationMobile.UI.Helpers;
 using OnlineApplicationMobile.UI.ModelView;
+using OnlineApplicationMobile.UI.ViewModel;
 using OnlineApplicationMobile.UI.ViewModel.Interfaces;
 using OnlineApplicationMobile.UI.Views.Interfaces;
 using System;
@@ -16,9 +17,11 @@ namespace OnlineApplicationMobile.UI.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OrganizationDetailPage : ContentPage, IView
     {
+        private readonly OrganizationDetailViewModel organizationDetailViewModel;
         public OrganizationDetailPage(OrganizationModelView organization)
         {
             InitializeComponent();
+            organizationDetailViewModel = new OrganizationDetailViewModel(organization, this, NavigationGlobalObject.Navigation);
         }
 
         public IViewModel ViewModel

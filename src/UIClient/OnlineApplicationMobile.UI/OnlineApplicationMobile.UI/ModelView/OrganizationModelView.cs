@@ -12,7 +12,7 @@ namespace OnlineApplicationMobile.UI.ModelView
         /// <summary>
         /// Уникальный идентификатор.
         /// </summary>
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// Наименование.

@@ -3,6 +3,7 @@ using OnlineApplicationMobile.HttpService.Requests;
 using OnlineApplicationMobile.UI.ViewModel.Interfaces;
 using OnlineApplicationMobile.UI.Views;
 using OnlineApplicationMobile.UI.Views.Interfaces;
+using System.Net;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -146,7 +147,14 @@ namespace OnlineApplicationMobile.UI.ViewModel
         {
             var httpService = Startup.GetService<IHttpService>();
 
-            var response = httpService.GetInfoCurrentClientJKH(new RequestBase());
+            var response = httpService.GetInfoCurrentClientJKH(BuildRequestBase()).Result;
+
+            if (response.StatusCode == HttpStatusCode.Forbidden)
+            {
+                NavigationGlobalObject.IsLoginStart = true;
+                DisplayMessage("Авторизуруйтесь");
+                PushModalPage(new LoginPage());
+            }
 
             ToNextAction(response.StatusCode, () => { }, () => { });
         }

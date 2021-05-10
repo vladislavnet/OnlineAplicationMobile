@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using System.Text.Json.Serialization;
 
 namespace OnlineApplicationMobile.HttpService.Responses
 {
@@ -10,11 +11,13 @@ namespace OnlineApplicationMobile.HttpService.Responses
         /// <summary>
         /// Код состояния HTTP переданный от сервера.
         /// </summary>
+        [JsonIgnore]
         public HttpStatusCode StatusCode { get; set; }
 
         /// <summary>
         /// Сообщение от сервера.
         /// </summary>
+        [JsonPropertyName("message_error")] 
         public string Message { get; set; }
     }
 }

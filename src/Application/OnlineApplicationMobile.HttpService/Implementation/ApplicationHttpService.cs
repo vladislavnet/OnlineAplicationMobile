@@ -22,7 +22,7 @@ namespace OnlineApplicationMobile.HttpService.Implementation
                 MessageText = "Test #1",
                 Organization = new OrganizationShortNotByServiceTypesDto
                 {
-                    Id = Guid.NewGuid(),
+                    Id = 1,
                     Name = "Test org #1",
                     Description = "Test org description #1,",
                     Email = "Test1@common.com",
@@ -84,7 +84,7 @@ namespace OnlineApplicationMobile.HttpService.Implementation
         {
             return new GetApplicationsCurrentClientJKHResponse()
             {
-                StatusCode = HttpStatusCode.OK,
+                StatusCode = HttpStatusCode.Forbidden,
                 Applications = new ApplicationShortDto[]
                 {
                     new ApplicationShortDto
@@ -94,7 +94,7 @@ namespace OnlineApplicationMobile.HttpService.Implementation
                         MessageText = "Test #1",
                         Organization = new OrganizationShortNotByServiceTypesDto
                         {
-                            Id = Guid.NewGuid(),
+                            Id = 1,
                             Name = "Test org #1",
                             Description = "Test org description #1,",
                             Email = "Test1@common.com",
@@ -131,7 +131,7 @@ namespace OnlineApplicationMobile.HttpService.Implementation
                         MessageText = "Test #2",
                         Organization = new OrganizationShortNotByServiceTypesDto
                         {
-                            Id = Guid.NewGuid(),
+                            Id = 1,
                             Name = "Test org #2",
                             Description = "Test org description #2,",
                             Email = "Test2@common.com",
@@ -163,6 +163,11 @@ namespace OnlineApplicationMobile.HttpService.Implementation
                     },
                 }
             };
+        }
+
+        public ResponseBase PostApplication(PostApplicationRequest request)
+        {
+            return new ResponseBase { StatusCode = HttpStatusCode.OK };
         }
 
         /// <inheritdoc />

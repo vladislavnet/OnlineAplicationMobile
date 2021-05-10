@@ -16,6 +16,7 @@ namespace OnlineApplicationMobile.UI.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EditProfilePage : ContentPage, IView
     {
+       
         private readonly EditProfileViewModel editProfileViewModel;
         public EditProfilePage()
         {

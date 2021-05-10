@@ -21,7 +21,7 @@ namespace OnlineApplicationMobile.HttpService.Implementation
                 {
                     new OrganizationShortDto
                     {
-                        Id = Guid.NewGuid(),
+                        Id = 1,
                         Name = "Test org #1",
                         Description = "Test org description #1,",
                         Email = "Test1@common.com",
@@ -42,7 +42,61 @@ namespace OnlineApplicationMobile.HttpService.Implementation
                     },
                     new OrganizationShortDto
                     {
-                        Id = Guid.NewGuid(),
+                        Id = 2,
+                        Name = "Test org #2",
+                        Description = "Test org description #2,",
+                        Email = "Test1@common.com",
+                        Telephone = "890000000001",
+                        ServiceTypes = new ServiceTypeDto[]
+                        {
+                            new ServiceTypeDto
+                            {
+                                Id = 1,
+                                Title = "Test Service #1"
+                            },
+                            new ServiceTypeDto
+                            {
+                                Id = 2,
+                                Title = "Test Service #2"
+                            },
+                        }
+                    }
+                }
+            };
+        }
+
+        /// <inheritdoc />
+        public GetSearchGlobalOrganizationsResponse GetSearchGlobalOrganizations(GetSearchGlobalOrganizationsRequest request)
+        {
+            return new GetSearchGlobalOrganizationsResponse
+            {
+                StatusCode = HttpStatusCode.OK,
+                Organizations = new OrganizationShortDto[]
+                {
+                    new OrganizationShortDto
+                    {
+                        Id = 1,
+                        Name = "Test org #1",
+                        Description = "Test org description #1,",
+                        Email = "Test1@common.com",
+                        Telephone = "890000000001",
+                        ServiceTypes = new ServiceTypeDto[]
+                        {
+                            new ServiceTypeDto
+                            {
+                                Id = 1,
+                                Title = "Test Service #1"
+                            },
+                            new ServiceTypeDto
+                            {
+                                Id = 2,
+                                Title = "Test Service #2"
+                            },
+                        }
+                    },
+                    new OrganizationShortDto
+                    {
+                        Id = 2,
                         Name = "Test org #2",
                         Description = "Test org description #2,",
                         Email = "Test1@common.com",

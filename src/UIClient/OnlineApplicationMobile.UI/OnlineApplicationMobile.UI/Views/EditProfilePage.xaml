@@ -23,61 +23,115 @@
                 <Label Text="{Binding NumberPersonalAccountValidateMessage}" IsVisible="{Binding NumberPersonalAccountValidateMessageIsVisible}"/>
                 
                 <Label Text="Адрес" />
-                
-                <StackLayout Orientation="Horizontal">
-                    <Picker ItemsSource="{Binding RegionTypesAddressingObject}"
-                            SelectedItem="{Binding SelectedRegionTypeAddressingObject}"/>
-                    <Entry x:Name="regionEntry"
+
+                <Grid Margin="0" Padding="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Picker Grid.Row="0" Grid.Column="0"
+                            ItemsSource="{Binding RegionTypesAddressingObject}"
+                            SelectedItem="{Binding SelectedRegionTypeAddressingObject}"
+                            HorizontalTextAlignment="Center"/>
+                    <Entry Grid.Row="0" Grid.Column="1"
+                           x:Name="regionEntry"
                            Placeholder="Регион"
                            Text="{Binding Region}" 
                            Unfocused="regionEntry_Unfocused"
                            Focused="regionEntry_Focused"/>
-                </StackLayout>
-                <ListView x:Name="searchRegionListView"
+
+                </Grid>
+                
+                <ListView Margin="0,-60,0,0" RowHeight="45" x:Name="searchRegionListView"
                           ItemsSource="{Binding SearchRegionCollection}" 
                           SelectedItem="{Binding SelectedRegionCollection}"
                           IsVisible="{Binding IsVisibleSearchRegionCollection}"/>
                 <Label Text="{Binding RegionValidateMessage}" IsVisible="{Binding RegionValidateMessageIsVisible}"/>
 
-                <StackLayout Orientation="Horizontal">
-                    <Picker ItemsSource="{Binding DistrictTypesAddressingObject}"
+                <Grid Margin="0" Padding="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Picker Grid.Row="0" Grid.Column="0"
+                            ItemsSource="{Binding DistrictTypesAddressingObject}"
                             SelectedItem="{Binding SelectedDistrictTypeAddressingObject}"/>
-                    <Entry x:Name="districtEntry"
+                    <Entry Grid.Row="0" Grid.Column="1" 
+                           x:Name="districtEntry"
                            Placeholder="Район"
                            Text="{Binding District}" 
                            Unfocused="districtEntry_Unfocused"
                            Focused="districtEntry_Focused"/>
-                </StackLayout>
+
+                </Grid>
+
                 <ListView x:Name="searchDistrictListView"
                           ItemsSource="{Binding SearchDistrictCollection}" 
                           SelectedItem="{Binding SelectedDistrictCollection}"
                           IsVisible="{Binding IsVisibleSearchDistrictCollection}"/>
                 <Label Text="{Binding DistrictValidateMessage}" IsVisible="{Binding DistrictValidateMessageIsVisible}"/>
 
-                <StackLayout Orientation="Horizontal">
-                    <Picker ItemsSource="{Binding LocalityTypesAddressingObject}"
+                
+                <Grid Margin="0" Padding="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Picker Grid.Row="0" Grid.Column="0" 
+                            ItemsSource="{Binding LocalityTypesAddressingObject}"
                             SelectedItem="{Binding SelectedLocalityTypeAddressingObject}"/>
-                    <Entry x:Name="localityEntry"
+                    <Entry Grid.Row="0" Grid.Column="1" 
+                           x:Name="localityEntry"
                            Placeholder="Населённый пункт"
                            Text="{Binding Locality}" 
                            Unfocused="localityEntry_Unfocused"
                            Focused="localityEntry_Focused"/>
-                </StackLayout>
+
+                </Grid>
+
                 <ListView x:Name="searchLocalityListView"
                           ItemsSource="{Binding SearchLocalityCollection}" 
                           SelectedItem="{Binding SelectedLocalityCollection}"
                           IsVisible="{Binding IsVisibleSearchLocalityCollection}"/>
                 <Label Text="{Binding LocalityValidateMessage}" IsVisible="{Binding LocalityValidateMessageIsVisible}"/>
 
-                <StackLayout Orientation="Horizontal">
-                    <Picker ItemsSource="{Binding StreetTypesAddressingObject}"
+                <Grid Margin="0" Padding="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Picker Grid.Row="0" Grid.Column="0" 
+                            ItemsSource="{Binding StreetTypesAddressingObject}"
                             SelectedItem="{Binding SelectedStreetTypeAddressingObject}"/>
-                    <Entry x:Name="streetEntry"
+                    <Entry Grid.Row="0" Grid.Column="1" 
+                           x:Name="streetEntry"
                            Placeholder="Улица"
                            Text="{Binding Street}" 
                            Unfocused="streetEntry_Unfocused"
                            Focused="streetEntry_Focused"/>
-                </StackLayout>
+
+                </Grid>
+
                 <ListView x:Name="searchStreetListView"
                           ItemsSource="{Binding SearchStreetCollection}" 
                           SelectedItem="{Binding SelectedStreetCollection}"

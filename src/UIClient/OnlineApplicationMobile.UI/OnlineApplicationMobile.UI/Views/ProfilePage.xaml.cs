@@ -16,7 +16,7 @@ namespace OnlineApplicationMobile.UI.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProfilePage : ContentPage, IView
     {
-        private readonly ProfileViewModel profileViewModel;
+        private ProfileViewModel profileViewModel;
         public ProfilePage()
         {
             InitializeComponent();
@@ -32,6 +32,11 @@ namespace OnlineApplicationMobile.UI.Views
         public async void DisplayAlertMessage(string message)
         {
             await DisplayAlert(AlertMessageTemplate.AlertTemplate, message, AlertMessageTemplate.OkTemplate);
+        }
+
+        public void Refresh()
+        {
+            profileViewModel = new ProfileViewModel(this, NavigationGlobalObject.Navigation);
         }
     }
 }

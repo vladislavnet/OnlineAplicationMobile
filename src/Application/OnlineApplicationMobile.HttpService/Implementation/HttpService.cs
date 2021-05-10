@@ -4,6 +4,7 @@ using OnlineApplicationMobile.HttpService.Responses;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace OnlineApplicationMobile.HttpService.Implementation
 {
@@ -26,9 +27,9 @@ namespace OnlineApplicationMobile.HttpService.Implementation
         }
 
         /// <inheritdoc />
-        public AuthorizationResponse Authorization(AuthorizationRequest request)
+        public async Task<AuthorizationResponse> Authorization(AuthorizationRequest request)
         {
-            return _userHttpService.Authorization(request);
+            return await _userHttpService.Authorization(request);
         }
 
         /// <inheritdoc />
@@ -44,9 +45,9 @@ namespace OnlineApplicationMobile.HttpService.Implementation
         }
 
         /// <inheritdoc />
-        public GetInfoCurrentClientJKHResponse GetInfoCurrentClientJKH(RequestBase request)
+        public async Task<GetInfoCurrentClientJKHResponse> GetInfoCurrentClientJKH(RequestBase request)
         {
-            return _userHttpService.GetInfoCurrentClientJKH(request);
+            return await _userHttpService.GetInfoCurrentClientJKH(request);
         }
 
         /// <inheritdoc />
@@ -61,16 +62,32 @@ namespace OnlineApplicationMobile.HttpService.Implementation
             return _commonHttpService.GetSearchAddressingObjects(request);
         }
 
+        public GetSearchGlobalOrganizationsResponse GetSearchGlobalOrganizations(GetSearchGlobalOrganizationsRequest request)
+        {
+            return _organizationHttpService.GetSearchGlobalOrganizations(request);
+        }
+
         /// <inheritdoc />
         public GetTypesAddressingObjectResponse GetTypesAddressingObject(GetTypesAddressingObjectRequest request)
         {
             return _commonHttpService.GetTypesAddressingObject(request);
         }
 
+        public ResponseBase PostApplication(PostApplicationRequest request)
+        {
+            return _applicationHttpService.PostApplication(request);
+        }
+
         /// <inheritdoc />
         public ResponseBase PostCommentApplication(PostCommentApplicationRequest request)
         {
             return _applicationHttpService.PostCommentApplication(request);
+        }
+
+        /// <inheritdoc />
+        public ResponseBase PostRegistrationClientJKH(PostRegistrationClientJKHRequest request)
+        {
+            return _userHttpService.PostRegistrationClientJKH(request);
         }
 
         /// <inheritdoc />

@@ -25,5 +25,12 @@ namespace OnlineApplicationMobile.HttpService.Interfaces
         /// <param name="request">Запрос.</param>
         /// <returns>Ответ.</returns>
         ResponseBase PostCommentApplication(PostCommentApplicationRequest request);
+
+        /// <summary>
+        /// Добавление заявки.
+        /// </summary>
+        /// <param name="request">Запрос.</param>
+        /// <returns>Ответ.</returns>
+        ResponseBase PostApplication(PostApplicationRequest request);
     }
 }

@@ -63,13 +63,21 @@ namespace OnlineApplicationMobile.UI.ViewModel
             return new NavigationPage(page);
         }
 
+        public async void  GoToUserApplicationPage()
+        {
+            
+        }
+
         public void ToNextAction(HttpStatusCode httpStatusCode, Action action, Action actionError)
         {
             switch (httpStatusCode)
             {
                 case HttpStatusCode.Forbidden:
-                    DisplayMessage("Авторизуруйтесь");
-                    PushModalPage(Startup.GetService<LoginPage>());
+                    if (!NavigationGlobalObject.IsLoginStart)
+                    {
+                        DisplayMessage("Авторизуруйтесь");
+                        PushModalPage(new LoginPage());
+                    }
                     break;
                 case HttpStatusCode.InternalServerError:
                     actionError.Invoke();

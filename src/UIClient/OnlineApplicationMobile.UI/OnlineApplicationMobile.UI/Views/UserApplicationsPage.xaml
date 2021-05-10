@@ -6,7 +6,10 @@
     <ContentPage.Content>
         <ListView ItemsSource="{Binding Applications}"
                   SelectedItem="{Binding SelectedApplication}" 
-                  RowHeight="120">
+                  RowHeight="120"
+                  IsPullToRefreshEnabled="True"
+                  RefreshCommand="{Binding RefreshCommand}"
+                  IsRefreshing="{Binding IsRefreshing}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

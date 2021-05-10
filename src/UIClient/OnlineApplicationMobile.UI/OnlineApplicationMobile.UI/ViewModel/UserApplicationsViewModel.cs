@@ -8,6 +8,7 @@ using OnlineApplicationMobile.UI.Views.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace OnlineApplicationMobile.UI.ViewModel
@@ -19,11 +20,25 @@ namespace OnlineApplicationMobile.UI.ViewModel
     {
         private List<ApplicationShortModelView> applications;
         private ApplicationShortModelView selectedApplication;
+        private bool isRefreshing;
         public UserApplicationsViewModel(IView view, INavigation navigation) : base(navigation)
         {
             View = view;
             View.ViewModel = this;
-            initialize();
+            RefreshCommand.Execute(null);
+        }
+
+        /// <summary>
+        /// Команда для Обновления раздела.
+        /// </summary>
+        public ICommand RefreshCommand
+        {
+            get => new Command(() =>
+            {
+                IsRefreshing = true;
+                initialize();
+                IsRefreshing = false;
+            });
         }
 
         /// <summary>
@@ -51,6 +66,19 @@ namespace OnlineApplicationMobile.UI.ViewModel
 
                 if (selectedApplication != null)
                     PushPage(new ApplicationDetailPage(selectedApplication.Id));
+            }
+        }
+
+        /// <summary>
+        /// Флаг обновления.
+        /// </summary>
+        public bool IsRefreshing
+        {
+            get => isRefreshing;
+            set
+            {
+                isRefreshing = value;
+                OnPropertyChanged(nameof(IsRefreshing));
             }
         }
 

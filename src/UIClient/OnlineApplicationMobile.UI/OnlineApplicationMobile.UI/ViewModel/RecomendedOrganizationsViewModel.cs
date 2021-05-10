@@ -14,7 +14,10 @@ namespace OnlineApplicationMobile.UI.ViewModel
     /// </summary>
     public class RecomendedOrganizationsViewModel : OrganizationsBaseViewModel
     {
-        public RecomendedOrganizationsViewModel(IView view, INavigation navigation) : base(view, navigation) { }
+        public RecomendedOrganizationsViewModel(IView view, INavigation navigation) : base(view, navigation) 
+        {
+            RefreshCommand.Execute(null);
+        }
         
         /// <inheritdoc />
         public override void SetOrganizations()

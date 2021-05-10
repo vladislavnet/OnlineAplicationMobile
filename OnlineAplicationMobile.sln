@@ -19,11 +19,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineApplicationMobile.Htt
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{B306A15D-36AE-459E-A7FC-49880586F0DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineApplicationMobile.Infrastructure", "src\Infrastructure\OnlineApplicationMobile.Infrastructure\OnlineApplicationMobile.Infrastructure.csproj", "{58700A65-499F-4816-A385-47324F1516DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineApplicationMobile.Infrastructure", "src\Infrastructure\OnlineApplicationMobile.Infrastructure\OnlineApplicationMobile.Infrastructure.csproj", "{58700A65-499F-4816-A385-47324F1516DD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{753258F4-F634-4DE7-AB8B-420076973D23}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineApplicationMobile.Domain", "src\Domain\OnlineApplicationMobile.Domain\OnlineApplicationMobile.Domain.csproj", "{EDDCC76E-3CD4-4BF6-98B1-4F22E61205C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineApplicationMobile.Domain", "src\Domain\OnlineApplicationMobile.Domain\OnlineApplicationMobile.Domain.csproj", "{EDDCC76E-3CD4-4BF6-98B1-4F22E61205C2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestConsoleHttpClient", "TestConsoleHttpClient", "{FD995219-868A-46DE-AF1B-2EB19D6036BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestClient", "src\TestConsoleHttpClient\TestClient\TestClient.csproj", "{77021211-DC78-4041-A322-E0DABDC8FE23}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -163,6 +167,26 @@ Global
 		{EDDCC76E-3CD4-4BF6-98B1-4F22E61205C2}.Release|x64.Build.0 = Release|Any CPU
 		{EDDCC76E-3CD4-4BF6-98B1-4F22E61205C2}.Release|x86.ActiveCfg = Release|Any CPU
 		{EDDCC76E-3CD4-4BF6-98B1-4F22E61205C2}.Release|x86.Build.0 = Release|Any CPU
+		{77021211-DC78-4041-A322-E0DABDC8FE23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77021211-DC78-4041-A322-E0DABDC8FE23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77021211-DC78-4041-A322-E0DABDC8FE23}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{77021211-DC78-4041-A322-E0DABDC8FE23}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{77021211-DC78-4041-A322-E0DABDC8FE23}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{77021211-DC78-4041-A322-E0DABDC8FE23}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{77021211-DC78-4041-A322-E0DABDC8FE23}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{77021211-DC78-4041-A322-E0DABDC8FE23}.Debug|x64.Build.0 = Debug|Any CPU
+		{77021211-DC78-4041-A322-E0DABDC8FE23}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{77021211-DC78-4041-A322-E0DABDC8FE23}.Debug|x86.Build.0 = Debug|Any CPU
+		{77021211-DC78-4041-A322-E0DABDC8FE23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77021211-DC78-4041-A322-E0DABDC8FE23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77021211-DC78-4041-A322-E0DABDC8FE23}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{77021211-DC78-4041-A322-E0DABDC8FE23}.Release|iPhone.Build.0 = Release|Any CPU
+		{77021211-DC78-4041-A322-E0DABDC8FE23}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{77021211-DC78-4041-A322-E0DABDC8FE23}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{77021211-DC78-4041-A322-E0DABDC8FE23}.Release|x64.ActiveCfg = Release|Any CPU
+		{77021211-DC78-4041-A322-E0DABDC8FE23}.Release|x64.Build.0 = Release|Any CPU
+		{77021211-DC78-4041-A322-E0DABDC8FE23}.Release|x86.ActiveCfg = Release|Any CPU
+		{77021211-DC78-4041-A322-E0DABDC8FE23}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -178,6 +202,8 @@ Global
 		{58700A65-499F-4816-A385-47324F1516DD} = {B306A15D-36AE-459E-A7FC-49880586F0DE}
 		{753258F4-F634-4DE7-AB8B-420076973D23} = {B3E836CF-58BC-4425-8051-C4F43A588BFA}
 		{EDDCC76E-3CD4-4BF6-98B1-4F22E61205C2} = {753258F4-F634-4DE7-AB8B-420076973D23}
+		{FD995219-868A-46DE-AF1B-2EB19D6036BE} = {B3E836CF-58BC-4425-8051-C4F43A588BFA}
+		{77021211-DC78-4041-A322-E0DABDC8FE23} = {FD995219-868A-46DE-AF1B-2EB19D6036BE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {433B2A4C-9A2B-46BC-B700-1BAF20669AB4}

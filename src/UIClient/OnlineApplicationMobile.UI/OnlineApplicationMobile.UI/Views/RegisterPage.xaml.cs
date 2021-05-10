@@ -2,11 +2,6 @@
 using OnlineApplicationMobile.UI.ViewModel;
 using OnlineApplicationMobile.UI.ViewModel.Interfaces;
 using OnlineApplicationMobile.UI.Views.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -14,13 +9,13 @@ using Xamarin.Forms.Xaml;
 namespace OnlineApplicationMobile.UI.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class UserApplicationsPage : ContentPage, IView
+    public partial class RegisterPage : ContentPage, IView
     {
-        private  UserApplicationsViewModel userApplicationsViewModel;
-        public UserApplicationsPage()
+        private readonly RegisterViewModel registerViewModel;
+        public RegisterPage()
         {
             InitializeComponent();
-            userApplicationsViewModel = new UserApplicationsViewModel(this, NavigationGlobalObject.Navigation);
+            registerViewModel = new RegisterViewModel(this, NavigationGlobalObject.Navigation);
         }
 
         public IViewModel ViewModel
@@ -33,12 +28,5 @@ namespace OnlineApplicationMobile.UI.Views
         {
             await DisplayAlert(AlertMessageTemplate.AlertTemplate, message, AlertMessageTemplate.OkTemplate);
         }
-
-        public void Refresh()
-        {
-            userApplicationsViewModel.RefreshCommand.Execute(null);
-        }
-
-        
     }
 }

@@ -14,5 +14,12 @@ namespace OnlineApplicationMobile.HttpService.Interfaces
         /// <param name="request"></param>
         /// <returns></returns>
         GetOrganizationsByUserResponse GetOrganizationsByUser(RequestBase request);
+
+        /// <summary>
+        /// Поиск организаций.
+        /// </summary>
+        /// <param name="request">Запрос.</param>
+        /// <returns>Ответ.</returns>
+        GetSearchGlobalOrganizationsResponse GetSearchGlobalOrganizations(GetSearchGlobalOrganizationsRequest request);
     }
 }

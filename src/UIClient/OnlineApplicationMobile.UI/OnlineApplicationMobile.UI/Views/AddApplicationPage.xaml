@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OnlineApplicationMobile.UI.Views.AddApplicationPage"
+             Title="Добавить заявку">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Orientation="Vertical">
+                
+                <Editor Text="{Binding MessageText}" Placeholder="Текст обращения" HeightRequest="100"/>
+                <Label Text="{Binding MessageTextValidateMessage}" IsVisible="{Binding MessageTextValidateMessageIsVisible}"/>
+                
+                <Entry Text="{Binding NumberAccount}" Placeholder="Номер счёта"/>
+                <Label Text="{Binding NumberAccountValidateMessage}" IsVisible="{Binding NumberAccountValidateMessageIsVisible}"/>
+
+                <Entry Text="{Binding LastNamePayer}" Placeholder="Фамилия ответсвенного плательщика"/>
+                <Label Text="{Binding LastNamePayerValidateMessage}" IsVisible="{Binding LastNamePayerValidateMessageIsVisible}"/>
+
+                <Entry Text="{Binding FirstNamePayer}" Placeholder="Имя ответсвенного плательщика"/>
+                <Label Text="{Binding FirstNamePayerValidateMessage}" IsVisible="{Binding FirstNamePayerValidateMessageIsVisible}"/>
+
+                <Entry Text="{Binding MiddleNamePayer}" Placeholder="Отчество ответсвенного плательщика"/>
+                <Label Text="{Binding MiddleNamePayerValidateMessage}" IsVisible="{Binding MiddleNamePayerValidateMessageIsVisible}"/>
+
+                <Label Text="Типы услуг: "/>
+                <ListView ItemsSource="{Binding ServiceTypes}"
+                  SelectedItem="{Binding SelectedServiceType}" 
+                  RowHeight="45"
+                  IsPullToRefreshEnabled="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Switch IsToggled="{Binding IsSelect}"/>
+                                        <Label Text="{Binding Title}"/>
+                                    </StackLayout>
+                                </ViewCell.View>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <Button Text="Заполнить из профиля" Command="{Binding SetFieldByProfileCommand}"/>
+                <Button Text="Добавить" Command="{Binding AddApplicationCommand}"/>
+                
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

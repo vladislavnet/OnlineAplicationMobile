@@ -14,13 +14,13 @@ using Xamarin.Forms.Xaml;
 namespace OnlineApplicationMobile.UI.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class UserApplicationsPage : ContentPage, IView
+    public partial class SearchOrganizationsPage : ContentPage, IView
     {
-        private  UserApplicationsViewModel userApplicationsViewModel;
-        public UserApplicationsPage()
+        private readonly SearchOrganizationsViewModel searchOrganizationsViewModel;
+        public SearchOrganizationsPage()
         {
             InitializeComponent();
-            userApplicationsViewModel = new UserApplicationsViewModel(this, NavigationGlobalObject.Navigation);
+            searchOrganizationsViewModel = new SearchOrganizationsViewModel(this, NavigationGlobalObject.Navigation);
         }
 
         public IViewModel ViewModel
@@ -33,12 +33,5 @@ namespace OnlineApplicationMobile.UI.Views
         {
             await DisplayAlert(AlertMessageTemplate.AlertTemplate, message, AlertMessageTemplate.OkTemplate);
         }
-
-        public void Refresh()
-        {
-            userApplicationsViewModel.RefreshCommand.Execute(null);
-        }
-
-        
     }
 }

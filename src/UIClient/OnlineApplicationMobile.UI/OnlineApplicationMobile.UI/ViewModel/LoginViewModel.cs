@@ -50,7 +50,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
         {
             get => new Command(() => 
             {
-                View.DisplayAlertMessage("POSOSI VLAD");
+                PushPage(new RegisterPage());
             });
         }
 
@@ -142,16 +142,27 @@ namespace OnlineApplicationMobile.UI.ViewModel
                 return;
 
             var httpService = Startup.GetService<IHttpService>();
+
             var response = httpService.Authorization(new AuthorizationRequest
             {
-                Email = Email,
+                Username = Email,
                 Password = Password
-            });
+            }).Result;
 
             CurrentUser.SetToken(response.Token);
 
-            View.DisplayAlertMessage(response.Message);
-            PopModalPage();
+            Action action = () =>
+            {
+                NavigationGlobalObject.IsLoginStart = false;
+                PopModalPage();
+            };
+
+            Action actionError = () =>
+            {
+                DisplayMessage(response.Message);
+            };
+
+            ToNextAction(response.StatusCode, action, actionError);
         }
 
         /// <summary>
