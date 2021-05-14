@@ -86,7 +86,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
         {
             var httpService = Startup.GetService<IHttpService>();
 
-            var response = httpService.GetApplicationsCurrentClientJKH(BuildRequestBase());
+            var response = httpService.GetApplicationsCurrentClientJKH(BuildRequestBase()).Result;
 
             Action actionError = () =>
             {

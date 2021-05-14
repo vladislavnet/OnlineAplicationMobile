@@ -44,27 +44,42 @@ namespace OnlineApplicationMobile.HttpService.Implementation
                 var response = await client.GetAsync(UrlTemplates.GetInfoCurrentClientJKHUrl);
 
                 var content = JsonSerializer.Deserialize<GetInfoCurrentClientJKHResponse>(await response.Content.ReadAsStringAsync(), optionsSerialize);
-
-                if (response.StatusCode != HttpStatusCode.OK)
-                    return new GetInfoCurrentClientJKHResponse { StatusCode = response.StatusCode, Message =  content.Message };
+                content.StatusCode = response.StatusCode;
 
                 return content;
             }
         }
 
         /// <inheritdoc />
-        public ResponseBase PutInfoCurrentClientJKH(PutInfoCurrentClientJKHRequest request)
+        public async Task<ResponseBase> PutInfoCurrentClientJKH(PutInfoCurrentClientJKHRequest request)
         {
-            return new ResponseBase { StatusCode = HttpStatusCode.Created, Message = "Данные успешно обновлены" };
+            using (var client = GetClientByHeaderAuthorization(request.Token))
+            {
+                var response = await client.PutAsync(UrlTemplates.PutInfoCurrentClientJKHUrl, new StringContent(
+                    JsonSerializer.Serialize(request),
+                    Encoding.UTF8, "application/json"));
+
+                var content = JsonSerializer.Deserialize<ResponseBase>(await response.Content.ReadAsStringAsync(), optionsSerialize);
+                content.StatusCode = response.StatusCode;
+
+                return content;
+            }
         }
 
         /// <inheritdoc />
-        public ResponseBase PostRegistrationClientJKH(PostRegistrationClientJKHRequest request)
+        public async Task<ResponseBase> PostRegistrationClientJKH(PostRegistrationClientJKHRequest request)
         {
-            return new ResponseBase
+            using (var client = GetClientByHeaderAuthorization(request.Token))
             {
-                StatusCode = HttpStatusCode.OK
-            };
+                var response = await client.PostAsync(UrlTemplates.PostRegistrationClientJKHUrl, new StringContent(
+                    JsonSerializer.Serialize(request),
+                    Encoding.UTF8, "application/json"));
+
+                var content = JsonSerializer.Deserialize<ResponseBase>(await response.Content.ReadAsStringAsync(), optionsSerialize);
+                content.StatusCode = response.StatusCode;
+
+                return content;
+            }
         }
     }
 }

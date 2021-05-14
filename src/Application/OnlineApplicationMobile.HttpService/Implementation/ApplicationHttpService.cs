@@ -2,178 +2,90 @@
 using OnlineApplicationMobile.HttpService.Interfaces;
 using OnlineApplicationMobile.HttpService.Requests;
 using OnlineApplicationMobile.HttpService.Responses;
+using OnlineApplicationMobile.HttpService.Templates;
 using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Net.Http;
 using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace OnlineApplicationMobile.HttpService.Implementation
 {
-    public class ApplicationHttpService : IApplicationHttpService
+    public class ApplicationHttpService : BaseHttpService, IApplicationHttpService
     {
         /// <inheritdoc />
-        public GetApplicationDetailCurrentClientJKHResponse GetApplicationDetailCurrentClientJKH(GetApplicationDetailCurrentClientJKHRequest request)
+        public async Task<GetApplicationDetailCurrentClientJKHResponse> GetApplicationDetailCurrentClientJKH(GetApplicationDetailCurrentClientJKHRequest request)
         {
-            return new GetApplicationDetailCurrentClientJKHResponse
+            using (var client = GetClientByHeaderAuthorization(request.Token))
             {
-                StatusCode = HttpStatusCode.OK,
-                Id = Guid.NewGuid(),
-                StatusApplication = 1,
-                MessageText = "Test #1",
-                Organization = new OrganizationShortNotByServiceTypesDto
-                {
-                    Id = 1,
-                    Name = "Test org #1",
-                    Description = "Test org description #1,",
-                    Email = "Test1@common.com",
-                    Telephone = "890000000000",
-                },
-                OrganizationNumberAccount = new OrganizationNumberAccountNotByOrganization
-                {
-                    Id = 1,
-                    NumberAccount = "1111111111",
-                    FirstNamePayer = "Test Name FirstPayer #1",
-                    LastNamePayer = "Test LastName Payer #1",
-                    MiddleNamePayer = "Test LastName Payer #1",
-                },
-                CreatedAt = DateTime.Now,
-                UpdatedAt = DateTime.Now,
-                ServiceTypes = new ServiceTypeDto[]
-                {
-                    new ServiceTypeDto
-                    {
-                        Id = 1,
-                        Title = "Test Type #1"
-                    },
-                    new ServiceTypeDto
-                    {
-                        Id = 2,
-                        Title = "Test Type #2"
-                    },
-                },
-                Comments = new CommentDto[] 
-                {
-                    new CommentDto
-                    {
-                        Author = new UserCommentInformationDto
-                        {
-                            Id = Guid.NewGuid(),
-                            FirtsName = "FirstNameTestCommentUser#1",
-                            LastName = "FirstNameTestCommentUser#1",
-                        },
-                        Comment = "Test Commentttttttttttttttttttttttttttttttttttttttttttttt #1",
-                        CreatedAt = DateTime.Now,
-                    },
-                    new CommentDto
-                    {
-                        Author = new UserCommentInformationDto
-                        {
-                            Id = Guid.NewGuid(),
-                            FirtsName = "FirstNameTestCommentUser#2",
-                            LastName = "FirstNameTestCommentUser#2",
-                        },
-                        Comment = "Test Commentttttttttttttttttttttttttttttttttttttttttttttt #2",
-                        CreatedAt = DateTime.Now,
-                    }
-                }
-            };
+                var response = await client.GetAsync(string.Format(UrlTemplates.GetApplicationDetailCurrentClientJKHUrl, request.Id));
+
+                var content = JsonSerializer.Deserialize<GetApplicationDetailCurrentClientJKHResponse>(await response.Content.ReadAsStringAsync(), optionsSerialize);
+                content.StatusCode = response.StatusCode;
+
+                return content;
+            }
         }
 
         /// <inheritdoc />
-        public GetApplicationsCurrentClientJKHResponse GetApplicationsCurrentClientJKH(RequestBase request)
+        public async Task<GetApplicationsCurrentClientJKHResponse> GetApplicationsCurrentClientJKH(RequestBase request)
         {
-            return new GetApplicationsCurrentClientJKHResponse()
+            using (var client = GetClientByHeaderAuthorization(request.Token))
             {
-                StatusCode = HttpStatusCode.Forbidden,
-                Applications = new ApplicationShortDto[]
+                var response = await client.GetAsync(UrlTemplates.GetApplicationsCurrentClientJKHUrl);
+
+                ResponseBase message = new ResponseBase();
+                ApplicationShortDto[] applicationShortDtos = null;
+
+                if (response.StatusCode == HttpStatusCode.OK)
                 {
-                    new ApplicationShortDto
-                    {
-                        Id = Guid.NewGuid(),
-                        StatusApplication = 1,
-                        MessageText = "Test #1",
-                        Organization = new OrganizationShortNotByServiceTypesDto
-                        {
-                            Id = 1,
-                            Name = "Test org #1",
-                            Description = "Test org description #1,",
-                            Email = "Test1@common.com",
-                            Telephone = "890000000000",
-                        },
-                        OrganizationNumberAccount = new OrganizationNumberAccountNotByOrganization
-                        {
-                            Id = 1,
-                            NumberAccount = "1111111111",
-                            FirstNamePayer = "Test Name FirstPayer #1",
-                            LastNamePayer = "Test LastName Payer #1",
-                            MiddleNamePayer = "Test LastName Payer #1",
-                        },
-                        CreatedAt = DateTime.Now,
-                        UpdatedAt = DateTime.Now,
-                        ServiceTypes = new ServiceTypeDto[]
-                        {
-                            new ServiceTypeDto
-                            {
-                                Id = 1,
-                                Title = "Test Type #1"
-                            },
-                            new ServiceTypeDto
-                            {
-                                Id = 2,
-                                Title = "Test Type #2"
-                            },
-                        }
-                    },
-                    new ApplicationShortDto
-                    {
-                        Id = Guid.NewGuid(),
-                        StatusApplication = 1,
-                        MessageText = "Test #2",
-                        Organization = new OrganizationShortNotByServiceTypesDto
-                        {
-                            Id = 1,
-                            Name = "Test org #2",
-                            Description = "Test org description #2,",
-                            Email = "Test2@common.com",
-                            Telephone = "890000000001",
-                        },
-                        OrganizationNumberAccount = new OrganizationNumberAccountNotByOrganization
-                        {
-                            Id = 1,
-                            NumberAccount = "2222222222",
-                            FirstNamePayer = "Test Name FirstPayer #2",
-                            LastNamePayer = "Test LastName Payer #2",
-                            MiddleNamePayer = "Test LastName Payer #2",
-                        },
-                        CreatedAt = DateTime.Now,
-                        UpdatedAt = DateTime.Now,
-                        ServiceTypes = new ServiceTypeDto[]
-                        {
-                            new ServiceTypeDto
-                            {
-                                Id = 1,
-                                Title = "Test Type #1"
-                            },
-                            new ServiceTypeDto
-                            {
-                                Id = 2,
-                                Title = "Test Type #2"
-                            },
-                        }
-                    },
+                    applicationShortDtos = JsonSerializer.Deserialize<ApplicationShortDto[]>(await response.Content.ReadAsStringAsync(), optionsSerialize);
                 }
-            };
+                else
+                {
+                    message = JsonSerializer.Deserialize<ResponseBase>(await response.Content.ReadAsStringAsync(), optionsSerialize);
+                }
+
+                return new GetApplicationsCurrentClientJKHResponse
+                {
+                    Message = message.Message,
+                    StatusCode = response.StatusCode,
+                    Applications = applicationShortDtos
+                };
+            }
         }
 
-        public ResponseBase PostApplication(PostApplicationRequest request)
+        public async Task<ResponseBase> PostApplication(PostApplicationRequest request)
         {
-            return new ResponseBase { StatusCode = HttpStatusCode.OK };
+            using (var client = GetClientByHeaderAuthorization(request.Token))
+            {
+                var response = await client.PostAsync(UrlTemplates.PostApplicationUrl, new StringContent(
+                    JsonSerializer.Serialize(request),
+                    Encoding.UTF8, "application/json"));
+
+                var content = JsonSerializer.Deserialize<ResponseBase>(await response.Content.ReadAsStringAsync(), optionsSerialize);
+                content.StatusCode = response.StatusCode;
+
+                return content;
+            }
         }
 
         /// <inheritdoc />
-        public ResponseBase PostCommentApplication(PostCommentApplicationRequest request)
+        public async Task<ResponseBase> PostCommentApplication(PostCommentApplicationRequest request)
         {
-            return new ResponseBase { StatusCode = HttpStatusCode.OK };
+            using (var client = GetClientByHeaderAuthorization(request.Token))
+            {
+                var response = await client.PostAsync(UrlTemplates.PostApplicationUrl, new StringContent(
+                    JsonSerializer.Serialize(request),
+                    Encoding.UTF8, "application/json"));
+
+                var content = JsonSerializer.Deserialize<ResponseBase>(await response.Content.ReadAsStringAsync(), optionsSerialize);
+                content.StatusCode = response.StatusCode;
+
+                return content;
+            }
         }
     }
 }

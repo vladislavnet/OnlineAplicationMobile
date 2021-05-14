@@ -24,7 +24,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
         {
             var httpService = Startup.GetService<IHttpService>();
 
-            var response = httpService.GetOrganizationsByUser(BuildRequestBase());
+            var response = httpService.GetOrganizationsByUser(BuildRequestBase()).Result;
 
             Action action = () =>
             {

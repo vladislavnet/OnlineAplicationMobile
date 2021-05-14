@@ -33,15 +33,15 @@ namespace OnlineApplicationMobile.HttpService.Implementation
         }
 
         /// <inheritdoc />
-        public GetApplicationDetailCurrentClientJKHResponse GetApplicationDetailCurrentClientJKH(GetApplicationDetailCurrentClientJKHRequest request)
+        public async Task<GetApplicationDetailCurrentClientJKHResponse> GetApplicationDetailCurrentClientJKH(GetApplicationDetailCurrentClientJKHRequest request)
         {
-            return _applicationHttpService.GetApplicationDetailCurrentClientJKH(request);
+            return await _applicationHttpService.GetApplicationDetailCurrentClientJKH(request);
         }
 
         /// <inheritdoc />
-        public GetApplicationsCurrentClientJKHResponse GetApplicationsCurrentClientJKH(RequestBase request)
+        public async Task<GetApplicationsCurrentClientJKHResponse> GetApplicationsCurrentClientJKH(RequestBase request)
         {
-            return _applicationHttpService.GetApplicationsCurrentClientJKH(request);
+            return await _applicationHttpService.GetApplicationsCurrentClientJKH(request);
         }
 
         /// <inheritdoc />
@@ -51,49 +51,51 @@ namespace OnlineApplicationMobile.HttpService.Implementation
         }
 
         /// <inheritdoc />
-        public GetOrganizationsByUserResponse GetOrganizationsByUser(RequestBase request)
+        public async Task<GetOrganizationsByUserResponse> GetOrganizationsByUser(RequestBase request)
         {
-            return _organizationHttpService.GetOrganizationsByUser(request);
+            return await _organizationHttpService.GetOrganizationsByUser(request);
         }
 
         /// <inheritdoc />
-        public SearchAddressingObjectsResponse GetSearchAddressingObjects(SearchAddressingObjectsRequest request)
+        public async Task<SearchAddressingObjectsResponse> GetSearchAddressingObjects(SearchAddressingObjectsRequest request)
         {
-            return _commonHttpService.GetSearchAddressingObjects(request);
-        }
-
-        public GetSearchGlobalOrganizationsResponse GetSearchGlobalOrganizations(GetSearchGlobalOrganizationsRequest request)
-        {
-            return _organizationHttpService.GetSearchGlobalOrganizations(request);
+            return await _commonHttpService.GetSearchAddressingObjects(request);
         }
 
         /// <inheritdoc />
-        public GetTypesAddressingObjectResponse GetTypesAddressingObject(GetTypesAddressingObjectRequest request)
+        public async Task<GetSearchGlobalOrganizationsResponse> GetSearchGlobalOrganizations(GetSearchGlobalOrganizationsRequest request)
         {
-            return _commonHttpService.GetTypesAddressingObject(request);
-        }
-
-        public ResponseBase PostApplication(PostApplicationRequest request)
-        {
-            return _applicationHttpService.PostApplication(request);
+            return await _organizationHttpService.GetSearchGlobalOrganizations(request);
         }
 
         /// <inheritdoc />
-        public ResponseBase PostCommentApplication(PostCommentApplicationRequest request)
+        public async Task<GetTypesAddressingObjectResponse> GetTypesAddressingObject(GetTypesAddressingObjectRequest request)
         {
-            return _applicationHttpService.PostCommentApplication(request);
+            return await _commonHttpService.GetTypesAddressingObject(request);
         }
 
         /// <inheritdoc />
-        public ResponseBase PostRegistrationClientJKH(PostRegistrationClientJKHRequest request)
+        public async Task<ResponseBase> PostApplication(PostApplicationRequest request)
         {
-            return _userHttpService.PostRegistrationClientJKH(request);
+            return await _applicationHttpService.PostApplication(request);
         }
 
         /// <inheritdoc />
-        public ResponseBase PutInfoCurrentClientJKH(PutInfoCurrentClientJKHRequest request)
+        public async Task<ResponseBase> PostCommentApplication(PostCommentApplicationRequest request)
         {
-            return _userHttpService.PutInfoCurrentClientJKH(request);
+            return await _applicationHttpService.PostCommentApplication(request);
+        }
+
+        /// <inheritdoc />
+        public async Task<ResponseBase> PostRegistrationClientJKH(PostRegistrationClientJKHRequest request)
+        {
+            return await _userHttpService.PostRegistrationClientJKH(request);
+        }
+
+        /// <inheritdoc />
+        public async Task<ResponseBase> PutInfoCurrentClientJKH(PutInfoCurrentClientJKHRequest request)
+        {
+            return await _userHttpService.PutInfoCurrentClientJKH(request);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace OnlineApplicationMobile.HttpService.Responses
         /// <summary>
         /// Сообщение от сервера.
         /// </summary>
-        [JsonPropertyName("message_error")] 
+        [JsonPropertyName("message")] 
         public string Message { get; set; }
     }
 }

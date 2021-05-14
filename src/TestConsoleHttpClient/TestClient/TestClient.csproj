@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Application\OnlineApplicationMobile.HttpService\OnlineApplicationMobile.HttpService.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\OnlineApplicationMobile.Infrastructure\OnlineApplicationMobile.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

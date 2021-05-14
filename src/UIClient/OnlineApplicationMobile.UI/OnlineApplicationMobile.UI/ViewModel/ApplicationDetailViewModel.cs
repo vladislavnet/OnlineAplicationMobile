@@ -57,7 +57,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
                     Token = GetUserToken(),
                     ApplicationId = applicationId,
                     Comment = AddComment
-                });
+                }).Result;
 
                 Action action = () =>
                 {
@@ -251,7 +251,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
             {
                 Token = GetUserToken(),
                 Id = applicationId
-            });
+            }).Result;
 
             Action action = () => 
             {

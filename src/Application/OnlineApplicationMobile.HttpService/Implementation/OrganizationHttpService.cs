@@ -2,120 +2,71 @@
 using OnlineApplicationMobile.HttpService.Interfaces;
 using OnlineApplicationMobile.HttpService.Requests;
 using OnlineApplicationMobile.HttpService.Responses;
+using OnlineApplicationMobile.HttpService.Templates;
 using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace OnlineApplicationMobile.HttpService.Implementation
 {
-    public class OrganizationHttpService : IOrganizationHttpService
+    public class OrganizationHttpService : BaseHttpService, IOrganizationHttpService
     {
         /// <inheritdoc />
-        public GetOrganizationsByUserResponse GetOrganizationsByUser(RequestBase request)
+        public async Task<GetOrganizationsByUserResponse> GetOrganizationsByUser(RequestBase request)
         {
-            return new GetOrganizationsByUserResponse
+            using (var client = GetClientByHeaderAuthorization(request.Token))
             {
-                StatusCode = HttpStatusCode.OK,
-                Organizations = new OrganizationShortDto[]
+                var response = await client.GetAsync(UrlTemplates.GetOrganizationsByUserUrl);
+
+                ResponseBase message = new ResponseBase();
+                OrganizationShortDto[] organizationShortDtos = null;
+
+                if (response.StatusCode == HttpStatusCode.OK)
                 {
-                    new OrganizationShortDto
-                    {
-                        Id = 1,
-                        Name = "Test org #1",
-                        Description = "Test org description #1,",
-                        Email = "Test1@common.com",
-                        Telephone = "890000000001",
-                        ServiceTypes = new ServiceTypeDto[]
-                        {
-                            new ServiceTypeDto
-                            {
-                                Id = 1,
-                                Title = "Test Service #1"
-                            },
-                            new ServiceTypeDto
-                            {
-                                Id = 2,
-                                Title = "Test Service #2"
-                            },
-                        }
-                    },
-                    new OrganizationShortDto
-                    {
-                        Id = 2,
-                        Name = "Test org #2",
-                        Description = "Test org description #2,",
-                        Email = "Test1@common.com",
-                        Telephone = "890000000001",
-                        ServiceTypes = new ServiceTypeDto[]
-                        {
-                            new ServiceTypeDto
-                            {
-                                Id = 1,
-                                Title = "Test Service #1"
-                            },
-                            new ServiceTypeDto
-                            {
-                                Id = 2,
-                                Title = "Test Service #2"
-                            },
-                        }
-                    }
+                    organizationShortDtos = JsonSerializer.Deserialize<OrganizationShortDto[]>(await response.Content.ReadAsStringAsync(), optionsSerialize);
                 }
+                else
+                {
+                    message = JsonSerializer.Deserialize<ResponseBase>(await response.Content.ReadAsStringAsync(), optionsSerialize);
+                }
+
+                return new GetOrganizationsByUserResponse
+                {
+                    Message = message.Message,
+                    StatusCode = response.StatusCode,
+                    Organizations = organizationShortDtos
+                };
             };
         }
 
         /// <inheritdoc />
-        public GetSearchGlobalOrganizationsResponse GetSearchGlobalOrganizations(GetSearchGlobalOrganizationsRequest request)
+        public async Task<GetSearchGlobalOrganizationsResponse> GetSearchGlobalOrganizations(GetSearchGlobalOrganizationsRequest request)
         {
-            return new GetSearchGlobalOrganizationsResponse
+            using (var client = GetClientByHeaderAuthorization(request.Token))
             {
-                StatusCode = HttpStatusCode.OK,
-                Organizations = new OrganizationShortDto[]
+                var response = await client.GetAsync(UrlTemplates.GetSearchGlobalOrganizationsUrl);
+
+                ResponseBase message = new ResponseBase();
+                OrganizationShortDto[] organizationShortDtos = null;
+
+                if (response.StatusCode == HttpStatusCode.OK)
                 {
-                    new OrganizationShortDto
-                    {
-                        Id = 1,
-                        Name = "Test org #1",
-                        Description = "Test org description #1,",
-                        Email = "Test1@common.com",
-                        Telephone = "890000000001",
-                        ServiceTypes = new ServiceTypeDto[]
-                        {
-                            new ServiceTypeDto
-                            {
-                                Id = 1,
-                                Title = "Test Service #1"
-                            },
-                            new ServiceTypeDto
-                            {
-                                Id = 2,
-                                Title = "Test Service #2"
-                            },
-                        }
-                    },
-                    new OrganizationShortDto
-                    {
-                        Id = 2,
-                        Name = "Test org #2",
-                        Description = "Test org description #2,",
-                        Email = "Test1@common.com",
-                        Telephone = "890000000001",
-                        ServiceTypes = new ServiceTypeDto[]
-                        {
-                            new ServiceTypeDto
-                            {
-                                Id = 1,
-                                Title = "Test Service #1"
-                            },
-                            new ServiceTypeDto
-                            {
-                                Id = 2,
-                                Title = "Test Service #2"
-                            },
-                        }
-                    }
+                    organizationShortDtos = JsonSerializer.Deserialize<OrganizationShortDto[]>(await response.Content.ReadAsStringAsync(), optionsSerialize);
                 }
+                else
+                {
+                    message = JsonSerializer.Deserialize<ResponseBase>(await response.Content.ReadAsStringAsync(), optionsSerialize);
+                }
+
+                return new GetSearchGlobalOrganizationsResponse
+                {
+                    Message = message.Message,
+                    StatusCode = response.StatusCode,
+                    Organizations = organizationShortDtos
+                };
             };
         }
     }

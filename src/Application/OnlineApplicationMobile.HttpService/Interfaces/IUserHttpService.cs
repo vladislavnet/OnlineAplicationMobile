@@ -28,13 +28,13 @@ namespace OnlineApplicationMobile.HttpService.Interfaces
         /// </summary>
         /// <param name="request">Запрос.</param>
         /// <returns>Ответ.</returns>
-        ResponseBase PutInfoCurrentClientJKH(PutInfoCurrentClientJKHRequest request);
+        Task<ResponseBase> PutInfoCurrentClientJKH(PutInfoCurrentClientJKHRequest request);
 
         /// <summary>
         /// Регистрация клиента ЖКХ.
         /// </summary>
         /// <param name="request">Запрос.</param>
         /// <returns>Ответ.</returns>
-        ResponseBase PostRegistrationClientJKH(PostRegistrationClientJKHRequest request);
+        Task<ResponseBase> PostRegistrationClientJKH(PostRegistrationClientJKHRequest request);
     }
 }

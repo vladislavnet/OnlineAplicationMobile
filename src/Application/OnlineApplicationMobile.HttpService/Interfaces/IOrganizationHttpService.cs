@@ -3,6 +3,7 @@ using OnlineApplicationMobile.HttpService.Responses;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace OnlineApplicationMobile.HttpService.Interfaces
 {
@@ -13,13 +14,13 @@ namespace OnlineApplicationMobile.HttpService.Interfaces
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        GetOrganizationsByUserResponse GetOrganizationsByUser(RequestBase request);
+        Task<GetOrganizationsByUserResponse> GetOrganizationsByUser(RequestBase request);
 
         /// <summary>
         /// Поиск организаций.
         /// </summary>
         /// <param name="request">Запрос.</param>
         /// <returns>Ответ.</returns>
-        GetSearchGlobalOrganizationsResponse GetSearchGlobalOrganizations(GetSearchGlobalOrganizationsRequest request);
+        Task<GetSearchGlobalOrganizationsResponse> GetSearchGlobalOrganizations(GetSearchGlobalOrganizationsRequest request);
     }
 }

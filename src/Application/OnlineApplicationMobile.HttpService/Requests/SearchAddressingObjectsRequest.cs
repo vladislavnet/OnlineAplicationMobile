@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace OnlineApplicationMobile.HttpService.Requests
 {
@@ -12,11 +13,13 @@ namespace OnlineApplicationMobile.HttpService.Requests
         /// <summary>
         /// Наияменование.
         /// </summary>
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         /// <summary>
         /// Уровень.
         /// </summary>
+        [JsonPropertyName("level")]
         public int Level { get; set; }
     }
 }

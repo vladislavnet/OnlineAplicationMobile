@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace OnlineApplicationMobile.HttpService.Requests
 {
@@ -12,11 +13,13 @@ namespace OnlineApplicationMobile.HttpService.Requests
         /// <summary>
         /// Уникальный идентификатор заявки.
         /// </summary>
+        [JsonPropertyName("applicationId")]
         public Guid ApplicationId { get; set; }
 
         /// <summary>
         /// Комментарий для заявки.
         /// </summary>
+        [JsonPropertyName("comment")]
         public string Comment { get; set; }
     }
 }

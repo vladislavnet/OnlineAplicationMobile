@@ -60,9 +60,9 @@ namespace OnlineApplicationMobile.UI.ViewModel
                     FirstName = FirstName,
                     LastName = LastName,
                     MiddleName = MiddleName,
-                    BirthDate = BirthDate,
+                    BirthDate = BirthDate?.ToString("yyyy-MM-dd"),
                     Telephone = Telephone
-                });
+                }).Result;
 
                 Action action = () =>
                 {

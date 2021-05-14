@@ -1,8 +1,12 @@
-﻿using OnlineApplicationMobile.HttpService.Interfaces;
+﻿using OnlineApplicationMobile.Domain.Entities;
+using OnlineApplicationMobile.HttpService.Interfaces;
 using OnlineApplicationMobile.HttpService.Requests;
+using OnlineApplicationMobile.Infrastructure.Builders;
+using OnlineApplicationMobile.Infrastructure.Globals;
 using OnlineApplicationMobile.UI.ViewModel.Interfaces;
 using OnlineApplicationMobile.UI.Views;
 using OnlineApplicationMobile.UI.Views.Interfaces;
+using System;
 using System.Net;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -156,7 +160,31 @@ namespace OnlineApplicationMobile.UI.ViewModel
                 PushModalPage(new LoginPage());
             }
 
-            ToNextAction(response.StatusCode, () => { }, () => { });
+            Action action = () =>
+            {
+                CurrentUser.SetCurrentUser(new ClientJKH
+                {
+                    User = new UserDomainBuilder().Build(response.User),
+                    NumberPersonalAccount = response.NumberPersonalAccount,
+                    Address = new AddressDomainBuilder().Build(response.Address)
+                });
+
+                setField();
+            };
+
+            ToNextAction(response.StatusCode, action, () => { });
+        }
+
+        private void setField()
+        {
+            Email = CurrentUser.Email;
+            FirstName = CurrentUser.FirstName;
+            LastName = CurrentUser.LastName;
+            MiddleName = CurrentUser.MiddleName;
+            BirthDate = CurrentUser.BirthDate.HasValue ? CurrentUser.BirthDate.Value.ToString("d") : string.Empty;
+            Telephone = CurrentUser.Telephone;
+            NumberPersonalAccount = CurrentUser.Telephone;
+            AddressString = CurrentUser.GetAddressShortToString();
         }
     }
 }

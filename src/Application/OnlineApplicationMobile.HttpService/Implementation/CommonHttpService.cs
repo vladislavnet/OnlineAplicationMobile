@@ -2,36 +2,72 @@
 using OnlineApplicationMobile.HttpService.Interfaces;
 using OnlineApplicationMobile.HttpService.Requests;
 using OnlineApplicationMobile.HttpService.Responses;
+using OnlineApplicationMobile.HttpService.Templates;
 using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace OnlineApplicationMobile.HttpService.Implementation
 {
-    public class CommonHttpService : ICommonHttpService
+    public class CommonHttpService : BaseHttpService, ICommonHttpService
     {
-        public SearchAddressingObjectsResponse GetSearchAddressingObjects(SearchAddressingObjectsRequest request)
+        /// <inheritdoc />
+        public async Task<SearchAddressingObjectsResponse> GetSearchAddressingObjects(SearchAddressingObjectsRequest request)
         {
-            return new SearchAddressingObjectsResponse
-            { 
-                addressingObjectsShort = new AddressingObjectShortDto[3]
+            using (var client = GetClientByHeaderAuthorization(request.Token))
+            {
+                var response = await client.GetAsync(UrlTemplates.GetInfoCurrentClientJKHUrl);
+
+                ResponseBase message = new ResponseBase();
+                AddressingObjectShortDto[] addressingObjectShortDtos = null;
+
+                if (response.StatusCode == HttpStatusCode.OK)
                 {
-                    new AddressingObjectShortDto { Name = "Test1" },
-                    new AddressingObjectShortDto { Name = "Test2" },
-                    new AddressingObjectShortDto { Name = "Test3" }
-                },
-            };
+                    addressingObjectShortDtos = JsonSerializer.Deserialize<AddressingObjectShortDto[]>(await response.Content.ReadAsStringAsync(), optionsSerialize);
+                }
+                else
+                {
+                    message = JsonSerializer.Deserialize<ResponseBase>(await response.Content.ReadAsStringAsync(), optionsSerialize);
+                }
+
+                return new SearchAddressingObjectsResponse 
+                {
+                    Message = message.Message,
+                    StatusCode = response.StatusCode,
+                    addressingObjectsShort = addressingObjectShortDtos
+                };
+            }
         }
 
-        public GetTypesAddressingObjectResponse GetTypesAddressingObject(GetTypesAddressingObjectRequest request)
+        /// <inheritdoc />
+        public async Task<GetTypesAddressingObjectResponse> GetTypesAddressingObject(GetTypesAddressingObjectRequest request)
         {
-            return new GetTypesAddressingObjectResponse
+            using (var client = GetClientByHeaderAuthorization(request.Token))
             {
-                StatusCode = HttpStatusCode.OK,
-                Message = "Test",
-                TypesAddressingObject = new TypeAddressingObjectDto[1] { new TypeAddressingObjectDto { Id = 1, Name = "Улица", ShortName = "Ул." } }
-            };
+                var response = await client.GetAsync(UrlTemplates.GetInfoCurrentClientJKHUrl);
+
+                ResponseBase message = new ResponseBase();
+                TypeAddressingObjectDto[] typeAddressingObjectDtos = null;
+
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    typeAddressingObjectDtos = JsonSerializer.Deserialize<TypeAddressingObjectDto[]>(await response.Content.ReadAsStringAsync(), optionsSerialize);
+                }
+                else
+                {
+                    message = JsonSerializer.Deserialize<ResponseBase>(await response.Content.ReadAsStringAsync(), optionsSerialize);
+                }
+
+                return new GetTypesAddressingObjectResponse
+                {
+                    Message = message.Message,
+                    StatusCode = response.StatusCode,
+                    TypesAddressingObject = typeAddressingObjectDtos
+                };
+            }
         }
     }
 }

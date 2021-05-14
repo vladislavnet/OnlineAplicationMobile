@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace OnlineApplicationMobile.HttpService.DTO
 {
@@ -9,6 +10,7 @@ namespace OnlineApplicationMobile.HttpService.DTO
         /// <summary>
         /// Типы услуг которая предоставляет организация.
         /// </summary>
+        [JsonPropertyName("serviceTypes")]
         public ServiceTypeDto[] ServiceTypes { get; set; }
     }
 }

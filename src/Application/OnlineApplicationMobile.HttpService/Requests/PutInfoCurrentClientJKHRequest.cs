@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace OnlineApplicationMobile.HttpService.Requests
 {
@@ -13,36 +14,43 @@ namespace OnlineApplicationMobile.HttpService.Requests
         /// <summary>
         /// Имя.
         /// </summary>
+        [JsonPropertyName("firstName")]
         public string FirstName { get; set; }
 
         /// <summary>
         /// Фамилия.
         /// </summary>
+        [JsonPropertyName("lastName")]
         public string LastName { get; set; }
 
         /// <summary>
         /// Отчество.
         /// </summary>
+        [JsonPropertyName("middleName")]
         public string MiddleName { get; set; }
 
         /// <summary>
         /// Дата рождения.
         /// </summary>
-        public DateTime? BirthDate { get; set; }
+        [JsonPropertyName("birthDate")]
+        public string BirthDate { get; set; }
 
         /// <summary>
         /// Телефон.
         /// </summary>
+        [JsonPropertyName("telephone")]
         public string Telephone { get; set; }
 
         /// <summary>
         /// Номер лицевого счёта.
         /// </summary>
+        [JsonPropertyName("numberPersonalAccount")]
         public string NumberPersonalAccount { get; set; }
 
         /// <summary>
         /// Адрес.
         /// </summary>
+        [JsonPropertyName("address")]
         public AddressDto Address { get; set; }
     }
 }

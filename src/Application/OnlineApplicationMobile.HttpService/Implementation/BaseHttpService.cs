@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OnlineApplicationMobile.HttpService.Templates;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -48,8 +49,8 @@ namespace OnlineApplicationMobile.HttpService.Implementation
         protected HttpClient GetClientByHeaderAuthorization(string token)
         {
             var headers = new Dictionary<string, string>();
-            headers.Add("Authorization", token);
-            return GetClient();
+            headers.Add("Authorization", string.Format(HeaderTemplate.TokenHeader, token));
+            return GetClient(headers);
         }
     }
 }

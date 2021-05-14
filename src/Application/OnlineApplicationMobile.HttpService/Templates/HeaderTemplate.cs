@@ -6,6 +6,6 @@ namespace OnlineApplicationMobile.HttpService.Templates
 {
     public static class HeaderTemplate
     {
-        public static string TokenHeader = "Token";
+        public static string TokenHeader = "Token {0}";
     }
 }

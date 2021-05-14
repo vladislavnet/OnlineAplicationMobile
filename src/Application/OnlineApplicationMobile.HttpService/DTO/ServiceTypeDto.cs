@@ -1,4 +1,6 @@
-﻿namespace OnlineApplicationMobile.HttpService.DTO
+﻿using System.Text.Json.Serialization;
+
+namespace OnlineApplicationMobile.HttpService.DTO
 {
     /// <summary>
     /// Типы услуг предоставляемые организациями.
@@ -8,11 +10,13 @@
         /// <summary>
         /// Уникальный идентификатор.
         /// </summary>
+        [JsonPropertyName("id")]
         public int Id { get; set; }
 
         /// <summary>
         /// Наименование.
         /// </summary>
+        [JsonPropertyName("title")]
         public string Title { get; set; }
     }
 }
