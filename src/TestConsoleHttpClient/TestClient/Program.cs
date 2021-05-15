@@ -67,14 +67,14 @@ namespace TestClient
             {
                 Username = "admin",
                 Password = "1234"
-            }).Result;
+            });
 
             Console.WriteLine(response.Token);
         }
 
         static void GetInfoCurrentClientJKH()
         {
-            var response = httpService.GetInfoCurrentClientJKH(buildRequestBase()).Result;
+            var response = httpService.GetInfoCurrentClientJKH(buildRequestBase());
             Console.WriteLine($"Статус код: {response.StatusCode}");
             CurrentUser.SetCurrentUser(new ClientJKH
             {
@@ -98,7 +98,7 @@ namespace TestClient
                 Telephone = CurrentUser.Telephone,
                 NumberPersonalAccount = CurrentUser.NumberPersonalAccount,
                 Address = new AddressDomainBuilder().Rebuild(CurrentUser.Address)
-            }).Result;
+            });
 
             Console.WriteLine($"Статус код: {response.StatusCode}");
             Console.WriteLine($"Сообщение: {response.Message}");

@@ -25,7 +25,6 @@ namespace OnlineApplicationMobile.UI.ViewModel
         {
             View = view;
             View.ViewModel = this;
-            RefreshCommand.Execute(null);
         }
 
         /// <summary>
@@ -86,7 +85,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
         {
             var httpService = Startup.GetService<IHttpService>();
 
-            var response = httpService.GetApplicationsCurrentClientJKH(BuildRequestBase()).Result;
+            var response = httpService.GetApplicationsCurrentClientJKH(BuildRequestBase());
 
             Action actionError = () =>
             {

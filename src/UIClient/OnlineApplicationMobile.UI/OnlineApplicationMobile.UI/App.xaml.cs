@@ -1,4 +1,6 @@
-﻿using OnlineApplicationMobile.UI.Views;
+﻿using OnlineApplicationMobile.Infrastructure.Globals;
+using OnlineApplicationMobile.Infrastructure.RealmData.Repository.Interfaces;
+using OnlineApplicationMobile.UI.Views;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -11,6 +13,9 @@ namespace OnlineApplicationMobile.UI
         {
             InitializeComponent();
             Startup.Init();
+            var userInfoRepository = Startup.GetService<IUserInfoRepository>();
+            CurrentUser.SetToken(userInfoRepository.GetToken());
+
             MainPage = new AppShell();
         }
 

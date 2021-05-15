@@ -2,6 +2,7 @@
 using OnlineApplicationMobile.HttpService.Interfaces;
 using OnlineApplicationMobile.HttpService.Requests;
 using OnlineApplicationMobile.Infrastructure.Globals;
+using OnlineApplicationMobile.Infrastructure.RealmData.Repository.Interfaces;
 using OnlineApplicationMobile.UI.ViewModel.Interfaces;
 using OnlineApplicationMobile.UI.Views;
 using OnlineApplicationMobile.UI.Views.Interfaces;
@@ -142,17 +143,19 @@ namespace OnlineApplicationMobile.UI.ViewModel
                 return;
 
             var httpService = Startup.GetService<IHttpService>();
+            var userInfoRepository = Startup.GetService<IUserInfoRepository>();
 
             var response = httpService.Authorization(new AuthorizationRequest
             {
                 Username = Email,
                 Password = Password
-            }).Result;
+            });
 
-            CurrentUser.SetToken(response.Token);
 
             Action action = () =>
             {
+                CurrentUser.SetToken(response.Token);
+                userInfoRepository.SaveToken(response.Token);
                 NavigationGlobalObject.IsLoginStart = false;
                 PopModalPage();
             };

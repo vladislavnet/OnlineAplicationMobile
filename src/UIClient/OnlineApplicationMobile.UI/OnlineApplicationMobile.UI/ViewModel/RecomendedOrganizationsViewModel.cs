@@ -16,7 +16,6 @@ namespace OnlineApplicationMobile.UI.ViewModel
     {
         public RecomendedOrganizationsViewModel(IView view, INavigation navigation) : base(view, navigation) 
         {
-            RefreshCommand.Execute(null);
         }
         
         /// <inheritdoc />
@@ -24,7 +23,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
         {
             var httpService = Startup.GetService<IHttpService>();
 
-            var response = httpService.GetOrganizationsByUser(BuildRequestBase()).Result;
+            var response = httpService.GetOrganizationsByUser(BuildRequestBase());
 
             Action action = () =>
             {

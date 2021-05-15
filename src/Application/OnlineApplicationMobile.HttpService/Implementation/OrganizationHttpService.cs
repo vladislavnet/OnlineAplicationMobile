@@ -15,22 +15,22 @@ namespace OnlineApplicationMobile.HttpService.Implementation
     public class OrganizationHttpService : BaseHttpService, IOrganizationHttpService
     {
         /// <inheritdoc />
-        public async Task<GetOrganizationsByUserResponse> GetOrganizationsByUser(RequestBase request)
+        public GetOrganizationsByUserResponse GetOrganizationsByUser(RequestBase request)
         {
             using (var client = GetClientByHeaderAuthorization(request.Token))
             {
-                var response = await client.GetAsync(UrlTemplates.GetOrganizationsByUserUrl);
+                var response = client.GetAsync(UrlTemplates.GetOrganizationsByUserUrl).Result;
 
                 ResponseBase message = new ResponseBase();
                 OrganizationShortDto[] organizationShortDtos = null;
 
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
-                    organizationShortDtos = JsonSerializer.Deserialize<OrganizationShortDto[]>(await response.Content.ReadAsStringAsync(), optionsSerialize);
+                    organizationShortDtos = JsonSerializer.Deserialize<OrganizationShortDto[]>(response.Content.ReadAsStringAsync().Result, optionsSerialize);
                 }
                 else
                 {
-                    message = JsonSerializer.Deserialize<ResponseBase>(await response.Content.ReadAsStringAsync(), optionsSerialize);
+                    message = JsonSerializer.Deserialize<ResponseBase>(response.Content.ReadAsStringAsync().Result, optionsSerialize);
                 }
 
                 return new GetOrganizationsByUserResponse
@@ -43,22 +43,22 @@ namespace OnlineApplicationMobile.HttpService.Implementation
         }
 
         /// <inheritdoc />
-        public async Task<GetSearchGlobalOrganizationsResponse> GetSearchGlobalOrganizations(GetSearchGlobalOrganizationsRequest request)
+        public GetSearchGlobalOrganizationsResponse GetSearchGlobalOrganizations(GetSearchGlobalOrganizationsRequest request)
         {
             using (var client = GetClientByHeaderAuthorization(request.Token))
             {
-                var response = await client.GetAsync(UrlTemplates.GetSearchGlobalOrganizationsUrl);
+                var response = client.GetAsync(UrlTemplates.GetSearchGlobalOrganizationsUrl).Result;
 
                 ResponseBase message = new ResponseBase();
                 OrganizationShortDto[] organizationShortDtos = null;
 
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
-                    organizationShortDtos = JsonSerializer.Deserialize<OrganizationShortDto[]>(await response.Content.ReadAsStringAsync(), optionsSerialize);
+                    organizationShortDtos = JsonSerializer.Deserialize<OrganizationShortDto[]>(response.Content.ReadAsStringAsync().Result, optionsSerialize);
                 }
                 else
                 {
-                    message = JsonSerializer.Deserialize<ResponseBase>(await response.Content.ReadAsStringAsync(), optionsSerialize);
+                    message = JsonSerializer.Deserialize<ResponseBase>(response.Content.ReadAsStringAsync().Result, optionsSerialize);
                 }
 
                 return new GetSearchGlobalOrganizationsResponse

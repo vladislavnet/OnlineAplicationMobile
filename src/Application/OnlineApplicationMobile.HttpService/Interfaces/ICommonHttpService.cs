@@ -11,13 +11,13 @@ namespace OnlineApplicationMobile.HttpService.Interfaces
         /// </summary>
         /// <param name="request">Запрос.</param>
         /// <returns>Ответ.</returns>
-        Task<SearchAddressingObjectsResponse> GetSearchAddressingObjects(SearchAddressingObjectsRequest request);
+        SearchAddressingObjectsResponse GetSearchAddressingObjects(SearchAddressingObjectsRequest request);
 
         /// <summary>
         /// Возращает массив адресных объектов.
         /// </summary>
         /// <param name="request">Запрос.</param>
         /// <returns>Ответ.</returns>
-        Task<GetTypesAddressingObjectResponse> GetTypesAddressingObject(GetTypesAddressingObjectRequest request);
+        GetTypesAddressingObjectResponse GetTypesAddressingObject(GetTypesAddressingObjectRequest request);
     }
 }

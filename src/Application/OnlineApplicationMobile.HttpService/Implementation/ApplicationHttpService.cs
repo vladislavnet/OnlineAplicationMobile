@@ -16,13 +16,13 @@ namespace OnlineApplicationMobile.HttpService.Implementation
     public class ApplicationHttpService : BaseHttpService, IApplicationHttpService
     {
         /// <inheritdoc />
-        public async Task<GetApplicationDetailCurrentClientJKHResponse> GetApplicationDetailCurrentClientJKH(GetApplicationDetailCurrentClientJKHRequest request)
+        public GetApplicationDetailCurrentClientJKHResponse GetApplicationDetailCurrentClientJKH(GetApplicationDetailCurrentClientJKHRequest request)
         {
             using (var client = GetClientByHeaderAuthorization(request.Token))
             {
-                var response = await client.GetAsync(string.Format(UrlTemplates.GetApplicationDetailCurrentClientJKHUrl, request.Id));
+                var response = client.GetAsync(string.Format(UrlTemplates.GetApplicationDetailCurrentClientJKHUrl, request.Id)).Result;
 
-                var content = JsonSerializer.Deserialize<GetApplicationDetailCurrentClientJKHResponse>(await response.Content.ReadAsStringAsync(), optionsSerialize);
+                var content = JsonSerializer.Deserialize<GetApplicationDetailCurrentClientJKHResponse>(response.Content.ReadAsStringAsync().Result, optionsSerialize);
                 content.StatusCode = response.StatusCode;
 
                 return content;
@@ -30,22 +30,22 @@ namespace OnlineApplicationMobile.HttpService.Implementation
         }
 
         /// <inheritdoc />
-        public async Task<GetApplicationsCurrentClientJKHResponse> GetApplicationsCurrentClientJKH(RequestBase request)
+        public GetApplicationsCurrentClientJKHResponse GetApplicationsCurrentClientJKH(RequestBase request)
         {
             using (var client = GetClientByHeaderAuthorization(request.Token))
             {
-                var response = await client.GetAsync(UrlTemplates.GetApplicationsCurrentClientJKHUrl);
+                var response = client.GetAsync(UrlTemplates.GetApplicationsCurrentClientJKHUrl).Result;
 
                 ResponseBase message = new ResponseBase();
                 ApplicationShortDto[] applicationShortDtos = null;
 
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
-                    applicationShortDtos = JsonSerializer.Deserialize<ApplicationShortDto[]>(await response.Content.ReadAsStringAsync(), optionsSerialize);
+                    applicationShortDtos = JsonSerializer.Deserialize<ApplicationShortDto[]>(response.Content.ReadAsStringAsync().Result, optionsSerialize);
                 }
                 else
                 {
-                    message = JsonSerializer.Deserialize<ResponseBase>(await response.Content.ReadAsStringAsync(), optionsSerialize);
+                    message = JsonSerializer.Deserialize<ResponseBase>(response.Content.ReadAsStringAsync().Result, optionsSerialize);
                 }
 
                 return new GetApplicationsCurrentClientJKHResponse
@@ -57,15 +57,15 @@ namespace OnlineApplicationMobile.HttpService.Implementation
             }
         }
 
-        public async Task<ResponseBase> PostApplication(PostApplicationRequest request)
+        public ResponseBase PostApplication(PostApplicationRequest request)
         {
             using (var client = GetClientByHeaderAuthorization(request.Token))
             {
-                var response = await client.PostAsync(UrlTemplates.PostApplicationUrl, new StringContent(
+                var response = client.PostAsync(UrlTemplates.PostApplicationUrl, new StringContent(
                     JsonSerializer.Serialize(request),
-                    Encoding.UTF8, "application/json"));
+                    Encoding.UTF8, "application/json")).Result;
 
-                var content = JsonSerializer.Deserialize<ResponseBase>(await response.Content.ReadAsStringAsync(), optionsSerialize);
+                var content = JsonSerializer.Deserialize<ResponseBase>(response.Content.ReadAsStringAsync().Result, optionsSerialize);
                 content.StatusCode = response.StatusCode;
 
                 return content;
@@ -73,15 +73,15 @@ namespace OnlineApplicationMobile.HttpService.Implementation
         }
 
         /// <inheritdoc />
-        public async Task<ResponseBase> PostCommentApplication(PostCommentApplicationRequest request)
+        public ResponseBase PostCommentApplication(PostCommentApplicationRequest request)
         {
             using (var client = GetClientByHeaderAuthorization(request.Token))
             {
-                var response = await client.PostAsync(UrlTemplates.PostApplicationUrl, new StringContent(
+                var response = client.PostAsync(UrlTemplates.PostApplicationUrl, new StringContent(
                     JsonSerializer.Serialize(request),
-                    Encoding.UTF8, "application/json"));
+                    Encoding.UTF8, "application/json")).Result;
 
-                var content = JsonSerializer.Deserialize<ResponseBase>(await response.Content.ReadAsStringAsync(), optionsSerialize);
+                var content = JsonSerializer.Deserialize<ResponseBase>(response.Content.ReadAsStringAsync().Result, optionsSerialize);
                 content.StatusCode = response.StatusCode;
 
                 return content;

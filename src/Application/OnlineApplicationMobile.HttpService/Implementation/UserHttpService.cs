@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace OnlineApplicationMobile.HttpService.Implementation
@@ -15,18 +16,18 @@ namespace OnlineApplicationMobile.HttpService.Implementation
     public class UserHttpService : BaseHttpService, IUserHttpService
     {
         /// <inheritdoc />
-        public async Task<AuthorizationResponse> Authorization(AuthorizationRequest request)
+        public AuthorizationResponse Authorization(AuthorizationRequest request)
         {
             using (var client = GetClient())
             {
-                var response = await client.PostAsync(UrlTemplates.LoginUrl, new StringContent(
+                var response = client.PostAsync(UrlTemplates.LoginUrl, new StringContent(
                     JsonSerializer.Serialize(request),
-                    Encoding.UTF8, "application/json"));
+                    Encoding.UTF8, "application/json")).Result;
 
                 if (response.StatusCode != HttpStatusCode.OK)
                     return new AuthorizationResponse { StatusCode = response.StatusCode, Message = "Email или пароль введен неверно." };
 
-                var authToken = JsonSerializer.Deserialize<AuthTokenDto>(await response.Content.ReadAsStringAsync(), optionsSerialize);
+                var authToken = JsonSerializer.Deserialize<AuthTokenDto>(response.Content.ReadAsStringAsync().Result, optionsSerialize);
 
                 return new AuthorizationResponse
                 {
@@ -37,13 +38,13 @@ namespace OnlineApplicationMobile.HttpService.Implementation
         }
 
         /// <inheritdoc />
-        public async Task<GetInfoCurrentClientJKHResponse> GetInfoCurrentClientJKH(RequestBase request)
+        public GetInfoCurrentClientJKHResponse GetInfoCurrentClientJKH(RequestBase request)
         {
             using (var client = GetClientByHeaderAuthorization(request.Token))
             {
-                var response = await client.GetAsync(UrlTemplates.GetInfoCurrentClientJKHUrl);
+                var response =  client.GetAsync(UrlTemplates.GetInfoCurrentClientJKHUrl).Result;
 
-                var content = JsonSerializer.Deserialize<GetInfoCurrentClientJKHResponse>(await response.Content.ReadAsStringAsync(), optionsSerialize);
+                var content = JsonSerializer.Deserialize<GetInfoCurrentClientJKHResponse>(response.Content.ReadAsStringAsync().Result, optionsSerialize);
                 content.StatusCode = response.StatusCode;
 
                 return content;
@@ -51,15 +52,15 @@ namespace OnlineApplicationMobile.HttpService.Implementation
         }
 
         /// <inheritdoc />
-        public async Task<ResponseBase> PutInfoCurrentClientJKH(PutInfoCurrentClientJKHRequest request)
+        public ResponseBase PutInfoCurrentClientJKH(PutInfoCurrentClientJKHRequest request)
         {
             using (var client = GetClientByHeaderAuthorization(request.Token))
             {
-                var response = await client.PutAsync(UrlTemplates.PutInfoCurrentClientJKHUrl, new StringContent(
+                var response = client.PutAsync(UrlTemplates.PutInfoCurrentClientJKHUrl, new StringContent(
                     JsonSerializer.Serialize(request),
-                    Encoding.UTF8, "application/json"));
+                    Encoding.UTF8, "application/json")).Result;
 
-                var content = JsonSerializer.Deserialize<ResponseBase>(await response.Content.ReadAsStringAsync(), optionsSerialize);
+                var content = JsonSerializer.Deserialize<ResponseBase>(response.Content.ReadAsStringAsync().Result, optionsSerialize);
                 content.StatusCode = response.StatusCode;
 
                 return content;
@@ -67,15 +68,15 @@ namespace OnlineApplicationMobile.HttpService.Implementation
         }
 
         /// <inheritdoc />
-        public async Task<ResponseBase> PostRegistrationClientJKH(PostRegistrationClientJKHRequest request)
+        public ResponseBase PostRegistrationClientJKH(PostRegistrationClientJKHRequest request)
         {
-            using (var client = GetClientByHeaderAuthorization(request.Token))
+            using (var client = GetClient())
             {
-                var response = await client.PostAsync(UrlTemplates.PostRegistrationClientJKHUrl, new StringContent(
+                var response = client.PostAsync(UrlTemplates.PostRegistrationClientJKHUrl, new StringContent(
                     JsonSerializer.Serialize(request),
-                    Encoding.UTF8, "application/json"));
+                    Encoding.UTF8, "application/json")).Result;
 
-                var content = JsonSerializer.Deserialize<ResponseBase>(await response.Content.ReadAsStringAsync(), optionsSerialize);
+                var content = JsonSerializer.Deserialize<ResponseBase>(response.Content.ReadAsStringAsync().Result, optionsSerialize);
                 content.StatusCode = response.StatusCode;
 
                 return content;

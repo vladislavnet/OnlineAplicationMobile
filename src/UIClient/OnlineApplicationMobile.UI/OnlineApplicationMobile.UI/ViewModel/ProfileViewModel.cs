@@ -3,6 +3,7 @@ using OnlineApplicationMobile.HttpService.Interfaces;
 using OnlineApplicationMobile.HttpService.Requests;
 using OnlineApplicationMobile.Infrastructure.Builders;
 using OnlineApplicationMobile.Infrastructure.Globals;
+using OnlineApplicationMobile.Infrastructure.RealmData.Repository.Interfaces;
 using OnlineApplicationMobile.UI.ViewModel.Interfaces;
 using OnlineApplicationMobile.UI.Views;
 using OnlineApplicationMobile.UI.Views.Interfaces;
@@ -27,6 +28,8 @@ namespace OnlineApplicationMobile.UI.ViewModel
         private string numberPersonalAccount;
         private string addressString;
 
+        private bool isRefreshing;
+
         public ProfileViewModel(IView view, INavigation navigation) : base(navigation)
         {
             View = view;
@@ -39,6 +42,19 @@ namespace OnlineApplicationMobile.UI.ViewModel
             get => new Command(() =>
             {
                 PushPage(new EditProfilePage());
+            });
+        }
+
+        /// <summary>
+        /// Команда для Обновления раздела.
+        /// </summary>
+        public ICommand RefreshCommand
+        {
+            get => new Command(() =>
+            {
+                IsRefreshing = true;
+                Initialize();
+                IsRefreshing = false;
             });
         }
 
@@ -146,12 +162,25 @@ namespace OnlineApplicationMobile.UI.ViewModel
             }
         }
 
+        /// <summary>
+        /// Флаг обновления.
+        /// </summary>
+        public bool IsRefreshing
+        {
+            get => isRefreshing;
+            set
+            {
+                isRefreshing = value;
+                OnPropertyChanged(nameof(IsRefreshing));
+            }
+        }
+
 
         public void Initialize()
         {
             var httpService = Startup.GetService<IHttpService>();
 
-            var response = httpService.GetInfoCurrentClientJKH(BuildRequestBase()).Result;
+            var response = httpService.GetInfoCurrentClientJKH(BuildRequestBase());
 
             if (response.StatusCode == HttpStatusCode.Forbidden)
             {

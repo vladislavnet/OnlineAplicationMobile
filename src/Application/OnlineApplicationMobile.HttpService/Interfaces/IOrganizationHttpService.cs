@@ -14,13 +14,13 @@ namespace OnlineApplicationMobile.HttpService.Interfaces
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        Task<GetOrganizationsByUserResponse> GetOrganizationsByUser(RequestBase request);
+        GetOrganizationsByUserResponse GetOrganizationsByUser(RequestBase request);
 
         /// <summary>
         /// Поиск организаций.
         /// </summary>
         /// <param name="request">Запрос.</param>
         /// <returns>Ответ.</returns>
-        Task<GetSearchGlobalOrganizationsResponse> GetSearchGlobalOrganizations(GetSearchGlobalOrganizationsRequest request);
+        GetSearchGlobalOrganizationsResponse GetSearchGlobalOrganizations(GetSearchGlobalOrganizationsRequest request);
     }
 }

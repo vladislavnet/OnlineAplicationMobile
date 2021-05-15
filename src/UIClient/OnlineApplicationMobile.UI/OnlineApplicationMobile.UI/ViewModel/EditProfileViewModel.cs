@@ -118,7 +118,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
                     Telephone = !string.IsNullOrWhiteSpace(Telephone) ? MiddleName : null,
                     NumberPersonalAccount = NumberPersonalAccount,
                     Address = buildAddress()
-                }).Result;
+                });
 
                 Action action = () =>
                 {
@@ -917,7 +917,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
                 Token = CurrentUser.Token,
                 Name = name,
                 Level = (int)level
-            }).Result;
+            });
 
             displayMessageGetSearchCollection(response.StatusCode);
 
@@ -1048,10 +1048,10 @@ namespace OnlineApplicationMobile.UI.ViewModel
             var requestLocality = buildTypesAddressingObjectRequest(LevelAddressingObjectEnum.Locality);
             var requestStreet = buildTypesAddressingObjectRequest(LevelAddressingObjectEnum.Street);
 
-            var regionTypesAddressingObjectResponse = httpService.GetTypesAddressingObject(requestRegion).Result.TypesAddressingObject;
-            var districtTypesAddressingObjectResponse = httpService.GetTypesAddressingObject(requestDistrict).Result.TypesAddressingObject;
-            var localityTypesAddressingObjectResponse = httpService.GetTypesAddressingObject(requestLocality).Result.TypesAddressingObject;
-            var streetTypesAddressingObjectResponse = httpService.GetTypesAddressingObject(requestStreet).Result.TypesAddressingObject;
+            var regionTypesAddressingObjectResponse = httpService.GetTypesAddressingObject(requestRegion).TypesAddressingObject;
+            var districtTypesAddressingObjectResponse = httpService.GetTypesAddressingObject(requestDistrict).TypesAddressingObject;
+            var localityTypesAddressingObjectResponse = httpService.GetTypesAddressingObject(requestLocality).TypesAddressingObject;
+            var streetTypesAddressingObjectResponse = httpService.GetTypesAddressingObject(requestStreet).TypesAddressingObject;
 
             RegionTypesAddressingObject = mapTypeAddressingObjectModelView(regionTypesAddressingObjectResponse).ToList();
             DistrictTypesAddressingObject = mapTypeAddressingObjectModelView(districtTypesAddressingObjectResponse).ToList();

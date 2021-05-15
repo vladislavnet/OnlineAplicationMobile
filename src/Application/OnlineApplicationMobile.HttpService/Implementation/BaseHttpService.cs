@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using Xamarin.Android.Net;
 
 namespace OnlineApplicationMobile.HttpService.Implementation
 {
@@ -22,7 +23,7 @@ namespace OnlineApplicationMobile.HttpService.Implementation
         /// </summary>
         protected HttpClient GetClient()
         {
-            HttpClient client = new HttpClient();
+            HttpClient client = new HttpClient(new AndroidClientHandler());
             client.Timeout = TimeSpan.FromSeconds(30);
             client.DefaultRequestHeaders.Add("Accept", "application/json");
             return client;
@@ -33,7 +34,7 @@ namespace OnlineApplicationMobile.HttpService.Implementation
         /// </summary>
         protected HttpClient GetClient(IDictionary<string, string> headers)
         {
-            HttpClient client = new HttpClient();
+            HttpClient client = new HttpClient(new AndroidClientHandler());
             client.Timeout = TimeSpan.FromSeconds(30);
             client.DefaultRequestHeaders.Add("Accept", "application/json");
             foreach (var header in headers)

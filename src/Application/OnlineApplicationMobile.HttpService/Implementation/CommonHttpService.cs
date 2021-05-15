@@ -6,6 +6,7 @@ using OnlineApplicationMobile.HttpService.Templates;
 using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -15,22 +16,22 @@ namespace OnlineApplicationMobile.HttpService.Implementation
     public class CommonHttpService : BaseHttpService, ICommonHttpService
     {
         /// <inheritdoc />
-        public async Task<SearchAddressingObjectsResponse> GetSearchAddressingObjects(SearchAddressingObjectsRequest request)
+        public SearchAddressingObjectsResponse GetSearchAddressingObjects(SearchAddressingObjectsRequest request)
         {
             using (var client = GetClientByHeaderAuthorization(request.Token))
             {
-                var response = await client.GetAsync(UrlTemplates.GetInfoCurrentClientJKHUrl);
+                var response = client.GetAsync(string.Format(UrlTemplates.GetSearchAddressingObjectsUrl, request.Name, request.Level)).Result;
 
                 ResponseBase message = new ResponseBase();
                 AddressingObjectShortDto[] addressingObjectShortDtos = null;
 
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
-                    addressingObjectShortDtos = JsonSerializer.Deserialize<AddressingObjectShortDto[]>(await response.Content.ReadAsStringAsync(), optionsSerialize);
+                    addressingObjectShortDtos = JsonSerializer.Deserialize<AddressingObjectShortDto[]>(response.Content.ReadAsStringAsync().Result, optionsSerialize);
                 }
                 else
                 {
-                    message = JsonSerializer.Deserialize<ResponseBase>(await response.Content.ReadAsStringAsync(), optionsSerialize);
+                    message = JsonSerializer.Deserialize<ResponseBase>(response.Content.ReadAsStringAsync().Result, optionsSerialize);
                 }
 
                 return new SearchAddressingObjectsResponse 
@@ -43,22 +44,22 @@ namespace OnlineApplicationMobile.HttpService.Implementation
         }
 
         /// <inheritdoc />
-        public async Task<GetTypesAddressingObjectResponse> GetTypesAddressingObject(GetTypesAddressingObjectRequest request)
+        public GetTypesAddressingObjectResponse GetTypesAddressingObject(GetTypesAddressingObjectRequest request)
         {
             using (var client = GetClientByHeaderAuthorization(request.Token))
             {
-                var response = await client.GetAsync(UrlTemplates.GetInfoCurrentClientJKHUrl);
+                var response = client.GetAsync(string.Format(UrlTemplates.GetApplicationDetailCurrentClientJKHUrl, request.Level)).Result;
 
                 ResponseBase message = new ResponseBase();
                 TypeAddressingObjectDto[] typeAddressingObjectDtos = null;
 
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
-                    typeAddressingObjectDtos = JsonSerializer.Deserialize<TypeAddressingObjectDto[]>(await response.Content.ReadAsStringAsync(), optionsSerialize);
+                    typeAddressingObjectDtos = JsonSerializer.Deserialize<TypeAddressingObjectDto[]>(response.Content.ReadAsStringAsync().Result, optionsSerialize);
                 }
                 else
                 {
-                    message = JsonSerializer.Deserialize<ResponseBase>(await response.Content.ReadAsStringAsync(), optionsSerialize);
+                    message = JsonSerializer.Deserialize<ResponseBase>(response.Content.ReadAsStringAsync().Result, optionsSerialize);
                 }
 
                 return new GetTypesAddressingObjectResponse

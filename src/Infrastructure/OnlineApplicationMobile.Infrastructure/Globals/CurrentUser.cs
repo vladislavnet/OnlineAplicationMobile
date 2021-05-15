@@ -77,6 +77,7 @@ namespace OnlineApplicationMobile.Infrastructure.Globals
 
 
             Id = clientJKH.User.Id;
+            Email = clientJKH.User.Email;
             FirstName = !string.IsNullOrWhiteSpace(clientJKH.User.FirstName) ? clientJKH.User.FirstName : FirstName;
             LastName = !string.IsNullOrWhiteSpace(clientJKH.User.LastName) ? clientJKH.User.LastName : LastName;
             MiddleName = !string.IsNullOrWhiteSpace(clientJKH.User.MiddleName) ? clientJKH.User.MiddleName : MiddleName;

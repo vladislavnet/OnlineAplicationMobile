@@ -72,6 +72,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
         {
             switch (httpStatusCode)
             {
+                case HttpStatusCode.Unauthorized:
                 case HttpStatusCode.Forbidden:
                     if (!NavigationGlobalObject.IsLoginStart)
                     {
@@ -79,9 +80,15 @@ namespace OnlineApplicationMobile.UI.ViewModel
                         PushModalPage(new LoginPage());
                     }
                     break;
+                case HttpStatusCode.BadRequest:
+                case HttpStatusCode.NotFound:
                 case HttpStatusCode.InternalServerError:
+                case HttpStatusCode.MethodNotAllowed:
                     actionError.Invoke();
                     break;
+                case HttpStatusCode.Created:
+                case HttpStatusCode.NoContent:
+                case HttpStatusCode.Accepted:
                 case HttpStatusCode.OK:
                     action.Invoke();
                     break;

@@ -11,27 +11,27 @@ namespace OnlineApplicationMobile.HttpService.Interfaces
         /// </summary>
         /// <param name="request">Запрос.</param>
         /// <returns>Ответ.</returns>
-        Task<GetApplicationsCurrentClientJKHResponse> GetApplicationsCurrentClientJKH(RequestBase request);
+        GetApplicationsCurrentClientJKHResponse GetApplicationsCurrentClientJKH(RequestBase request);
 
         /// <summary>
         /// Получение детильной информации заявки текущего клиента ЖКХ.
         /// </summary>
         /// <param name="request">Запрос.</param>
         /// <returns>Ответ.</returns>
-        Task<GetApplicationDetailCurrentClientJKHResponse> GetApplicationDetailCurrentClientJKH(GetApplicationDetailCurrentClientJKHRequest request);
+        GetApplicationDetailCurrentClientJKHResponse GetApplicationDetailCurrentClientJKH(GetApplicationDetailCurrentClientJKHRequest request);
 
         /// <summary>
         /// Добавление комментария к заявке.
         /// </summary>
         /// <param name="request">Запрос.</param>
         /// <returns>Ответ.</returns>
-        Task<ResponseBase> PostCommentApplication(PostCommentApplicationRequest request);
+        ResponseBase PostCommentApplication(PostCommentApplicationRequest request);
 
         /// <summary>
         /// Добавление заявки.
         /// </summary>
         /// <param name="request">Запрос.</param>
         /// <returns>Ответ.</returns>
-        Task<ResponseBase> PostApplication(PostApplicationRequest request);
+        ResponseBase PostApplication(PostApplicationRequest request);
     }
 }

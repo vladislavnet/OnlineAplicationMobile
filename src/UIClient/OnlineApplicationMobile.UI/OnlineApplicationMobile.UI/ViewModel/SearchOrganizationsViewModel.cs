@@ -36,7 +36,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
             {
                 Token = GetUserToken(),
                 SearchText = !string.IsNullOrWhiteSpace(SearchText) ? SearchText : null
-            }).Result;
+            });
 
             Action action = () =>
             {

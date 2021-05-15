@@ -28,7 +28,7 @@
                     <DatePicker Date="{Binding BirthDate}"/>
                 </StackLayout>
 
-                <Entry Text="{Binding Telephone}" Placeholder="Отчество"/>
+                <Entry Text="{Binding Telephone}" Placeholder="Телефон"/>
 
                 <Button Text="Зарегистрировать" Command="{Binding RegisterCommand}"/>
             </StackLayout>

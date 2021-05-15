@@ -14,27 +14,27 @@ namespace OnlineApplicationMobile.HttpService.Interfaces
         /// </summary>
         /// <param name="request">Запрос на получение информации.</param>
         /// <returns>Ответ на получение информации.</returns>
-        Task<GetInfoCurrentClientJKHResponse> GetInfoCurrentClientJKH(RequestBase request);
+        GetInfoCurrentClientJKHResponse GetInfoCurrentClientJKH(RequestBase request);
 
         /// <summary>
         /// Авторизация пользователя.
         /// </summary>
         /// <param name="request">Запрос на авторизацию.</param>
         /// <returns>Ответ на авторизацию.</returns>
-        Task<AuthorizationResponse> Authorization(AuthorizationRequest request);
+        AuthorizationResponse Authorization(AuthorizationRequest request);
 
         /// <summary>
         /// Обновление информации текущего пользователя.
         /// </summary>
         /// <param name="request">Запрос.</param>
         /// <returns>Ответ.</returns>
-        Task<ResponseBase> PutInfoCurrentClientJKH(PutInfoCurrentClientJKHRequest request);
+        ResponseBase PutInfoCurrentClientJKH(PutInfoCurrentClientJKHRequest request);
 
         /// <summary>
         /// Регистрация клиента ЖКХ.
         /// </summary>
         /// <param name="request">Запрос.</param>
         /// <returns>Ответ.</returns>
-        Task<ResponseBase> PostRegistrationClientJKH(PostRegistrationClientJKHRequest request);
+        ResponseBase PostRegistrationClientJKH(PostRegistrationClientJKHRequest request);
     }
 }

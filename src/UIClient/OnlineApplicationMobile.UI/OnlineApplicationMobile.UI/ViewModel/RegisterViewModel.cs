@@ -62,7 +62,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
                     MiddleName = MiddleName,
                     BirthDate = BirthDate?.ToString("yyyy-MM-dd"),
                     Telephone = Telephone
-                }).Result;
+                });
 
                 Action action = () =>
                 {
@@ -85,7 +85,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
         public string Email
         {
             get => email;
-            protected set
+            set
             {
                 email = value;
                 OnPropertyChanged(nameof(Email));
@@ -124,7 +124,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
         public string FirstName
         {
             get => firstName;
-            protected set
+            set
             {
                 firstName = value;
                 OnPropertyChanged(nameof(FirstName));
@@ -137,7 +137,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
         public string LastName
         {
             get => lastName;
-            protected set
+            set
             {
                 lastName = value;
                 OnPropertyChanged(nameof(LastName));
@@ -150,7 +150,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
         public string MiddleName
         {
             get => middleName;
-            protected set
+            set
             {
                 middleName = value;
                 OnPropertyChanged(nameof(MiddleName));
@@ -163,7 +163,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
         public DateTime? BirthDate
         {
             get => birthDate;
-            protected set
+            set
             {
                 birthDate = value;
                 OnPropertyChanged(nameof(BirthDate));
@@ -176,7 +176,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
         public string Telephone
         {
             get => telephone;
-            protected set
+            set
             {
                 telephone = value;
                 OnPropertyChanged(nameof(Telephone));
