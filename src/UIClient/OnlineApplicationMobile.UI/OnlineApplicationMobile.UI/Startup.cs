@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using Microsoft.Extensions.DependencyInjection;
 using OnlineApplicationMobile.HttpService.Implementation;
 using OnlineApplicationMobile.HttpService.Interfaces;
-using OnlineApplicationMobile.Infrastructure.RealmData.Repository.Implementation;
-using OnlineApplicationMobile.Infrastructure.RealmData.Repository.Interfaces;
+using OnlineApplicationMobile.Infrastructure.SqlLiteData;
+using OnlineApplicationMobile.Infrastructure.SqlLiteData.Repository.Implementation;
+using OnlineApplicationMobile.Infrastructure.SqlLiteData.Repository.Interfaces;
 using OnlineApplicationMobile.UI.Views;
 
 namespace OnlineApplicationMobile.UI
@@ -21,6 +22,7 @@ namespace OnlineApplicationMobile.UI
             services.AddSingleton<ICommonHttpService, CommonHttpService>();
             services.AddSingleton<IHttpService, HttpService.Implementation.HttpService>();
             services.AddTransient<IUserInfoRepository, UserInfoRepository>();
+            services.AddSingleton<ConfigurationSqlLite>();
 
             services.AddSingleton<LoginPage>();
             services.AddSingleton<ProfilePage>();

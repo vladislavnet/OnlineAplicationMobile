@@ -1041,6 +1041,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
         /// </summary>
         private void initialize()
         {
+
             var httpService = Startup.GetService<IHttpService>();
 
             var requestRegion = buildTypesAddressingObjectRequest(LevelAddressingObjectEnum.Region);
@@ -1056,7 +1057,49 @@ namespace OnlineApplicationMobile.UI.ViewModel
             RegionTypesAddressingObject = mapTypeAddressingObjectModelView(regionTypesAddressingObjectResponse).ToList();
             DistrictTypesAddressingObject = mapTypeAddressingObjectModelView(districtTypesAddressingObjectResponse).ToList();
             LocalityTypesAddressingObject = mapTypeAddressingObjectModelView(localityTypesAddressingObjectResponse).ToList();
-            LocalityTypesAddressingObject = mapTypeAddressingObjectModelView(streetTypesAddressingObjectResponse).ToList();
+            StreetTypesAddressingObject = mapTypeAddressingObjectModelView(streetTypesAddressingObjectResponse).ToList();
+
+            LastName = CurrentUser.LastName;
+            FirstName = CurrentUser.FirstName;
+            MiddleName = CurrentUser.MiddleName;
+            BirthDate = CurrentUser.BirthDate;
+            Telephone = CurrentUser.Telephone;
+            NumberPersonalAccount = CurrentUser.NumberPersonalAccount;
+
+            var currentUserTypeAddressingObjectRegion = CurrentUser.GetTypeAddressingObjectByAddress(LevelAddressingObjectEnum.Region);
+            var currentUserTypeAddressingObjectDistrict = CurrentUser.GetTypeAddressingObjectByAddress(LevelAddressingObjectEnum.District);
+            var currentUserTypeAddressingObjectLocality = CurrentUser.GetTypeAddressingObjectByAddress(LevelAddressingObjectEnum.Locality);
+            var currentUserTypeAddressingObjectStreet = CurrentUser.GetTypeAddressingObjectByAddress(LevelAddressingObjectEnum.Street);
+
+            var currentUserAddressingObjectRegion = CurrentUser.GetAddressingObjectByAddress(LevelAddressingObjectEnum.Region);
+            var currentUserAddressingObjectDistrict = CurrentUser.GetAddressingObjectByAddress(LevelAddressingObjectEnum.District);
+            var currentUserAddressingObjectLocality = CurrentUser.GetAddressingObjectByAddress(LevelAddressingObjectEnum.Locality);
+            var currentUserAddressingObjectStreet = CurrentUser.GetAddressingObjectByAddress(LevelAddressingObjectEnum.Street);
+
+            if (currentUserTypeAddressingObjectRegion != null)
+                SelectedRegionTypeAddressingObject = RegionTypesAddressingObject.FirstOrDefault(x => currentUserTypeAddressingObjectRegion.Id == x.Id);
+
+            if (currentUserTypeAddressingObjectDistrict != null)
+                SelectedDistrictTypeAddressingObject = DistrictTypesAddressingObject.FirstOrDefault(x => currentUserTypeAddressingObjectDistrict.Id == x.Id);
+
+            if (currentUserTypeAddressingObjectLocality != null)
+                SelectedLocalityTypeAddressingObject = LocalityTypesAddressingObject.FirstOrDefault(x => currentUserTypeAddressingObjectLocality.Id == x.Id);
+
+            if (currentUserTypeAddressingObjectStreet != null)
+                SelectedStreetTypeAddressingObject = StreetTypesAddressingObject.FirstOrDefault(x => currentUserTypeAddressingObjectStreet.Id == x.Id);
+
+            region = currentUserAddressingObjectRegion?.Name;
+            district = currentUserAddressingObjectDistrict?.Name;
+            locality = currentUserAddressingObjectLocality?.Name;
+            street = currentUserAddressingObjectStreet?.Name;
+
+            OnPropertyChanged(nameof(Region));
+            OnPropertyChanged(nameof(District));
+            OnPropertyChanged(nameof(Locality));
+            OnPropertyChanged(nameof(Street));
+
+            HouseNumber = CurrentUser.Address?.HouseNumber;
+            ApartamentNumber = CurrentUser.Address?.NumberApartament;
         }
 
         /// <summary>

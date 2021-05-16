@@ -2,7 +2,7 @@
 using OnlineApplicationMobile.HttpService.Interfaces;
 using OnlineApplicationMobile.HttpService.Requests;
 using OnlineApplicationMobile.Infrastructure.Globals;
-using OnlineApplicationMobile.Infrastructure.RealmData.Repository.Interfaces;
+using OnlineApplicationMobile.Infrastructure.SqlLiteData.Repository.Interfaces;
 using OnlineApplicationMobile.UI.ViewModel.Interfaces;
 using OnlineApplicationMobile.UI.Views;
 using OnlineApplicationMobile.UI.Views.Interfaces;

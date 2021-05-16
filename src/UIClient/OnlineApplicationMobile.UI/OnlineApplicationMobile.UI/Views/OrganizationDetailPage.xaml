@@ -9,10 +9,8 @@
                 <Label Text="Наименование: "/>
                 <Label Text="{Binding Organization.Name}" />
             </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Описание организации: "/>
-                <Label Text="{Binding Organization.Description}" />
-            </StackLayout>
+            <Label Text="Описание организации: "/>
+            <Label Text="{Binding Organization.Description}" />
             <StackLayout Orientation="Horizontal">
                 <Label Text="Email: "/>
                 <Label Text="{Binding Organization.Email}" />

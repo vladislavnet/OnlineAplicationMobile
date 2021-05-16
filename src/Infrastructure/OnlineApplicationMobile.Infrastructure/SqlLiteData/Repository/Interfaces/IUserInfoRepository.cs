@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OnlineApplicationMobile.Infrastructure.RealmData.Repository.Interfaces
+namespace OnlineApplicationMobile.Infrastructure.SqlLiteData.Repository.Interfaces
 {
     public interface IUserInfoRepository
     {

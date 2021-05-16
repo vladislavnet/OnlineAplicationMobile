@@ -6,7 +6,7 @@
     <ContentPage.Content>
         <ListView ItemsSource="{Binding Organizations}"
                   SelectedItem="{Binding SelectedOrganization}" 
-                  RowHeight="120"
+                  RowHeight="50"
                   IsPullToRefreshEnabled="True"
                   RefreshCommand="{Binding RefreshCommand}"
                   IsRefreshing="{Binding IsRefreshing}">

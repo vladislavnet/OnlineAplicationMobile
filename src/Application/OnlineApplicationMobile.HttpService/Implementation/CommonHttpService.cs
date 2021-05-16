@@ -48,7 +48,7 @@ namespace OnlineApplicationMobile.HttpService.Implementation
         {
             using (var client = GetClientByHeaderAuthorization(request.Token))
             {
-                var response = client.GetAsync(string.Format(UrlTemplates.GetApplicationDetailCurrentClientJKHUrl, request.Level)).Result;
+                var response = client.GetAsync(string.Format(UrlTemplates.GetTypesAddressingObjectUrl, request.Level)).Result;
 
                 ResponseBase message = new ResponseBase();
                 TypeAddressingObjectDto[] typeAddressingObjectDtos = null;

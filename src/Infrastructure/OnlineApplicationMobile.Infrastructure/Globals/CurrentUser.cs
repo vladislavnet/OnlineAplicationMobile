@@ -1,4 +1,5 @@
 ﻿using OnlineApplicationMobile.Domain.Entities;
+using OnlineApplicationMobile.Domain.Enums;
 using OnlineApplicationMobile.Domain.Exeptions;
 using System;
 using System.Collections.Generic;
@@ -85,6 +86,56 @@ namespace OnlineApplicationMobile.Infrastructure.Globals
             Telephone = !string.IsNullOrWhiteSpace(clientJKH.User.Telephone) ? clientJKH.User.Telephone : Telephone;
             NumberPersonalAccount = !string.IsNullOrWhiteSpace(clientJKH.NumberPersonalAccount) ? clientJKH.NumberPersonalAccount : NumberPersonalAccount;
             Address = clientJKH.Address != null ? clientJKH.Address : Address;
+        }
+
+        /// <summary>
+        /// Возвращает адресный объект по уровкю.
+        /// </summary>
+        /// <param name="level">Уровень типа адресного объекта.</param>
+        public static AddressingObject GetAddressingObjectByAddress(LevelAddressingObjectEnum level)
+        {
+            if (Address == null)
+                return null;
+
+            var addressingObject = Address.AddressingObject;
+
+            while (addressingObject != null)
+            {
+                if (addressingObject.Type?.Level == null)
+                    return null;
+
+                if (addressingObject.Type.Level.Level == (int)level)
+                    return addressingObject;
+
+                addressingObject = addressingObject.Parent;
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Возвращает тип адресного объекта по уровкю.
+        /// </summary>
+        /// <param name="level">Уровень типа адресного объекта.</param>
+        public static TypeAddressingObject GetTypeAddressingObjectByAddress(LevelAddressingObjectEnum level)
+        {
+            if (Address == null)
+                return null;
+
+            var addressingObject = Address.AddressingObject;
+
+            while (addressingObject != null)
+            {
+                if (addressingObject.Type?.Level == null)
+                    return null;
+
+                if (addressingObject.Type.Level.Level == (int)level)
+                    return addressingObject.Type;
+
+                addressingObject = addressingObject.Parent;
+            }
+
+            return null;
         }
 
         public static string GetAddressFullToString()

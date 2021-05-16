@@ -1,11 +1,12 @@
-﻿using Realms;
+﻿using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace OnlineApplicationMobile.Infrastructure.RealmData.Models
+namespace OnlineApplicationMobile.Infrastructure.SqlLiteData.Models
 {
-    public class UserInfo : RealmObject
+    [Table("UserInfo")]
+    public class UserInfo 
     {
         [PrimaryKey]
         public int Id { get; set; }
