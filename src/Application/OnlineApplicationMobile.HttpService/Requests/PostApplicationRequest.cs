@@ -51,6 +51,6 @@ namespace OnlineApplicationMobile.HttpService.Requests
         /// Выбранные типы услуг.
         /// </summary>
         [JsonPropertyName("serviseTypes")]
-        public ServiceTypeDto[] ServiseTypes { get; set; }
+        public int[] ServiseTypes { get; set; }
     }
 }

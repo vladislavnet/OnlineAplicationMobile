@@ -12,12 +12,12 @@ namespace OnlineApplicationMobile.HttpService.Templates
         public static string PutInfoCurrentClientJKHUrl = BaseUrl + "api/v1/client-jkh/update/";
         public static string PostRegistrationClientJKHUrl = BaseUrl + "api/v1/client-jkh/register/";
         public static string GetTypesAddressingObjectUrl = BaseUrl + "api/v1/types-addressing-object/?level={0}";
-        public static string GetSearchAddressingObjectsUrl = BaseUrl + "api/v1/organization/search/?name={0}&level={1}";
+        public static string GetSearchAddressingObjectsUrl = BaseUrl + "api/v1/addressing-object/search/?level={0}&name={1}";
         public static string GetApplicationDetailCurrentClientJKHUrl = BaseUrl + "api/v1/client-jkh/applications/{0}/";
         public static string GetApplicationsCurrentClientJKHUrl = BaseUrl + "api/v1/client-jkh/applications/";
         public static string PostApplicationUrl = BaseUrl + "api/v1/client-jkh/add-application/";
         public static string PostCommentApplicationUrl = BaseUrl + "api/v1/application/comment/";
         public static string GetOrganizationsByUserUrl = BaseUrl + "api/v1/client-jkh/organizations/";
-        public static string GetSearchGlobalOrganizationsUrl = BaseUrl + "api/v1/organization/search/";
+        public static string GetSearchGlobalOrganizationsUrl = BaseUrl + "api/v1/organization/search/?searchText={0}";
     }
 }

@@ -111,11 +111,12 @@ namespace OnlineApplicationMobile.UI.ViewModel
 
                 var response = httpService.PutInfoCurrentClientJKH(new PutInfoCurrentClientJKHRequest
                 {
+                    Token = GetUserToken(),
                     FirstName = FirstName,
                     LastName = LastName,
                     MiddleName = !string.IsNullOrWhiteSpace(MiddleName) ? MiddleName : null,
                     BirthDate = BirthDate?.ToString("yyyy-MM-dd"),
-                    Telephone = !string.IsNullOrWhiteSpace(Telephone) ? MiddleName : null,
+                    Telephone = !string.IsNullOrWhiteSpace(Telephone) ? Telephone : null,
                     NumberPersonalAccount = NumberPersonalAccount,
                     Address = buildAddress()
                 });

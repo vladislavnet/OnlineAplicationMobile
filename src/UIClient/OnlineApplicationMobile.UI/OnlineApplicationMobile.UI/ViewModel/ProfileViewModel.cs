@@ -212,7 +212,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
             MiddleName = CurrentUser.MiddleName;
             BirthDate = CurrentUser.BirthDate.HasValue ? CurrentUser.BirthDate.Value.ToString("d") : string.Empty;
             Telephone = CurrentUser.Telephone;
-            NumberPersonalAccount = CurrentUser.Telephone;
+            NumberPersonalAccount = CurrentUser.NumberPersonalAccount;
             AddressString = CurrentUser.GetAddressShortToString();
         }
     }

@@ -84,6 +84,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
                 case HttpStatusCode.NotFound:
                 case HttpStatusCode.InternalServerError:
                 case HttpStatusCode.MethodNotAllowed:
+                case HttpStatusCode.NonAuthoritativeInformation:
                     actionError.Invoke();
                     break;
                 case HttpStatusCode.Created:

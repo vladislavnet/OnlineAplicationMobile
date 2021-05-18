@@ -20,7 +20,7 @@ namespace OnlineApplicationMobile.HttpService.Implementation
         {
             using (var client = GetClientByHeaderAuthorization(request.Token))
             {
-                var response = client.GetAsync(string.Format(UrlTemplates.GetSearchAddressingObjectsUrl, request.Name, request.Level)).Result;
+                var response = client.GetAsync(string.Format(UrlTemplates.GetSearchAddressingObjectsUrl, request.Level, request.Name)).Result;
 
                 ResponseBase message = new ResponseBase();
                 AddressingObjectShortDto[] addressingObjectShortDtos = null;

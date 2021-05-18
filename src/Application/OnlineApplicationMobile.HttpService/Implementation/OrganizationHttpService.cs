@@ -47,7 +47,7 @@ namespace OnlineApplicationMobile.HttpService.Implementation
         {
             using (var client = GetClientByHeaderAuthorization(request.Token))
             {
-                var response = client.GetAsync(UrlTemplates.GetSearchGlobalOrganizationsUrl).Result;
+                var response = client.GetAsync(string.Format(UrlTemplates.GetSearchGlobalOrganizationsUrl, request.SearchText)).Result;
 
                 ResponseBase message = new ResponseBase();
                 OrganizationShortDto[] organizationShortDtos = null;

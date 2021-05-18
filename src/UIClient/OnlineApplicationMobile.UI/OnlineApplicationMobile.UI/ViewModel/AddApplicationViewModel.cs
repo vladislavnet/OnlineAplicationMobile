@@ -86,7 +86,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
                     LastNamePayer = LastNamePayer,
                     MiddleNamePayer = MiddleNamePayer,
                     OrganizationId = organization.Id,
-                    ServiseTypes = selectedServiceTypes.Count() > 0 ? selectedServiceTypes.Select(x => mapServiceTypeDto(x)).ToArray() : null,
+                    ServiseTypes = selectedServiceTypes.Count() > 0 ? selectedServiceTypes.Select(x => mapServiceTypeDto(x)).Select(x => x.Id).ToArray() : null,
                 });
 
                 Action action = () =>

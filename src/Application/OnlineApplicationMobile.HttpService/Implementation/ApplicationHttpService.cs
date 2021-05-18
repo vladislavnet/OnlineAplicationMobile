@@ -77,7 +77,7 @@ namespace OnlineApplicationMobile.HttpService.Implementation
         {
             using (var client = GetClientByHeaderAuthorization(request.Token))
             {
-                var response = client.PostAsync(UrlTemplates.PostApplicationUrl, new StringContent(
+                var response = client.PostAsync(UrlTemplates.PostCommentApplicationUrl, new StringContent(
                     JsonSerializer.Serialize(request),
                     Encoding.UTF8, "application/json")).Result;
 
