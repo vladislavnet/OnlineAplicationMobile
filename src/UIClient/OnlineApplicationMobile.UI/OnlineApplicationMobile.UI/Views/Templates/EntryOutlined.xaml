@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OnlineApplicationMobile.UI.Views.Templates.EntryOutlined"
+             xmlns:controls="clr-namespace:OnlineApplicationMobile.UI.Views.Templates;assembly=OnlineApplicationMobile.UI"
+             Margin="3,0,3,5"
+             x:Name="this">
+    <ContentView.Content>
+        <StackLayout>
+            <Grid>
+                <Frame HasShadow="False"
+                       x:Name="EntryFrame"
+                       BorderColor="{Binding BorderColor, Source={x:Reference this}}"
+                       CornerRadius="3"
+                       Padding="5,0,5,0"
+                       Margin="0,0,0,0" />
+
+                <Label x:Name="PlaceHolderLabel"
+                       BackgroundColor="White"
+                       HorizontalOptions="Start"
+                       TextColor="{Binding PlaceholderColor, Source={Reference this}}"
+                       Text="{Binding Placeholder,Source={x:Reference this}}"
+                       Margin="10,-50,0,0"
+                       VerticalOptions="Center" />
+
+                <controls:BorderlessEntry
+                     HeightRequest="45"
+                     x:Name="TextBox" VerticalOptions="FillAndExpand"
+                     Text="{Binding Text,Source={x:Reference this},Mode=TwoWay}"
+                     Margin="10,0,0,0"
+                     Focused="TextBox_Focused"
+                     Unfocused="TextBox_Unfocused"
+                     TextChanged="OnTextChanged"/>
+            </Grid>
+            
+            <Label Margin="0,-4,0,0"
+                   Text="{Binding ValidateMessage, Source={Reference this}}"
+                   IsVisible="{Binding IsVisibleValidateMessage, Source={Reference this}}"
+                   TextColor="Red"/>
+            
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

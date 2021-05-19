@@ -92,7 +92,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
                 Action action = () =>
                 {
                     DisplayMessage("Заявка успешно отправлена");
-                    PopPage();
+                    PopModalPage();
                 };
 
                 Action actionError = () =>

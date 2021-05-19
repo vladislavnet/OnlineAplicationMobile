@@ -41,7 +41,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
         {
             get => new Command(() =>
             {
-                PushPage(new EditProfilePage());
+                PushModalPage(new EditProfilePage());
             });
         }
 
@@ -182,11 +182,9 @@ namespace OnlineApplicationMobile.UI.ViewModel
 
             var response = httpService.GetInfoCurrentClientJKH(BuildRequestBase());
 
-            if (response.StatusCode == HttpStatusCode.Forbidden)
+            if ((response.StatusCode == HttpStatusCode.Forbidden || response.StatusCode == HttpStatusCode.Unauthorized) && !NavigationGlobalObject.IsLoginStart && NavigationGlobalObject.IsStart)
             {
                 NavigationGlobalObject.IsLoginStart = true;
-                DisplayMessage("Авторизуруйтесь");
-                PushModalPage(new LoginPage());
             }
 
             Action action = () =>

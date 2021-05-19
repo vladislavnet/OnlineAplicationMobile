@@ -2,16 +2,45 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OnlineApplicationMobile.UI.Views.EditProfilePage"
-             Title="Редактирования профиля">
+             Title="Редактирования профиля"
+             xmlns:controls="clr-namespace:OnlineApplicationMobile.UI.Views.Templates;assembly=OnlineApplicationMobile.UI">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
-                <Entry Text="{Binding LastName}" Placeholder="Фимилия"/>
-                <Label Text="{Binding LastNameValidateMessage}" IsVisible="{Binding LastNameValidateMessageIsVisible}"/>
-                <Entry Text="{Binding FirstName}" Placeholder="Имя"/>
-                <Label Text="{Binding FirstNameValidateMessage}" IsVisible="{Binding FirtNameValidateMessageIsVisible}"/>
-                <Entry Text="{Binding MiddleName}" Placeholder="Отчество"/>
-                <Label Text="{Binding MiddleNameValidateMessage}" IsVisible="{Binding MiddleNameValidateMessageIsVisible}"/>
+                
+                <controls:EntryOutlined
+                    Placeholder="Фамилия"
+                    Margin="10, 20, 10, 0"
+                    Style="{StaticResource Key=borderlessEntryStyle}"
+                    Text="{Binding LastName}"
+                    ValidateMessage="{Binding LastNameValidateMessage}"
+                    IsVisibleValidateMessage="{Binding LastNameValidateMessageIsVisible}"/>
+
+                <controls:EntryOutlined
+                    Placeholder="Имя"
+                    Margin="10, 10, 10, 0"
+                    Style="{StaticResource Key=borderlessEntryStyle}"
+                    Text="{Binding FirstName}"
+                    ValidateMessage="{Binding FirstNameValidateMessage}"
+                    IsVisibleValidateMessage="{Binding FirtNameValidateMessageIsVisible}"/>
+
+                <controls:EntryOutlined
+                    Placeholder="Отчество"
+                    Margin="10, 10, 10, 0"
+                    Style="{StaticResource Key=borderlessEntryStyle}"
+                    Text="{Binding MiddleName}"
+                    ValidateMessage="{Binding MiddleNameValidateMessage}"
+                    IsVisibleValidateMessage="{Binding MiddleNameValidateMessageIsVisible}"/>
+
+                <controls:DatePickerOutline
+                    Placeholder="Отчество"
+                    Margin="10, 10, 10, 0"
+                    Style="{StaticResource Key=borderlessEntryStyle}"
+                    Date="{Binding BirthDate}"
+                    ValidateMessage="{Binding BirthDateValidateMessage}"
+                    IsVisibleValidateMessage="{Binding BirthDateValidateMessageIsVisible}"/>
+
+
                 <StackLayout Orientation="Horizontal" Margin="0">
                     <Label Text="Дата рождения" VerticalTextAlignment="Center" Margin="0,0,10,0"/>
                     <DatePicker Date="{Binding BirthDate}"/>

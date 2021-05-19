@@ -31,7 +31,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
         {
             get => new Command(() =>
             {
-                PushPage(new AddApplicationPage(organization));
+                PushModalPage(new AddApplicationPage(organization));
             });
         }
 

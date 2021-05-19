@@ -26,6 +26,17 @@ namespace OnlineApplicationMobile.Infrastructure.SqlLiteData.Repository.Implemen
 
         public void SaveToken(string token)
         {
+            editToken(token);
+        }
+
+        public void ClearToken()
+        {
+            editToken(null);
+        }
+
+
+        private void editToken(string token)
+        {
             var userInfo = database.Table<UserInfo>().FirstOrDefault(x => x.Id == 1);
 
             if (userInfo == null)

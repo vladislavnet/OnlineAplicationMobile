@@ -1,8 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="OnlineApplicationMobile.UI.App">
+             x:Class="OnlineApplicationMobile.UI.App"
+             xmlns:controls="clr-namespace:OnlineApplicationMobile.UI.Views.Templates;assembly=OnlineApplicationMobile.UI">
     <Application.Resources>
-
+        <ResourceDictionary>
+            <Style x:Key="borderlessEntryStyle" TargetType="controls:EntryOutlined">
+                <Setter Property="BorderColor" Value="#6522A6" />
+                <Setter Property="PlaceholderColor" Value="#6522A6" />
+            </Style>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

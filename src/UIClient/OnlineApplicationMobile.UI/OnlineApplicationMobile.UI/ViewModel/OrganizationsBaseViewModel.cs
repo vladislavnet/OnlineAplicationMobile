@@ -58,8 +58,12 @@ namespace OnlineApplicationMobile.UI.ViewModel
             set
             {
                 selectedOrganization = value;
+
                 if (selectedOrganization != null)
-                    PushPage(new OrganizationDetailPage(selectedOrganization));
+                    PushModalPage(new OrganizationDetailPage(selectedOrganization));
+
+                selectedOrganization = null;
+                OnPropertyChanged(nameof(SelectedOrganization));
             }
         }
 

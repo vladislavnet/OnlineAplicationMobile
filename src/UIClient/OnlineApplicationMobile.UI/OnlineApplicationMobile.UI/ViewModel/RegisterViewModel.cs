@@ -67,7 +67,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
                 Action action = () =>
                 {
                     DisplayMessage("Регистрация прошла успешно, подтвердите Email.");
-                    PopPage();
+                    PopModalPage();
                 };
 
                 Action actionError = () =>

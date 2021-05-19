@@ -51,7 +51,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
         {
             get => new Command(() => 
             {
-                PushPage(new RegisterPage());
+                PushModalPage(new RegisterPage());
             });
         }
 
@@ -156,7 +156,6 @@ namespace OnlineApplicationMobile.UI.ViewModel
             {
                 CurrentUser.SetToken(response.Token);
                 userInfoRepository.SaveToken(response.Token);
-                NavigationGlobalObject.IsLoginStart = false;
                 PopModalPage();
             };
 

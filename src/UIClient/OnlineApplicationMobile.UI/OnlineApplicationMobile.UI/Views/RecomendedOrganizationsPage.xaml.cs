@@ -21,6 +21,7 @@ namespace OnlineApplicationMobile.UI.Views
         {
             InitializeComponent();
             recomendedOrganizationsViewModel = new RecomendedOrganizationsViewModel(this, NavigationGlobalObject.Navigation);
+            recomendedOrganizationsViewModel.RefreshCommand.Execute(null);
         }
 
         public IViewModel ViewModel

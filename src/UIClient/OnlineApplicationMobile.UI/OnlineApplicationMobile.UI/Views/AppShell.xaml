@@ -2,8 +2,9 @@
 <Shell xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OnlineApplicationMobile.UI.Views.AppShell"
+             xmlns:local="clr-namespace:OnlineApplicationMobile.UI.Views"
              xmlns:pages="clr-namespace:OnlineApplicationMobile.UI.Views">
-    <FlyoutItem Title="Профиль" Route="Profile">
+    <!--<FlyoutItem Title="Профиль" Route="Profile">
         <Tab Title="Профиль">
             <ShellContent x:Name="profile">
             </ShellContent>
@@ -33,7 +34,39 @@
             <ShellContent x:Name="login">
             </ShellContent>
         </Tab>
-    </FlyoutItem>
+    </FlyoutItem>-->
+
+    <!--<ShellItem Title="Профиль"
+               Route="Profile">
+        <ShellContent Route="Main">
+            <local:ProfilePage/>
+        </ShellContent>
+    </ShellItem>
+    <ShellItem Title="Мои заявки"
+               Route="UserApplications">
+        <ShellContent Route="Main">
+            <local:UserApplicationsPage/>
+        </ShellContent>
+    </ShellItem>-->
+    <MenuItem Text="Профиль" 
+              x:Name="profileMenuItem"
+              Clicked="profileMenuItem_Clicked"/>
+    
+    <MenuItem Text="Мои заявки" 
+              x:Name="applicationsMenuItem"
+              Clicked="applicationsMenuItem_Clicked"/>
+
+    <MenuItem Text="Рекомендованные организации" 
+              x:Name="recomendedOrganizationsMenuItem"
+              Clicked="recomendedOrganizationsMenuItem_Clicked"/>
+
+    <MenuItem Text="Поиск организации" 
+              x:Name="searchOrganizationsMenuItem"
+              Clicked="searchOrganizationsMenuItem_Clicked"/>
+
+    <MenuItem Text="Выйти" 
+              x:Name="loqoutMenuItem"
+              Clicked="loqoutMenuItem_Clicked"/>
 
 </Shell>      
     

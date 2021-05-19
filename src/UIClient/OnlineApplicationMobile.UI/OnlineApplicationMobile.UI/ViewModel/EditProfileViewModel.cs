@@ -123,7 +123,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
 
                 Action action = () =>
                 {
-                    PopPage();
+                    PopModalPage();
                 };
 
                 Action errorAction = () =>
@@ -1055,10 +1055,10 @@ namespace OnlineApplicationMobile.UI.ViewModel
             var localityTypesAddressingObjectResponse = httpService.GetTypesAddressingObject(requestLocality).TypesAddressingObject;
             var streetTypesAddressingObjectResponse = httpService.GetTypesAddressingObject(requestStreet).TypesAddressingObject;
 
-            RegionTypesAddressingObject = mapTypeAddressingObjectModelView(regionTypesAddressingObjectResponse).ToList();
-            DistrictTypesAddressingObject = mapTypeAddressingObjectModelView(districtTypesAddressingObjectResponse).ToList();
-            LocalityTypesAddressingObject = mapTypeAddressingObjectModelView(localityTypesAddressingObjectResponse).ToList();
-            StreetTypesAddressingObject = mapTypeAddressingObjectModelView(streetTypesAddressingObjectResponse).ToList();
+            RegionTypesAddressingObject = mapTypeAddressingObjectModelView(regionTypesAddressingObjectResponse)?.ToList();
+            DistrictTypesAddressingObject = mapTypeAddressingObjectModelView(districtTypesAddressingObjectResponse)?.ToList();
+            LocalityTypesAddressingObject = mapTypeAddressingObjectModelView(localityTypesAddressingObjectResponse)?.ToList();
+            StreetTypesAddressingObject = mapTypeAddressingObjectModelView(streetTypesAddressingObjectResponse)?.ToList();
 
             LastName = CurrentUser.LastName;
             FirstName = CurrentUser.FirstName;
@@ -1123,7 +1123,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
         /// <param name="typesAddressingObject">Типы адресных объектов.</param>
         private IEnumerable<TypeAddressingObjectModelView> mapTypeAddressingObjectModelView(TypeAddressingObjectDto[] typesAddressingObject)
         {
-            return typesAddressingObject.Select(x => new TypeAddressingObjectModelView
+            return typesAddressingObject?.Select(x => new TypeAddressingObjectModelView
             {
                 Id = x.Id,
                 Name = x.Name,

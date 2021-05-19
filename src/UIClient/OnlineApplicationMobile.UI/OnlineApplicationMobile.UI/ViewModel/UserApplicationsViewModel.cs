@@ -64,7 +64,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
                 selectedApplication = value;
 
                 if (selectedApplication != null)
-                    PushPage(new ApplicationDetailPage(selectedApplication.Id));
+                    PushModalPage(new ApplicationDetailPage(selectedApplication.Id));
             }
         }
 

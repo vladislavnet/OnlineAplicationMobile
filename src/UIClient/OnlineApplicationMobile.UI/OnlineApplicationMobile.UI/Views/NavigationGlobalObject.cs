@@ -35,5 +35,6 @@ namespace OnlineApplicationMobile.UI.Views
         }
 
         public static bool IsLoginStart { get; set; } = false;
+        public static bool IsStart { get; set; } = true;
     }
 }

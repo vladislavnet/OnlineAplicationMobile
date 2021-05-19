@@ -8,5 +8,6 @@ namespace OnlineApplicationMobile.Infrastructure.SqlLiteData.Repository.Interfac
     {
         string GetToken();
         void SaveToken(string token);
+        void ClearToken();
     }
 }

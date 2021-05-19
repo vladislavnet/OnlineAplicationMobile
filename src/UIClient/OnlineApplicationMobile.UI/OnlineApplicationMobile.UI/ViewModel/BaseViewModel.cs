@@ -93,6 +93,10 @@ namespace OnlineApplicationMobile.UI.ViewModel
                 case HttpStatusCode.OK:
                     action.Invoke();
                     break;
+
+                default:
+                    DisplayMessage("Произошла ошибка на сервере");
+                    break;
             }                  
         }
 
