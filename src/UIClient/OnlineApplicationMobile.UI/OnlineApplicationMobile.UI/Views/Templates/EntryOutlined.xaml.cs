@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,10 +17,12 @@ namespace OnlineApplicationMobile.UI.Views.Templates
         {
             InitializeComponent();
             this.TextBox.PlaceholderColor = PlaceholderColor;
+            
         }
 
+
         public static readonly BindableProperty TextProperty =
-            BindableProperty.Create(nameof(Text), typeof(string), typeof(EntryOutlined), null);
+            BindableProperty.Create(nameof(Text), typeof(string), typeof(EntryOutlined), null, defaultBindingMode: BindingMode.TwoWay );
 
         public string Text
         {
@@ -27,8 +30,9 @@ namespace OnlineApplicationMobile.UI.Views.Templates
             set { SetValue(TextProperty, value); }
         }
 
+
         public static readonly BindableProperty PlaceholderProperty =
-            BindableProperty.Create(nameof(Placeholder), typeof(string), typeof(EntryOutlined), null);
+            BindableProperty.Create(nameof(Placeholder), typeof(string), typeof(EntryOutlined), null, defaultBindingMode: BindingMode.TwoWay);
 
         public string Placeholder
         {
@@ -37,7 +41,7 @@ namespace OnlineApplicationMobile.UI.Views.Templates
         }
 
         public static readonly BindableProperty PlaceholderColorProperty =
-            BindableProperty.Create(nameof(PlaceholderColor), typeof(Color), typeof(EntryOutlined), Color.Blue);
+            BindableProperty.Create(nameof(PlaceholderColor), typeof(Color), typeof(EntryOutlined), Color.Blue, defaultBindingMode: BindingMode.TwoWay);
 
         public Color PlaceholderColor
         {
@@ -47,7 +51,7 @@ namespace OnlineApplicationMobile.UI.Views.Templates
 
 
         public static readonly BindableProperty ValidateMessageProperty =
-            BindableProperty.Create(nameof(ValidateMessage), typeof(string), typeof(EntryOutlined), null);
+            BindableProperty.Create(nameof(ValidateMessage), typeof(string), typeof(EntryOutlined), null, defaultBindingMode: BindingMode.TwoWay);
 
         public string ValidateMessage
         {
@@ -56,7 +60,7 @@ namespace OnlineApplicationMobile.UI.Views.Templates
         }
 
         public static readonly BindableProperty IsVisibleValidateMessageProperty =
-            BindableProperty.Create(nameof(IsVisibleValidateMessage), typeof(bool), typeof(EntryOutlined), false);
+            BindableProperty.Create(nameof(IsVisibleValidateMessage), typeof(bool), typeof(EntryOutlined), false, defaultBindingMode: BindingMode.TwoWay);
 
         public bool IsVisibleValidateMessage
         {
@@ -65,7 +69,7 @@ namespace OnlineApplicationMobile.UI.Views.Templates
         }
 
         public static readonly BindableProperty BorderColorProperty =
-            BindableProperty.Create(nameof(BorderColor), typeof(Color), typeof(EntryOutlined), Color.Blue);
+            BindableProperty.Create(nameof(BorderColor), typeof(Color), typeof(EntryOutlined), Color.Blue, defaultBindingMode: BindingMode.TwoWay);
 
         public Color BorderColor
         {
@@ -73,14 +77,26 @@ namespace OnlineApplicationMobile.UI.Views.Templates
             set { SetValue(BorderColorProperty, value); }
         }
 
+        public event EventHandler<FocusEventArgs> TextBoxFocused;
+        public event EventHandler<FocusEventArgs> TextBoxUnfocused;
+        public event EventHandler<TextChangedEventArgs> TextBoxTextChanged;
+
         async void TextBox_Focused(object sender, FocusEventArgs e)
         {
-            
+            if(this.TextBoxFocused != null)
+                this.TextBoxFocused(this, e);
         }
 
         async void TextBox_Unfocused(object sender, FocusEventArgs e)
         {
-            
+            if (this.TextBoxUnfocused != null)
+                this.TextBoxUnfocused(this, e);
+        }
+
+        public virtual void OnTextChanged(System.Object sender, Xamarin.Forms.TextChangedEventArgs e)
+        {
+            if (this.TextBoxTextChanged != null)
+                this.TextBoxTextChanged(this, e);
         }
 
         async Task TranslateLabelToTitle()
@@ -115,9 +131,6 @@ namespace OnlineApplicationMobile.UI.Views.Templates
 
         public event EventHandler<TextChangedEventArgs> TextChanged;
 
-        public virtual void OnTextChanged(System.Object sender, Xamarin.Forms.TextChangedEventArgs e)
-        {
-            TextChanged?.Invoke(this, e);
-        }
+       
     }
 }

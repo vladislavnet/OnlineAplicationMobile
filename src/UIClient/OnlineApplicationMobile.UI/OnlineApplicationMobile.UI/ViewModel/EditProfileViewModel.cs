@@ -36,10 +36,10 @@ namespace OnlineApplicationMobile.UI.ViewModel
         private string houseNumber;
         private string apartamentNumber;
 
-        private List<string> searchRegionCollection;
-        private List<string> searchDistrictCollection;
-        private List<string> searchLocalityCollection;
-        private List<string> searchStreetCollection;
+        private List<AddressingObjectNameModelView> searchRegionCollection;
+        private List<AddressingObjectNameModelView> searchDistrictCollection;
+        private List<AddressingObjectNameModelView> searchLocalityCollection;
+        private List<AddressingObjectNameModelView> searchStreetCollection;
 
         private List<TypeAddressingObjectModelView> regionTypesAddressingObject;
         private List<TypeAddressingObjectModelView> districtTypesAddressingObject;
@@ -51,10 +51,10 @@ namespace OnlineApplicationMobile.UI.ViewModel
         private TypeAddressingObjectModelView selectedLocalityTypeAddressingObject;
         private TypeAddressingObjectModelView selectedStreetTypeAddressingObject;
 
-        private string selectedRegionCollection;
-        private string selectedDistrictCollection;
-        private string selectedLocalityCollection;
-        private string selectedStreetCollection;
+        private AddressingObjectNameModelView selectedRegionCollection;
+        private AddressingObjectNameModelView selectedDistrictCollection;
+        private AddressingObjectNameModelView selectedLocalityCollection;
+        private AddressingObjectNameModelView selectedStreetCollection;
 
         private bool isVisibleSearchRegionCollection;
         private bool isVisibleSearchDistrictCollection;
@@ -306,7 +306,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
         /// <summary>
         /// Список регионов для автозаполнения.
         /// </summary>
-        public List<string> SearchRegionCollection
+        public List<AddressingObjectNameModelView> SearchRegionCollection
         {
             get => searchRegionCollection;
             set
@@ -323,7 +323,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
         /// <summary>
         /// Список районов для автозаполнения.
         /// </summary>
-        public List<string> SearchDistrictCollection
+        public List<AddressingObjectNameModelView> SearchDistrictCollection
         {
             get => searchDistrictCollection;
             set
@@ -341,7 +341,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
         /// <summary>
         /// Список населённых пунктов для автозаполнения.    
         /// </summary>
-        public List<string> SearchLocalityCollection
+        public List<AddressingObjectNameModelView> SearchLocalityCollection
         {
             get => searchLocalityCollection;
             set
@@ -359,7 +359,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
         /// <summary>
         /// Список улиц для автозаполнения.
         /// </summary>
-        public List<string> SearchStreetCollection
+        public List<AddressingObjectNameModelView> SearchStreetCollection
         {
             get => searchStreetCollection;
             set
@@ -481,14 +481,14 @@ namespace OnlineApplicationMobile.UI.ViewModel
         /// <summary>
         /// Выбранный из списка поиска регион.
         /// </summary>
-        public string SelectedRegionCollection
+        public AddressingObjectNameModelView SelectedRegionCollection
         {
             get => selectedRegionCollection;
             set
             {
-                Region = value;
+                Region = value?.Name;
                 IsVisibleSearchRegionCollection = false;
-                SearchRegionCollection = new List<string>();
+                SearchRegionCollection = new List<AddressingObjectNameModelView>();
                 OnPropertyChanged(nameof(SelectedRegionCollection));
             }
         }
@@ -496,14 +496,14 @@ namespace OnlineApplicationMobile.UI.ViewModel
         /// <summary>
         /// Выбранный из списка поиска район.
         /// </summary>
-        public string SelectedDistrictCollection
+        public AddressingObjectNameModelView SelectedDistrictCollection
         {
             get => selectedDistrictCollection;
             set
             {
-                District = value;
+                District = value?.Name;
                 IsVisibleSearchDistrictCollection = false;
-                SearchDistrictCollection = new List<string>();
+                SearchDistrictCollection = new List<AddressingObjectNameModelView>();
                 OnPropertyChanged(nameof(SelectedDistrictCollection));
             }
         }
@@ -511,15 +511,15 @@ namespace OnlineApplicationMobile.UI.ViewModel
         /// <summary>
         /// Выбранный из списка поиска населённый пункт.
         /// </summary>
-        public string SelectedLocalityCollection
+        public AddressingObjectNameModelView SelectedLocalityCollection
         {
             get => selectedLocalityCollection;
             set
             {
 
-                Locality = value;
+                Locality = value?.Name;
                 IsVisibleSearchLocalityCollection = false;
-                SearchLocalityCollection = new List<string>();
+                SearchLocalityCollection = new List<AddressingObjectNameModelView>();
                 OnPropertyChanged(nameof(SelectedLocalityCollection));
             }
         }
@@ -527,14 +527,14 @@ namespace OnlineApplicationMobile.UI.ViewModel
         /// <summary>
         /// Выбранный из списка поиска улицы.
         /// </summary>
-        public string SelectedStreetCollection
+        public AddressingObjectNameModelView SelectedStreetCollection
         {
             get => selectedStreetCollection;
             set
             {
-                Street = value;
+                Street = value?.Name;
                 IsVisibleSearchStreetCollection = false;
-                SearchStreetCollection = new List<string>();
+                SearchStreetCollection = new List<AddressingObjectNameModelView>();
                 OnPropertyChanged(nameof(SelectedStreetCollection));
             }
         }
@@ -909,7 +909,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
         /// <param name="name">Наименование адресного объекта.</param>
         /// <param name="level">Уровень типа адресного объекта.</param>
         /// <returns>Массив наименований адресных объектов.</returns>
-        private List<string> GetSearchCollection(string name, LevelAddressingObjectEnum level)
+        private List<AddressingObjectNameModelView> GetSearchCollection(string name, LevelAddressingObjectEnum level)
         {
             var httpService = Startup.GetService<IHttpService>();
 
@@ -922,7 +922,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
 
             displayMessageGetSearchCollection(response.StatusCode);
 
-            return response.addressingObjectsShort != null ? response.addressingObjectsShort.Select(x => x.Name).ToList() : new List<string>();
+            return response.addressingObjectsShort != null ? response.addressingObjectsShort.Select(x => new AddressingObjectNameModelView { Id = x.Id, Name = x.Name }).ToList() : new List<AddressingObjectNameModelView>();
         }
 
         /// <summary>

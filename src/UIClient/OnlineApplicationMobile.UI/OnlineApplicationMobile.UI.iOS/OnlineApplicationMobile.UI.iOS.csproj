@@ -67,6 +67,8 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Renderers\BorderlessDatePickerRenderer.cs" />
     <Compile Include="Renderers\BorderlessEntryRenderer.cs" />
+    <Compile Include="Renderers\BorderlessPickerRenderer.cs" />
+    <Compile Include="Renderers\ExtendedViewCellRenderer.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />

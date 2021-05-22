@@ -18,7 +18,7 @@ namespace OnlineApplicationMobile.UI.Views.Templates
         }
 
         public static readonly BindableProperty BorderColorProperty =
-            BindableProperty.Create(nameof(BorderColor), typeof(Color), typeof(EntryOutlined), Color.Blue);
+            BindableProperty.Create(nameof(BorderColor), typeof(Color), typeof(DatePickerOutline), Color.Blue, defaultBindingMode: BindingMode.TwoWay);
 
         public Color BorderColor
         {
@@ -27,7 +27,7 @@ namespace OnlineApplicationMobile.UI.Views.Templates
         }
 
         public static readonly BindableProperty PlaceholderProperty =
-            BindableProperty.Create(nameof(Placeholder), typeof(string), typeof(EntryOutlined), null);
+            BindableProperty.Create(nameof(Placeholder), typeof(string), typeof(DatePickerOutline), null, defaultBindingMode: BindingMode.TwoWay);
 
         public string Placeholder
         {
@@ -36,7 +36,7 @@ namespace OnlineApplicationMobile.UI.Views.Templates
         }
 
         public static readonly BindableProperty PlaceholderColorProperty =
-            BindableProperty.Create(nameof(PlaceholderColor), typeof(Color), typeof(EntryOutlined), Color.Blue);
+            BindableProperty.Create(nameof(PlaceholderColor), typeof(Color), typeof(DatePickerOutline), Color.Blue, defaultBindingMode: BindingMode.TwoWay);
 
         public Color PlaceholderColor
         {
@@ -45,7 +45,7 @@ namespace OnlineApplicationMobile.UI.Views.Templates
         }
 
         public static readonly BindableProperty DateProperty =
-            BindableProperty.Create(nameof(Date), typeof(DateTime?), typeof(EntryOutlined), null);
+            BindableProperty.Create(nameof(Date), typeof(DateTime?), typeof(DatePickerOutline), null, defaultBindingMode: BindingMode.TwoWay);
 
         public DateTime? Date
         {
@@ -55,7 +55,7 @@ namespace OnlineApplicationMobile.UI.Views.Templates
 
 
         public static readonly BindableProperty ValidateMessageProperty =
-            BindableProperty.Create(nameof(ValidateMessage), typeof(string), typeof(EntryOutlined), null);
+            BindableProperty.Create(nameof(ValidateMessage), typeof(string), typeof(DatePickerOutline), null, defaultBindingMode: BindingMode.TwoWay);
 
         public string ValidateMessage
         {
@@ -64,7 +64,7 @@ namespace OnlineApplicationMobile.UI.Views.Templates
         }
 
         public static readonly BindableProperty IsVisibleValidateMessageProperty =
-            BindableProperty.Create(nameof(IsVisibleValidateMessage), typeof(bool), typeof(EntryOutlined), false);
+            BindableProperty.Create(nameof(IsVisibleValidateMessage), typeof(bool), typeof(DatePickerOutline), false, defaultBindingMode: BindingMode.TwoWay);
 
         public bool IsVisibleValidateMessage
         {

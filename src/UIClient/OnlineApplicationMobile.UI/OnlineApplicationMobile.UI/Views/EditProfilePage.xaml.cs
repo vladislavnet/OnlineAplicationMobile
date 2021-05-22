@@ -1,4 +1,5 @@
 ﻿using OnlineApplicationMobile.UI.Helpers;
+using OnlineApplicationMobile.UI.ModelView;
 using OnlineApplicationMobile.UI.ViewModel;
 using OnlineApplicationMobile.UI.ViewModel.Interfaces;
 using OnlineApplicationMobile.UI.Views.Interfaces;
@@ -103,5 +104,10 @@ namespace OnlineApplicationMobile.UI.Views
                 editProfileViewModel.IsVisibleSearchStreetCollection = false;
             }
         }
+
+        private void regionEntry_TextBoxTextChanged(object sender, TextChangedEventArgs e)
+        {
+        }
+
     }
 }

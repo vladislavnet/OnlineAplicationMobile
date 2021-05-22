@@ -9,6 +9,7 @@
             <ScrollView>
                 <StackLayout Orientation="Vertical">
                     <StackLayout Orientation="Horizontal">
+                        
                         <Label Text="Email:"/>
                         <Label Text="{Binding Email, Mode=OneWay}"/>
                     </StackLayout>
