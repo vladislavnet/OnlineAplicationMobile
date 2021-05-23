@@ -21,7 +21,6 @@ namespace OnlineApplicationMobile.UI.Views
         {
             InitializeComponent();
             userApplicationsViewModel = new UserApplicationsViewModel(this, NavigationGlobalObject.Navigation);
-            userApplicationsViewModel.RefreshCommand.Execute(null);
         }
 
         public IViewModel ViewModel

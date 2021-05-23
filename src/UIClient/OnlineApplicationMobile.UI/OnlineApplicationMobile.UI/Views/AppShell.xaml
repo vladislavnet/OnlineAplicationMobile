@@ -3,7 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OnlineApplicationMobile.UI.Views.AppShell"
              xmlns:local="clr-namespace:OnlineApplicationMobile.UI.Views"
-             xmlns:pages="clr-namespace:OnlineApplicationMobile.UI.Views">
+             xmlns:pages="clr-namespace:OnlineApplicationMobile.UI.Views"
+             Shell.BackgroundColor="{StaticResource Key=mainColor}"
+             Shell.TabBarBackgroundColor="{StaticResource Key=mainColor}">
+
+  
     <!--<FlyoutItem Title="Профиль" Route="Profile">
         <Tab Title="Профиль">
             <ShellContent x:Name="profile">
@@ -49,22 +53,27 @@
         </ShellContent>
     </ShellItem>-->
     <MenuItem Text="Профиль" 
+              IconImageSource="profile.png"
               x:Name="profileMenuItem"
               Clicked="profileMenuItem_Clicked"/>
     
     <MenuItem Text="Мои заявки" 
+              IconImageSource="application.png"
               x:Name="applicationsMenuItem"
               Clicked="applicationsMenuItem_Clicked"/>
 
     <MenuItem Text="Рекомендованные организации" 
+              IconImageSource="like.png"
               x:Name="recomendedOrganizationsMenuItem"
               Clicked="recomendedOrganizationsMenuItem_Clicked"/>
 
     <MenuItem Text="Поиск организации" 
+              IconImageSource="lupa.png"
               x:Name="searchOrganizationsMenuItem"
               Clicked="searchOrganizationsMenuItem_Clicked"/>
 
     <MenuItem Text="Выйти" 
+              IconImageSource="exit.png"
               x:Name="loqoutMenuItem"
               Clicked="loqoutMenuItem_Clicked"/>
 

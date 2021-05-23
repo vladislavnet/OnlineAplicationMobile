@@ -4,6 +4,7 @@ using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
+using OnlineApplicationMobile.UI.Views.StyleOptions;
 
 namespace OnlineApplicationMobile.UI.Droid
 {
@@ -17,6 +18,7 @@ namespace OnlineApplicationMobile.UI.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
+            Window.SetStatusBarColor(Android.Graphics.Color.Argb(ColorOptions.MainColorAlpha, ColorOptions.MainColorRed, ColorOptions.MainColorGreen, ColorOptions.MainColorBlue));
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {

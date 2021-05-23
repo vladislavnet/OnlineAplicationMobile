@@ -2,61 +2,122 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OnlineApplicationMobile.UI.Views.ApplicationDetailPage"
+             xmlns:controls="clr-namespace:OnlineApplicationMobile.UI.Views.Templates;assembly=OnlineApplicationMobile.UI"
              Title="Информация по заявке">
     <ContentPage.Content>
         <RefreshView IsRefreshing="{Binding IsRefresing}"
              Command="{Binding RefreshCommand}">
             <ScrollView>
-                <StackLayout Orientation="Vertical">
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="Статус зяавки: " />
-                        <Label Text="{Binding StatusApplication}"/>
-                    </StackLayout>
-                    <Label Text="Текст обращения:"/>
-                    <Label Text="{Binding MessageText}" />
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="Организация: " />
-                        <Label Text="{Binding Organization.Name}"/>
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="Телефон организации: " />
-                        <Label Text="{Binding Organization.Telephone}"/>
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="Email организации: " />
-                        <Label Text="{Binding Organization.Email}"/>
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="Создана: " />
-                        <Label Text="{Binding CreatedAt, StringFormat='{0:G}'}"/>
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="Обновлена: " />
-                        <Label Text="{Binding UpdatedAt, StringFormat='{0:G}'}"/>
-                    </StackLayout>
-                    <Label Text="Типы Услуг указанные в заявке:" />
-                    <ListView ItemsSource="{Binding ServiceTypes}" RowHeight="40"/>
-                    <Label Text="Комментарии: " />
-                    <Editor Text="{Binding AddComment}" HeightRequest="75" Placeholder="Введите комментарий"/>
-                    <Label Text="{Binding AddCommentValidateMessage}" IsVisible="{Binding AddCommentValidateMessageIsVisible}"/>
-                    <Button Text="Отправить" Command="{Binding AddCommentCommand}"/>
-                    <ListView ItemsSource="{Binding Comments}" RowHeight="100">
+                <StackLayout Orientation="Vertical"
+                             Margin="10, 0, 10, 0">
+                    
+                    <Label Text="Информация по заявке" Margin="0, 20, 0, 20" Style="{StaticResource Key=titlePageLabelStyle}"/>
+
+                    <controls:LabelSpan HelpText="Статус заявки:"
+                                        MainText="{Binding StatusApplication}"/>
+
+                    <BoxView BackgroundColor="{StaticResource Key=mainColor}" HeightRequest="1" Margin="0,0,0,10"/>
+
+                    <controls:LabelSpan HelpText="Текст обращения:"
+                                        MainText="{Binding MessageText}"/>
+
+                    <BoxView BackgroundColor="{StaticResource Key=mainColor}" HeightRequest="1" Margin="0,0,0,10"/>
+
+                    <controls:LabelSpan HelpText="Организация:"
+                                        MainText="{Binding Organization.Name}"/>
+
+                    <BoxView BackgroundColor="{StaticResource Key=mainColor}" HeightRequest="1" Margin="0,0,0,10"/>
+
+                    <controls:LabelSpan HelpText="Телефон организации:"
+                                        MainText="{Binding Organization.Telephone}"/>
+
+                    <BoxView BackgroundColor="{StaticResource Key=mainColor}" HeightRequest="1" Margin="0,0,0,10"/>
+
+                    <controls:LabelSpan HelpText="Email организации:"
+                                        MainText="{Binding Organization.Email}"/>
+
+                    <BoxView BackgroundColor="{StaticResource Key=mainColor}" HeightRequest="1" Margin="0,0,0,10"/>
+
+                    <controls:LabelSpan HelpText="Отправлена:"
+                                        MainText="{Binding CreatedAt, StringFormat='{0:G}'}"/>
+
+                    <BoxView BackgroundColor="{StaticResource Key=mainColor}" HeightRequest="1" Margin="0,0,0,10"/>
+
+                    <controls:LabelSpan HelpText="Обновлена:"
+                                        MainText="{Binding UpdatedAt, StringFormat='{0:G}'}"/>
+
+                    <BoxView BackgroundColor="{StaticResource Key=mainColor}" HeightRequest="1" Margin="0,0,0,10"/>
+
+                    
+                    <Label Margin="0" Text="Типы услуг:" FontAttributes="Bold" FontSize="17" TextColor="{StaticResource Key=mainColor}"/>
+                    <controls:ServiceTypesInfoListView ItemsSource="{Binding ServiceTypes}"/>
+                    
+                    
+                    <Label Margin="0, 10, 0, 10" Text="Комментарии:" FontAttributes="Bold" FontSize="17" TextColor="{StaticResource Key=mainColor}"/>
+                    <controls:EditorOutline Placeholder="Введите комментарий"
+                                            Style="{StaticResource Key=borderlessEditorStyle}"
+                                            Text="{Binding AddComment}"
+                                            ValidateMessage="{Binding AddCommentValidateMessage}"
+                                            IsVisibleValidateMessage="{Binding AddCommentValidateMessageIsVisible}"/>
+
+                    <Button Text="Отправить" 
+                            Command="{Binding AddCommentCommand}"
+                            Style="{StaticResource Key=buttonStyle}"/>
+
+                    <ListView ItemsSource="{Binding Comments}"
+                              SeparatorVisibility="None"
+                              RowHeight="150">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <ViewCell>
+                                <controls:ExtendedViewCell SelectedBackgroundColor="White">
                                     <ViewCell.View>
-                                        <StackLayout Orientation="Vertical">
-                                            <StackLayout Orientation="Horizontal">
-                                                <Label Text="{Binding FullName}" WidthRequest="200"/>
-                                                <Label Text="{Binding CreatedAt, StringFormat='{0:G}'}"/>
-                                            </StackLayout>
-                                            <Label Text="{Binding Comment}"/>
-                                        </StackLayout>
+                                        <Frame CornerRadius="5" BorderColor="LightGray" OutlineColor="LightGray" HasShadow="True" Margin="0, 7, 0, 7" Padding="0">
+                                            <Frame.Effects>
+                                                <controls:ViewShadowEffect Radius="5" DistanceX="5" DistanceY="7" Color="Gray" />
+                                            </Frame.Effects>
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="40"/>
+                                                    <RowDefinition Height="*"/>
+                                                </Grid.RowDefinitions>
+
+                                                <Grid Grid.Row="0" Grid.Column="0" BackgroundColor="{StaticResource Key=mainColorAlpha}">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition/>
+                                                        <ColumnDefinition Width="130"/>
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <Label Grid.Row="0"
+                                                           Grid.Column="0"
+                                                           Margin="10, 8, 0, 0"
+                                                           Text="{Binding FullName}" 
+                                                           FontSize="15"
+                                                           TextColor="White"/>
+
+                                                    <Label Grid.Row="0" 
+                                                           Grid.Column="1"
+                                                           Margin="00, 8, 0, 0"
+                                                           Text="{Binding CreatedAt, StringFormat='{0:G}'}" 
+                                                           FontSize="12"
+                                                           TextColor="White"/>
+
+                                                </Grid>
+
+                                                <Label Text="{Binding Comment}"
+                                                       Margin="10, 0, 10, 0"
+                                                       Grid.Row="1"
+                                                       FontSize="16"
+                                                       Grid.Column="0"
+                                                       TextColor="{StaticResource Key=mainColor}"/>
+
+                                            </Grid>
+                                        </Frame>
                                     </ViewCell.View>
-                                </ViewCell>
+                                </controls:ExtendedViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
+                    
                 </StackLayout>
             </ScrollView>
         </RefreshView>

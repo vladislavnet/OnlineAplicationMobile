@@ -25,6 +25,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
         {
             View = view;
             View.ViewModel = this;
+            RefreshCommand.Execute(null);
         }
 
         /// <summary>

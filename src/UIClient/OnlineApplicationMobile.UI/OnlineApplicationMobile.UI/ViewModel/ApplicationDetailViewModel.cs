@@ -275,7 +275,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
             CreatedAt = response.CreatedAt;
             UpdatedAt = response.UpdatedAt;
             ServiceTypes = response.ServiceTypes.Select(x => MapServiceType(x)).ToList();
-            Comments = response.Comments.Select(x => mapComment(x)).ToList();
+            Comments = response.Comments.Select(x => mapComment(x)).OrderByDescending(x => x.CreatedAt).ToList();
         }
 
         private OrganizationModelView mapOrganization(OrganizationShortNotByServiceTypesDto organization)

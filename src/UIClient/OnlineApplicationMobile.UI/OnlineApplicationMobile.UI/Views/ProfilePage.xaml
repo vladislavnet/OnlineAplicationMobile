@@ -4,7 +4,8 @@
              x:Class="OnlineApplicationMobile.UI.Views.ProfilePage"
              xmlns:controls="clr-namespace:OnlineApplicationMobile.UI.Views.Templates;assembly=OnlineApplicationMobile.UI"
              Title="Профиль" 
-             >
+             Shell.BackgroundColor="{StaticResource Key=mainColor}"
+             Shell.TabBarBackgroundColor="{StaticResource Key=mainColor}">
     <ContentPage.Content>
         <RefreshView IsRefreshing="{Binding IsRefreshing}"
              Command="{Binding RefreshCommand}">

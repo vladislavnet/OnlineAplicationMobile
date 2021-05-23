@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OnlineApplicationMobile.UI.Views.UserApplicationsPage"
              xmlns:controls="clr-namespace:OnlineApplicationMobile.UI.Views.Templates;assembly=OnlineApplicationMobile.UI"
-             Title="Мои заявки">
+             Title="Мои заявки"
+             Shell.BackgroundColor="{StaticResource Key=mainColor}"
+             Shell.TabBarBackgroundColor="{StaticResource Key=mainColor}">
     <ContentPage.Content>
         <ListView ItemsSource="{Binding Applications}"
                   SelectedItem="{Binding SelectedApplication}" 

@@ -2,10 +2,12 @@
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OnlineApplicationMobile.UI.App"
-             xmlns:controls="clr-namespace:OnlineApplicationMobile.UI.Views.Templates;assembly=OnlineApplicationMobile.UI">
+             xmlns:controls="clr-namespace:OnlineApplicationMobile.UI.Views.Templates;assembly=OnlineApplicationMobile.UI"
+            >
     <Application.Resources>
         <ResourceDictionary>
             <Color x:Key="mainColor">#6522A6</Color>
+            <Color x:Key="mainColorAlpha">#A95DF3</Color>
             <Color x:Key="validateMessageColor">Red</Color>
             
             <Style x:Key="borderlessEntryStyle" TargetType="controls:EntryOutlined">
@@ -54,7 +56,7 @@
                 <Setter Property="FontSize" Value="23"/>
                 <Setter Property="TextColor" Value="{StaticResource Key=mainColor}"/>
             </Style>
-            
+
 
         </ResourceDictionary>
     </Application.Resources>
