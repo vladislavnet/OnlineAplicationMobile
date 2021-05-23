@@ -102,7 +102,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
 
         private IEnumerable<ApplicationShortModelView> mapApplications(IEnumerable<ApplicationShortDto> applications)
         {
-            return applications.Select(x => new ApplicationShortModelView
+            var mapApplications = applications.Select(x => new ApplicationShortModelView
             {
                 Id = x.Id,
                 OrganizationName = x?.Organization.Name ?? "-",
@@ -110,7 +110,20 @@ namespace OnlineApplicationMobile.UI.ViewModel
                 CreatedAt = x.CreatedAt,
                 UpdatedAt = x.UpdatedAt,
                 Status = StatusApplicationHelper.GetStatusApplicationByInteger(x.StatusApplication),
-            });
+            }).ToList();
+
+            foreach (var application in mapApplications)
+            {
+                if (!string.IsNullOrWhiteSpace(application.MessageText))
+                {
+                    if (application.MessageText.Length > 121)
+                    {
+                        application.MessageText = application.MessageText.Substring(0, 120) + "...";
+                    }
+                }
+            }
+
+            return mapApplications;
         }
 
     }
