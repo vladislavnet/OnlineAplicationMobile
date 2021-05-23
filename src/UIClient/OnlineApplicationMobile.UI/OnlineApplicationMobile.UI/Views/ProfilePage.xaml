@@ -2,47 +2,74 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OnlineApplicationMobile.UI.Views.ProfilePage"
+             xmlns:controls="clr-namespace:OnlineApplicationMobile.UI.Views.Templates;assembly=OnlineApplicationMobile.UI"
              Title="Профиль" >
     <ContentPage.Content>
         <RefreshView IsRefreshing="{Binding IsRefreshing}"
              Command="{Binding RefreshCommand}">
             <ScrollView>
-                <StackLayout Orientation="Vertical">
-                    <StackLayout Orientation="Horizontal">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="70"/>
+                    </Grid.RowDefinitions>
+
+                    <StackLayout Grid.Column="0"
+                                 Grid.Row="0"
+                                 Orientation="Vertical"
+                                 Margin="10, 20, 10, 0">
                         
-                        <Label Text="Email:"/>
-                        <Label Text="{Binding Email, Mode=OneWay}"/>
+                        <controls:LabelSpan HelpText="Email:"
+                                        MainText="{Binding Email}"/>
+
+                        <BoxView BackgroundColor="{StaticResource Key=mainColor}" HeightRequest="1" Margin="0,0,0,10"/>
+
+                        <controls:LabelSpan HelpText="Фамилия:"
+                                        MainText="{Binding LastName}"/>
+
+                        <BoxView BackgroundColor="{StaticResource Key=mainColor}" HeightRequest="1" Margin="0,0,0,10"/>
+
+                        <controls:LabelSpan HelpText="Имя:"
+                                        MainText="{Binding FirstName}"/>
+
+                        <BoxView BackgroundColor="{StaticResource Key=mainColor}" HeightRequest="1" Margin="0,0,0,10"/>
+
+                        <controls:LabelSpan HelpText="Отчество:"
+                                        MainText="{Binding MiddleName}"/>
+
+                        <BoxView BackgroundColor="{StaticResource Key=mainColor}" HeightRequest="1" Margin="0,0,0,10"/>
+
+                        <controls:LabelSpan HelpText="Дата рождения:"
+                                        MainText="{Binding BirthDate}"/>
+
+                        <BoxView BackgroundColor="{StaticResource Key=mainColor}" HeightRequest="1" Margin="0,0,0,10"/>
+
+                        <controls:LabelSpan HelpText="Телефон:"
+                                        MainText="{Binding Telephone}"/>
+
+                        <BoxView BackgroundColor="{StaticResource Key=mainColor}" HeightRequest="1" Margin="0,0,0,10"/>
+
+                        <controls:LabelSpan HelpText="Номер лицевого счёта:"
+                                        MainText="{Binding NumberPersonalAccount}"/>
+
+                        <BoxView BackgroundColor="{StaticResource Key=mainColor}" HeightRequest="1" Margin="0,0,0,10"/>
+
+                        <controls:LabelSpan HelpText="Адрес:"
+                                        MainText="{Binding AddressString}"/>
+
+                        <BoxView BackgroundColor="{StaticResource Key=mainColor}" HeightRequest="1" Margin="0,0,0,10"/>
+
+
                     </StackLayout>
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="Фамилия:"/>
-                        <Label Text="{Binding LastName, Mode=OneWay}"/>
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="Имя:"/>
-                        <Label Text="{Binding FirstName, Mode=OneWay}"/>
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="Отчество:"/>
-                        <Label Text="{Binding MiddleName, Mode=OneWay}"/>
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="Дата рождения:"/>
-                        <Label Text="{Binding BirthDate, Mode=OneWay}"/>
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="Телефон:"/>
-                        <Label Text="{Binding Telephone, Mode=OneWay}"/>
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="Номер лицевого счёта:"/>
-                        <Label Text="{Binding NumberPersonalAccount, Mode=OneWay}"/>
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="Адрес:"/>
-                        <Label Text="{Binding AddressString, Mode=OneWay}"/>
-                    </StackLayout>
-                    <Button Text="Редактировать" Command="{Binding EditProfileCommand}"/>
-                </StackLayout>
+
+                    <Button Grid.Column="0" 
+                            Margin="10" 
+                            Grid.Row="1" 
+                            Text="Редактировать" 
+                            Style="{StaticResource Key=buttonStyle}"
+                            Command="{Binding EditProfileCommand}"/>
+                </Grid>
+               
             </ScrollView>
         </RefreshView>
     </ContentPage.Content>

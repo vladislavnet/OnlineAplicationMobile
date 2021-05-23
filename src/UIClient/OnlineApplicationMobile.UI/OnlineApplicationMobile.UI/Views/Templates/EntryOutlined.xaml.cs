@@ -77,6 +77,15 @@ namespace OnlineApplicationMobile.UI.Views.Templates
             set { SetValue(BorderColorProperty, value); }
         }
 
+        public static readonly BindableProperty IsPasswordProperty =
+            BindableProperty.Create(nameof(IsPassword), typeof(bool), typeof(EntryOutlined), false, defaultBindingMode: BindingMode.TwoWay);
+
+        public bool IsPassword
+        {
+            get { return (bool)GetValue(IsPasswordProperty); }
+            set { SetValue(IsPasswordProperty, value); }
+        }
+
         public event EventHandler<FocusEventArgs> TextBoxFocused;
         public event EventHandler<FocusEventArgs> TextBoxUnfocused;
         public event EventHandler<TextChangedEventArgs> TextBoxTextChanged;
@@ -129,8 +138,8 @@ namespace OnlineApplicationMobile.UI.Views.Templates
             return distance;
         }
 
-        public event EventHandler<TextChangedEventArgs> TextChanged;
+        
 
-       
+
     }
 }

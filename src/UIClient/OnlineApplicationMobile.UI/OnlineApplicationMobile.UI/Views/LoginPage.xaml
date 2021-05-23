@@ -7,22 +7,46 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="380"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
             <StackLayout Orientation="Vertical" Grid.Row="1">
+                
+                <Label HorizontalTextAlignment="Center"
+                       FontSize="32"
+                       TextColor="{StaticResource Key=mainColor}">
+                    Авторизация
+                </Label>
+                
                 <controls:EntryOutlined
-                    Placeholder="I'm an entry"
-                    BorderColor="Blue"
-                    PlaceholderColor="Red" />
-                <Label HorizontalTextAlignment="Center">Авторизация</Label>
-                <Entry Placeholder="Email" Keyboard="Email" Text="{Binding Email, Mode=TwoWay}"/>
-                <Label Text="{Binding EmailValidateMessage, Mode=OneWay}" IsVisible="{Binding EmailIsVisible, Mode=OneWay}"/>
-                <Entry Placeholder="Пароль" IsPassword="True" Text="{Binding Password, Mode=TwoWay}"/>
-                <Label Text="{Binding PasswordValidateMessage, Mode=OneWay}" IsVisible="{Binding PasswordIsVisible, Mode=OneWay}"/>
-                <Button Text="Войти" Command="{Binding LoginCommand}" CommandParameter="{Binding}"/>
-                <Button Text="Регистрация" Command="{Binding RegisterCommand}" CommandParameter="{Binding}"/>
+                    Placeholder="Email"
+                    Margin="20, 30, 20, 0"
+                    Style="{StaticResource Key=borderlessEntryStyle}"
+                    Text="{Binding Email}"
+                    ValidateMessage="{Binding EmailValidateMessage}"
+                    IsVisibleValidateMessage="{Binding EmailIsVisible}"/>
+
+                <controls:EntryOutlined
+                    Placeholder="Пароль"
+                    IsPassword="True"
+                    Margin="20, 20, 20, 0"
+                    Style="{StaticResource Key=borderlessEntryStyle}"
+                    Text="{Binding Password}"
+                    ValidateMessage="{Binding PasswordValidateMessage}"
+                    IsVisibleValidateMessage="{Binding PasswordIsVisible}"/>
+
+                <Button Margin="60, 20, 60, 0"
+                        Text="Войти" 
+                        Style="{StaticResource Key=buttonStyle}"
+                        Command="{Binding LoginCommand}"
+                        CommandParameter="{Binding}"/>
+
+                <Button Margin="60, 10, 60, 0"
+                        Text="Регистрация"
+                        Style="{StaticResource Key=buttonStyle}"
+                        Command="{Binding RegisterCommand}" 
+                        CommandParameter="{Binding}"/>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

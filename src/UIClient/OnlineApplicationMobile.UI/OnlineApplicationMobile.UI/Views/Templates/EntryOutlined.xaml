@@ -27,6 +27,7 @@
                      HeightRequest="45"
                      x:Name="TextBox" VerticalOptions="FillAndExpand"
                      Text="{Binding Text,Source={x:Reference this},Mode=TwoWay}"
+                     IsPassword="{Binding IsPassword, Source={x:Reference this},Mode=TwoWay}"
                      Margin="10,0,0,0"
                      Focused="TextBox_Focused"
                      Unfocused="TextBox_Unfocused"
