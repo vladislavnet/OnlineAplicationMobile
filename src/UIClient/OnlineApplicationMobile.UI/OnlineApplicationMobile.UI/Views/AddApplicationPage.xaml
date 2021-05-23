@@ -2,49 +2,114 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OnlineApplicationMobile.UI.Views.AddApplicationPage"
-             Title="Добавить заявку">
+             Title="Добавить заявку"
+             xmlns:controls="clr-namespace:OnlineApplicationMobile.UI.Views.Templates;assembly=OnlineApplicationMobile.UI">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Orientation="Vertical">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                </Grid.RowDefinitions>
+
+                <StackLayout Grid.Column="0"
+                                 Grid.Row="0"
+                                 Orientation="Vertical">
+
+                    <Label Text="Редактировать профиль" Margin="0, 20, 0, 0" Style="{StaticResource Key=titlePageLabelStyle}"/>
+
+                    <controls:EditorOutline Margin="10, 20, 10, 0"
+                                            HeightEditor="200"
+                                            Placeholder="Текст обращения"
+                                            Style="{StaticResource Key=borderlessEditorStyle}"
+                                            Text="{Binding MessageText}"
+                                            ValidateMessage="{Binding MessageTextValidateMessage}"
+                                            IsVisibleValidateMessage="{Binding MessageTextValidateMessageIsVisible}"/>
+
+                    <controls:EntryOutlined Margin="10, 20, 10, 0"
+                                            Placeholder="Номер счёта"
+                                            Style="{StaticResource Key=borderlessEntryStyle}"
+                                            Text="{Binding NumberAccount}"
+                                            ValidateMessage="{Binding NumberAccountValidateMessage}"
+                                            IsVisibleValidateMessage="{Binding NumberAccountValidateMessageIsVisible}"/>
+
+                    <controls:EntryOutlined Margin="10, 20, 10, 0"
+                                            Placeholder="Фамилия ответсвенного плательщика"
+                                            Style="{StaticResource Key=borderlessEntryStyle}"
+                                            Text="{Binding LastNamePayer}"
+                                            ValidateMessage="{Binding LastNamePayerValidateMessage}"
+                                            IsVisibleValidateMessage="{Binding LastNamePayerValidateMessageIsVisible}"/>
+
+                    <controls:EntryOutlined Margin="10, 20, 10, 0"
+                                            Placeholder="Имя ответсвенного плательщика"
+                                            Style="{StaticResource Key=borderlessEntryStyle}"
+                                            Text="{Binding FirstNamePayer}"
+                                            ValidateMessage="{Binding FirstNamePayerValidateMessage}"
+                                            IsVisibleValidateMessage="{Binding FirstNamePayerValidateMessageIsVisible}"/>
+
+                    <controls:EntryOutlined Margin="10, 20, 10, 0"
+                                            Placeholder="Отчество ответсвенного плательщика"
+                                            Style="{StaticResource Key=borderlessEntryStyle}"
+                                            Text="{Binding MiddleNamePayer}"
+                                            ValidateMessage="{Binding MiddleNamePayerValidateMessage}"
+                                            IsVisibleValidateMessage="{Binding MiddleNamePayerValidateMessageIsVisible}"/>
+
+                    <Label Margin="10, 10, 10, 0"
+                           Text="Типы услуг:"
+                           FontAttributes="Bold"
+                           FontSize="17"
+                           TextColor="{StaticResource Key=mainColor}"/>
+
+                    <ListView ItemsSource="{Binding ServiceTypes}"
+                              SelectedItem="{Binding SelectedServiceType}" 
+                              Margin="10, 0, 10, 0"
+                              RowHeight="45"
+                              IsPullToRefreshEnabled="True"
+                              SeparatorVisibility="None">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <controls:ExtendedViewCell SelectedBackgroundColor="White">
+                                    <ViewCell.View>
+                                        <Frame CornerRadius="5" BorderColor="LightGray" OutlineColor="LightGray" Margin="0, 3, 0, 3" Padding="0">
+                                            <Frame.Effects>
+                                                <controls:ViewShadowEffect Radius="2" DistanceX="2" DistanceY="2" Color="Gray" />
+                                            </Frame.Effects>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Switch Margin="10, 0, 0, 0"
+                                                        VerticalOptions="Center"
+                                                        IsToggled="{Binding IsSelect}" 
+                                                        OnColor="{StaticResource Key=mainColor}"
+                                                        ThumbColor="#ECE1FF"/>
+                                                <Label VerticalTextAlignment="Center"
+                                                       Text="{Binding Title}"
+                                                       Margin="5, 0, 0, 0" 
+                                                       TextColor="{StaticResource Key=mainColor}"/>
+                                            </StackLayout>
+                                        </Frame>
+                                    </ViewCell.View>
+                                </controls:ExtendedViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                </StackLayout>
+
+                <Button Grid.Column="0" 
+                            Margin="10, 15, 10, 5" 
+                            Grid.Row="1" 
+                            Text="Заполнить из профиля" 
+                            Style="{StaticResource Key=buttonStyle}"
+                            Command="{Binding SetFieldByProfileCommand}"/>
+
+                <Button Grid.Column="0" 
+                            Margin="10, 5, 10, 15" 
+                            Grid.Row="2" 
+                            Text="Добавить" 
+                            Style="{StaticResource Key=buttonStyle}"
+                            Command="{Binding AddApplicationCommand}"/>
                 
-                <Editor Text="{Binding MessageText}" Placeholder="Текст обращения" HeightRequest="100"/>
-                <Label Text="{Binding MessageTextValidateMessage}" IsVisible="{Binding MessageTextValidateMessageIsVisible}"/>
-                
-                <Entry Text="{Binding NumberAccount}" Placeholder="Номер счёта"/>
-                <Label Text="{Binding NumberAccountValidateMessage}" IsVisible="{Binding NumberAccountValidateMessageIsVisible}"/>
-
-                <Entry Text="{Binding LastNamePayer}" Placeholder="Фамилия ответсвенного плательщика"/>
-                <Label Text="{Binding LastNamePayerValidateMessage}" IsVisible="{Binding LastNamePayerValidateMessageIsVisible}"/>
-
-                <Entry Text="{Binding FirstNamePayer}" Placeholder="Имя ответсвенного плательщика"/>
-                <Label Text="{Binding FirstNamePayerValidateMessage}" IsVisible="{Binding FirstNamePayerValidateMessageIsVisible}"/>
-
-                <Entry Text="{Binding MiddleNamePayer}" Placeholder="Отчество ответсвенного плательщика"/>
-                <Label Text="{Binding MiddleNamePayerValidateMessage}" IsVisible="{Binding MiddleNamePayerValidateMessageIsVisible}"/>
-
-                <Label Text="Типы услуг: "/>
-                <ListView ItemsSource="{Binding ServiceTypes}"
-                  SelectedItem="{Binding SelectedServiceType}" 
-                  RowHeight="45"
-                  IsPullToRefreshEnabled="True">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <ViewCell.View>
-                                    <StackLayout Orientation="Horizontal">
-                                        <Switch IsToggled="{Binding IsSelect}"/>
-                                        <Label Text="{Binding Title}"/>
-                                    </StackLayout>
-                                </ViewCell.View>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-
-                <Button Text="Заполнить из профиля" Command="{Binding SetFieldByProfileCommand}"/>
-                <Button Text="Добавить" Command="{Binding AddApplicationCommand}"/>
-                
-            </StackLayout>
+            </Grid>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

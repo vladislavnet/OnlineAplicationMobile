@@ -2,25 +2,56 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OnlineApplicationMobile.UI.Views.OrganizationDetailPage"
+             xmlns:controls="clr-namespace:OnlineApplicationMobile.UI.Views.Templates;assembly=OnlineApplicationMobile.UI"
              Title="Информация об организации">
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical">
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Наименование: "/>
-                <Label Text="{Binding Organization.Name}" />
-            </StackLayout>
-            <Label Text="Описание организации: "/>
-            <Label Text="{Binding Organization.Description}" />
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Email: "/>
-                <Label Text="{Binding Organization.Email}" />
-            </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Telephone: "/>
-                <Label Text="{Binding Organization.Telephone}" />
-            </StackLayout>
-            <ListView ItemsSource="{Binding ServiceTypes}" SelectionMode="None" RowHeight="45"/>
-            <Button Text="Добавить заявку" Command="{Binding AddApplicationCommand}"/>
-        </StackLayout>
+        <ScrollView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="70"/>
+                </Grid.RowDefinitions>
+
+                <StackLayout Grid.Column="0"
+                                 Grid.Row="0"
+                                 Orientation="Vertical"
+                                 Margin="10, 20, 10, 0">
+
+                    <Label Text="Инофрмация об организации" Margin="0, 20, 0, 0" Style="{StaticResource Key=titlePageLabelStyle}"/>
+
+                    <controls:LabelSpan HelpText="Наименование:"
+                                        MainText="{Binding Organization.Name}"/>
+
+                    <BoxView BackgroundColor="{StaticResource Key=mainColor}" HeightRequest="1" Margin="0,0,0,10"/>
+
+                    <controls:LabelSpan HelpText="Описание организации:"
+                                        MainText="{Binding Organization.Description}"/>
+
+                    <BoxView BackgroundColor="{StaticResource Key=mainColor}" HeightRequest="1" Margin="0,0,0,10"/>
+
+                    <controls:LabelSpan HelpText="Email:"
+                                        MainText="{Binding Organization.Email}"/>
+
+                    <BoxView BackgroundColor="{StaticResource Key=mainColor}" HeightRequest="1" Margin="0,0,0,10"/>
+
+                    <controls:LabelSpan HelpText="Телефон:"
+                                        MainText="{Binding Organization.Telephone}"/>
+
+                    <BoxView BackgroundColor="{StaticResource Key=mainColor}" HeightRequest="1" Margin="0,0,0,10"/>
+
+                    <Label Margin="0" Text="Типы услуг:" FontAttributes="Bold" FontSize="17" TextColor="{StaticResource Key=mainColor}"/>
+
+                    <controls:ServiceTypesInfoListView ItemsSource="{Binding Organization.ServiceTypes}"/>
+
+                </StackLayout>
+                
+                <Button Grid.Column="0" 
+                            Margin="10" 
+                            Grid.Row="1" 
+                            Text="Добавить заявку" 
+                            Style="{StaticResource Key=buttonStyle}"
+                            Command="{Binding AddApplicationCommand}"/>
+            </Grid>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

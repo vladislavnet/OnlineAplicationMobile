@@ -1,13 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="OnlineApplicationMobile.UI.Views.SearchOrganizationsPage">
+             x:Class="OnlineApplicationMobile.UI.Views.SearchOrganizationsPage"
+             xmlns:controls="clr-namespace:OnlineApplicationMobile.UI.Views.Templates;assembly=OnlineApplicationMobile.UI">
     <ContentPage.Content>
         <RefreshView IsRefreshing="{Binding IsRefreshing}"
              Command="{Binding RefreshCommand}">
             <ScrollView>
                 <StackLayout Orientation="Vertical">
-                    <SearchBar Text="{Binding SearchText}" SearchCommand="{Binding RefreshCommand}"/>
+                    <!--<SearchBar Text="{Binding SearchText}" SearchCommand="{Binding RefreshCommand}"/>
                     <ListView ItemsSource="{Binding Organizations}"
                               SelectedItem="{Binding SelectedOrganization}" 
                               RowHeight="120"
@@ -25,7 +26,19 @@
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
-                </ListView>
+                </ListView>-->
+
+                    <controls:SearchBarOutline Text="{Binding SearchText}"
+                                               SearchCommand="{Binding RefreshCommand}"
+                                               Placeholder="Поиск"
+                                               BorderColor="{StaticResource Key=mainColor}"
+                                               PlaceholderColor="{StaticResource Key=mainColor}"
+                                               Margin="10, 15, 10, 0"/>
+
+                    <controls:OrganizationListView ItemsSource="{Binding Organizations}"
+                                       SelectedItem="{Binding SelectedOrganization}" 
+                                       RefreshCommand="{Binding RefreshCommand}"
+                                       IsRefreshing="{Binding IsRefreshing}"/>
                 </StackLayout>
             </ScrollView>
         </RefreshView>

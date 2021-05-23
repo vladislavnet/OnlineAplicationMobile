@@ -23,6 +23,11 @@
                 <Setter Property="PlaceholderColor" Value="{StaticResource Key=mainColor}" />
             </Style>
 
+            <Style x:Key="borderlessEditorStyle" TargetType="controls:EditorOutline">
+                <Setter Property="BorderColor" Value="{StaticResource Key=mainColor}" />
+                <Setter Property="PlaceholderColor" Value="{StaticResource Key=mainColor}" />
+            </Style>
+
             <Style x:Key="addressBorderlessEntryStyle" TargetType="controls:EntryOutlined" BasedOn="{StaticResource Key=borderlessEntryStyle}">
 
             </Style>
@@ -49,6 +54,7 @@
                 <Setter Property="FontSize" Value="23"/>
                 <Setter Property="TextColor" Value="{StaticResource Key=mainColor}"/>
             </Style>
+            
 
         </ResourceDictionary>
     </Application.Resources>

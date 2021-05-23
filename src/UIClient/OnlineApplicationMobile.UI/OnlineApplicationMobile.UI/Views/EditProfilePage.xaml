@@ -8,7 +8,7 @@
         <ScrollView>
             <StackLayout>
 
-                <Label Text="Редактировать профиль" Margin="0, 20, 0, 0" HorizontalTextAlignment="Center" FontSize="23" TextColor="{StaticResource Key=mainColor}"/>
+                <Label Text="Редактировать профиль" Margin="0, 20, 0, 0" Style="{StaticResource Key=titlePageLabelStyle}"/>
 
                 <controls:EntryOutlined
                     Placeholder="Фамилия"

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OnlineApplicationMobile.UI.Views.Templates.ServiceTypesInfoListView"
+             xmlns:controls="clr-namespace:OnlineApplicationMobile.UI.Views.Templates;assembly=OnlineApplicationMobile.UI"
+             x:Name="this">
+  <ContentView.Content>
+        <ListView ItemsSource="{Binding ItemsSource, Source={x:Reference this},Mode=TwoWay}"
+                  SelectionMode="None" 
+                  RowHeight="45"
+                  SeparatorVisibility="None">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <controls:ExtendedViewCell SelectedBackgroundColor="White">
+                        <ViewCell.View>
+                            <Frame CornerRadius="5" BorderColor="LightGray" OutlineColor="LightGray" Margin="0, 3, 0, 3" Padding="0">
+                                <Frame.Effects>
+                                    <controls:ViewShadowEffect Radius="2" DistanceX="2" DistanceY="2" Color="Gray" />
+                                </Frame.Effects>
+                                <Label VerticalTextAlignment="Center"
+                                       Margin="10, 0, 0, 0" 
+                                       TextColor="{StaticResource Key=mainColor}" 
+                                       Text="{Binding Title}"/>
+                            </Frame>
+                        </ViewCell.View>
+                    </controls:ExtendedViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentView.Content>
+</ContentView>

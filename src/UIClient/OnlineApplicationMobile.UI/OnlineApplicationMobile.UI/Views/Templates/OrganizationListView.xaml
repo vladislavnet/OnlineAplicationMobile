@@ -1,17 +1,18 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="OnlineApplicationMobile.UI.Views.RecomendedOrganizationsPage"
-             Title="Рекомендованные организации"
-             xmlns:controls="clr-namespace:OnlineApplicationMobile.UI.Views.Templates;assembly=OnlineApplicationMobile.UI">
-    <ContentPage.Content>
-        <!--<ListView ItemsSource="{Binding Organizations}"
-                  SelectedItem="{Binding SelectedOrganization}" 
+             x:Class="OnlineApplicationMobile.UI.Views.Templates.OrganizationListView"
+             xmlns:controls="clr-namespace:OnlineApplicationMobile.UI.Views.Templates;assembly=OnlineApplicationMobile.UI"
+             x:Name="this">
+  <ContentView.Content>
+        <ListView ItemsSource="{Binding ItemsSource, Source={x:Reference this},Mode=TwoWay}"
+                  SelectedItem="{Binding SelectedItem, Source={x:Reference this},Mode=TwoWay}" 
                   RowHeight="100"
                   IsPullToRefreshEnabled="True"
-                  RefreshCommand="{Binding RefreshCommand}"
-                  IsRefreshing="{Binding IsRefreshing}"
-                  SeparatorVisibility="None">
+                  RefreshCommand="{Binding RefreshCommand, Source={x:Reference this},Mode=TwoWay}"
+                  IsRefreshing="{Binding IsRefreshing, Source={x:Reference this},Mode=TwoWay}"
+                  SeparatorVisibility="None"
+                  x:Name="OrganizationItemsListView">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <controls:ExtendedViewCell SelectedBackgroundColor="White">
@@ -44,11 +45,6 @@
                     </controls:ExtendedViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
-        </ListView>-->
-
-        <controls:OrganizationListView ItemsSource="{Binding Organizations}"
-                                       SelectedItem="{Binding SelectedOrganization}" 
-                                       RefreshCommand="{Binding RefreshCommand}"
-                                       IsRefreshing="{Binding IsRefreshing}"/>
-    </ContentPage.Content>
-</ContentPage>
+        </ListView>
+    </ContentView.Content>
+</ContentView>
