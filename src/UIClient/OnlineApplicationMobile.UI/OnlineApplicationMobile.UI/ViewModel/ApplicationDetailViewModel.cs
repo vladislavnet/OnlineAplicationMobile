@@ -5,6 +5,7 @@ using OnlineApplicationMobile.HttpService.Responses;
 using OnlineApplicationMobile.Infrastructure.Helpers;
 using OnlineApplicationMobile.UI.ModelView;
 using OnlineApplicationMobile.UI.ViewModel.Interfaces;
+using OnlineApplicationMobile.UI.Views;
 using OnlineApplicationMobile.UI.Views.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -24,9 +25,10 @@ namespace OnlineApplicationMobile.UI.ViewModel
         private OrganizationModelView organization;
         private OrganizationNumberAccountModelView numberAccount;
         private DateTime createdAt;
-        private DateTime updatedAt;
+        private DateTime? updatedAt;
         private List<ServiceTypeModelView> serviceTypes;
         private List<CommentApplicationModelView> comments;
+        private List<HistoryApplicationModelView> historyApplication;
         private string addComment;
         private string addCommentValidateMessage;
         private bool addCommentValidateMessageIsVisible;
@@ -83,6 +85,17 @@ namespace OnlineApplicationMobile.UI.ViewModel
                 IsRefresing = true;
                 initialization();
                 IsRefresing = false;
+            });
+        }
+
+        /// <summary>
+        /// Команда для Отображения истории заявки.
+        /// </summary>
+        public ICommand ViewHistoryApplicationCommand
+        {
+            get => new Command(() =>
+            {
+                PushModalPage(new HistoryApplicationPage(HistoryApplication));
             });
         }
 
@@ -154,7 +167,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
         /// <summary>
         /// Дата обновления заявки.
         /// </summary>
-        public DateTime UpdatedAt
+        public DateTime? UpdatedAt
         {
             get => updatedAt;
             set
@@ -187,6 +200,19 @@ namespace OnlineApplicationMobile.UI.ViewModel
             {
                 comments = value;
                 OnPropertyChanged(nameof(Comments));
+            }
+        }
+
+        /// <summary>
+        /// История заявки.
+        /// </summary>
+        public List<HistoryApplicationModelView> HistoryApplication
+        {
+            get => historyApplication;
+            set
+            {
+                historyApplication = value;
+                OnPropertyChanged(nameof(HistoryApplication));
             }
         }
 
@@ -273,7 +299,8 @@ namespace OnlineApplicationMobile.UI.ViewModel
             Organization = mapOrganization(response.Organization);
             NumberAccount = mapNumberAccount(response.OrganizationNumberAccount);
             CreatedAt = response.CreatedAt;
-            UpdatedAt = response.UpdatedAt;
+            HistoryApplication = HistoryApplicationModelView.mapHistoryApplication(response.HistoryApplication).ToList();
+            UpdatedAt = HistoryApplicationModelView.GetUpdatedAt(HistoryApplication);
             ServiceTypes = response.ServiceTypes.Select(x => MapServiceType(x)).ToList();
             Comments = response.Comments.Select(x => mapComment(x)).OrderByDescending(x => x.CreatedAt).ToList();
         }

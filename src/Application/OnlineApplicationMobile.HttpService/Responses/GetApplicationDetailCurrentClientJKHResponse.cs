@@ -48,12 +48,6 @@ namespace OnlineApplicationMobile.HttpService.Responses
         public DateTime CreatedAt { get; set; }
 
         /// <summary>
-        /// Дата редактирования.
-        /// </summary>
-        [JsonPropertyName("updatedAt")]
-        public DateTime UpdatedAt { get; set; }
-
-        /// <summary>
         /// Типы услуг указанные в заявке.
         /// </summary>
         [JsonPropertyName("serviceTypes")]
@@ -64,5 +58,11 @@ namespace OnlineApplicationMobile.HttpService.Responses
         /// </summary>
         [JsonPropertyName("comments")]
         public CommentDto[] Comments { get; set; }
+
+        /// <summary>
+        /// История заявки.
+        /// </summary>
+        [JsonPropertyName("historyApplication")]
+        public HistoryApplicationDto[] HistoryApplication { get; set; }
     }
 }

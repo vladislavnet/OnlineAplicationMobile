@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OnlineApplicationMobile.UI.Views.HistoryApplicationPage"
+             Title="История заявки"
+             xmlns:controls="clr-namespace:OnlineApplicationMobile.UI.Views.Templates;assembly=OnlineApplicationMobile.UI">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Orientation="Vertical"
+                             Margin="10, 0, 10, 0">
+
+                <Label Text="История заявки" Margin="0, 20, 0, 20" Style="{StaticResource Key=titlePageLabelStyle}"/>
+
+                <ListView ItemsSource="{Binding HistoryApplication}"
+                  SelectionMode="None" 
+                  RowHeight="45"
+                  SeparatorVisibility="None">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <controls:ExtendedViewCell SelectedBackgroundColor="White">
+                                <ViewCell.View>
+                                    <Frame CornerRadius="5" BorderColor="LightGray" OutlineColor="LightGray" Margin="0, 3, 0, 3" Padding="0">
+                                        <Frame.Effects>
+                                            <controls:ViewShadowEffect Radius="2" DistanceX="2" DistanceY="2" Color="Gray" />
+                                        </Frame.Effects>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition  Width="130"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label Grid.Row="0"
+                                                   Grid.Column="0"
+                                                   Text="{Binding GetStatusString}" 
+                                                   TextColor="{StaticResource Key=mainColor}"/>
+                                            
+                                            <Label Grid.Row="0"
+                                                   Grid.Column="1"
+                                                   Text="{Binding CreatedAt, StringFormat='{0:G}'}" 
+                                                   TextColor="{StaticResource Key=mainColor}"/>
+                                        </Grid>
+                                    </Frame>
+                                </ViewCell.View>
+                            </controls:ExtendedViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

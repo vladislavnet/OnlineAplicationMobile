@@ -109,8 +109,8 @@ namespace OnlineApplicationMobile.UI.ViewModel
                 OrganizationName = x?.Organization.Name ?? "-",
                 MessageText = x.MessageText,
                 CreatedAt = x.CreatedAt,
-                UpdatedAt = x.UpdatedAt,
                 Status = StatusApplicationHelper.GetStatusApplicationByInteger(x.StatusApplication),
+                HistoryApplication = HistoryApplicationModelView.mapHistoryApplication(x.HistoryApplication)
             }).ToList();
 
             foreach (var application in mapApplications)

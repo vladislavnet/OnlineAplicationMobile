@@ -51,8 +51,11 @@
                     
                     <Label Margin="0" Text="Типы услуг:" FontAttributes="Bold" FontSize="17" TextColor="{StaticResource Key=mainColor}"/>
                     <controls:ServiceTypesInfoListView ItemsSource="{Binding ServiceTypes}"/>
-                    
-                    
+
+                    <Button Text="История заявки" 
+                            Command="{Binding ViewHistoryApplicationCommand}"
+                            Style="{StaticResource Key=buttonStyle}"/>
+
                     <Label Margin="0, 10, 0, 10" Text="Комментарии:" FontAttributes="Bold" FontSize="17" TextColor="{StaticResource Key=mainColor}"/>
                     <controls:EditorOutline Placeholder="Введите комментарий"
                                             Style="{StaticResource Key=borderlessEditorStyle}"

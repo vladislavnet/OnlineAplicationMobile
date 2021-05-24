@@ -47,15 +47,15 @@ namespace OnlineApplicationMobile.HttpService.DTO
         public DateTime CreatedAt { get; set; }
 
         /// <summary>
-        /// Дата редактирования.
-        /// </summary>
-        [JsonPropertyName("updatedAt")]
-        public DateTime UpdatedAt { get; set; }
-
-        /// <summary>
         /// Типы услуг указанные в заявке.
         /// </summary>
         [JsonPropertyName("serviceTypes")]
         public ServiceTypeDto[] ServiceTypes { get; set; }
+
+        /// <summary>
+        /// История заявки.
+        /// </summary>
+        [JsonPropertyName("historyApplication")]
+        public HistoryApplicationDto[] HistoryApplication { get; set; }
     }
 }

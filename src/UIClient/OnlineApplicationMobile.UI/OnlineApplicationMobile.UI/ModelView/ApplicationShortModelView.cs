@@ -1,6 +1,8 @@
 ﻿using OnlineApplicationMobile.Domain.Enums;
 using OnlineApplicationMobile.Infrastructure.Helpers;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace OnlineApplicationMobile.UI.ModelView
 {
@@ -32,12 +34,20 @@ namespace OnlineApplicationMobile.UI.ModelView
         /// <summary>
         /// Дата обновления.
         /// </summary>
-        public DateTime UpdatedAt { get; set; }
+        public DateTime? UpdatedAt 
+        {
+            get => HistoryApplicationModelView.GetUpdatedAt(HistoryApplication);
+        }
 
         /// <summary>
         /// Статус заявка.
         /// </summary>
         public StatusApplication Status { get; set; }
+
+        /// <summary>
+        /// История заявки.
+        /// </summary>
+        public IEnumerable<HistoryApplicationModelView> HistoryApplication { get; set; }
 
         /// <summary>
         /// Статус заявки ввиде строки.
