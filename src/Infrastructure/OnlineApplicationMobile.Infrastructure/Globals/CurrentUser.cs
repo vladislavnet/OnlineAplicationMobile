@@ -53,11 +53,6 @@ namespace OnlineApplicationMobile.Infrastructure.Globals
         public static bool IsConfirmed { get; private set; }
 
         /// <summary>
-        /// Номер лицевого счёта.
-        /// </summary>
-        public static string NumberPersonalAccount { get; private set; }
-
-        /// <summary>
         /// Адрес.
         /// </summary>
         public static Address Address { get; private set; }
@@ -84,7 +79,6 @@ namespace OnlineApplicationMobile.Infrastructure.Globals
             MiddleName = !string.IsNullOrWhiteSpace(clientJKH.User.MiddleName) ? clientJKH.User.MiddleName : MiddleName;
             BirthDate = clientJKH.User.BirthDate != null ? clientJKH.User.BirthDate : BirthDate;
             Telephone = !string.IsNullOrWhiteSpace(clientJKH.User.Telephone) ? clientJKH.User.Telephone : Telephone;
-            NumberPersonalAccount = !string.IsNullOrWhiteSpace(clientJKH.NumberPersonalAccount) ? clientJKH.NumberPersonalAccount : NumberPersonalAccount;
             Address = clientJKH.Address != null ? clientJKH.Address : Address;
         }
 

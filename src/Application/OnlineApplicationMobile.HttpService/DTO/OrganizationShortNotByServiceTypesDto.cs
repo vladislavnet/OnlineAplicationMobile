@@ -39,5 +39,6 @@ namespace OnlineApplicationMobile.HttpService.DTO
         /// </summary>
         [JsonPropertyName("telephone")]
         public string Telephone { get; set; }
+
     }
 }

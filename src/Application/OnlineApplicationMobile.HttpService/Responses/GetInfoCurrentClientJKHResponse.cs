@@ -19,12 +19,6 @@ namespace OnlineApplicationMobile.HttpService.Responses
         public UserDto User { get; set; }
 
         /// <summary>
-        /// Номер лицевого счёта.
-        /// </summary>
-        [JsonPropertyName("numberPersonalAccount")]
-        public string NumberPersonalAccount { get; set; }
-
-        /// <summary>
         /// Адрес.
         /// </summary>
         [JsonPropertyName("address")]

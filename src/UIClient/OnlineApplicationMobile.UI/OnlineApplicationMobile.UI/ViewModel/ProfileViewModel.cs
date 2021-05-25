@@ -25,7 +25,6 @@ namespace OnlineApplicationMobile.UI.ViewModel
         private string middleName;
         private string birthDate;
         private string telephone;
-        private string numberPersonalAccount;
         private string addressString;
 
         private bool isRefreshing;
@@ -137,19 +136,6 @@ namespace OnlineApplicationMobile.UI.ViewModel
         }
 
         /// <summary>
-        /// Номер лицевого счёта.
-        /// </summary>
-        public string NumberPersonalAccount
-        {
-            get => numberPersonalAccount;
-            protected set
-            {
-                numberPersonalAccount = value;
-                OnPropertyChanged(nameof(NumberPersonalAccount));
-            }
-        }
-
-        /// <summary>
         /// Строка адреса.
         /// </summary>
         public string AddressString
@@ -192,7 +178,6 @@ namespace OnlineApplicationMobile.UI.ViewModel
                 CurrentUser.SetCurrentUser(new ClientJKH
                 {
                     User = new UserDomainBuilder().Build(response.User),
-                    NumberPersonalAccount = response.NumberPersonalAccount,
                     Address = new AddressDomainBuilder().Build(response.Address)
                 });
 
@@ -210,7 +195,6 @@ namespace OnlineApplicationMobile.UI.ViewModel
             MiddleName = CurrentUser.MiddleName;
             BirthDate = CurrentUser.BirthDate.HasValue ? CurrentUser.BirthDate.Value.ToString("d") : string.Empty;
             Telephone = CurrentUser.Telephone;
-            NumberPersonalAccount = CurrentUser.NumberPersonalAccount;
             AddressString = CurrentUser.GetAddressShortToString();
         }
     }

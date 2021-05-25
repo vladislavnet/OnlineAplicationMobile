@@ -79,7 +79,6 @@ namespace TestClient
             CurrentUser.SetCurrentUser(new ClientJKH
             {
                 User = new UserDomainBuilder().Build(response.User),
-                NumberPersonalAccount = response.NumberPersonalAccount,
                 Address = new AddressDomainBuilder().Build(response.Address)
             });
 
@@ -96,7 +95,6 @@ namespace TestClient
                 MiddleName = CurrentUser.MiddleName,
                 BirthDate = DateTime.Now.ToString("yyyy-MM-dd"),
                 Telephone = CurrentUser.Telephone,
-                NumberPersonalAccount = CurrentUser.NumberPersonalAccount,
                 Address = new AddressDomainBuilder().Rebuild(CurrentUser.Address)
             });
 

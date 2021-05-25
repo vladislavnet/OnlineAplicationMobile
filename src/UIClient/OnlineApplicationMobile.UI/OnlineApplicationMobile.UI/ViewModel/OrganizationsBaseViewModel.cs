@@ -93,6 +93,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
                 Email = organization.Email,
                 Telephone = organization.Telephone,
                 ServiceTypes = organization.ServiceTypes.Select(x => MapServiceType(x)).ToList(),
+                IsCheckNumberAccount = organization.IsCheckNumberAccount,
             };
         }
 

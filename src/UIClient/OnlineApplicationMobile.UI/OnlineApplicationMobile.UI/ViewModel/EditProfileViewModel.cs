@@ -28,7 +28,6 @@ namespace OnlineApplicationMobile.UI.ViewModel
         private string middleName;
         private DateTime? birthDate;
         private string telephone;
-        private string numberPersonalAccount;
         private string region;
         private string district;
         private string locality;
@@ -66,7 +65,6 @@ namespace OnlineApplicationMobile.UI.ViewModel
         private string middleNameValidateMessage;
         private string birthDateValidateMessage;
         private string telephoneValidateMessage;
-        private string numberPersonalAccountValidateMessage;
         private string regionValidateMessage;
         private string districtValidateMessage;
         private string localityValidateMessage;
@@ -79,7 +77,6 @@ namespace OnlineApplicationMobile.UI.ViewModel
         private bool middleNameValidateMessageIsVisible;
         private bool birthDateValidateMessageIsVisible;
         private bool telephoneValidateMessageIsVisible;
-        private bool numberPersonalAccountValidateMessageIsVisible;
         private bool regionValidateMessageIsVisible;
         private bool districtValidateMessageIsVisible;
         private bool localityValidateMessageIsVisible;
@@ -117,7 +114,6 @@ namespace OnlineApplicationMobile.UI.ViewModel
                     MiddleName = !string.IsNullOrWhiteSpace(MiddleName) ? MiddleName : null,
                     BirthDate = BirthDate?.ToString("yyyy-MM-dd"),
                     Telephone = !string.IsNullOrWhiteSpace(Telephone) ? Telephone : null,
-                    NumberPersonalAccount = NumberPersonalAccount,
                     Address = buildAddress()
                 });
 
@@ -197,19 +193,6 @@ namespace OnlineApplicationMobile.UI.ViewModel
             {
                 telephone = value;
                 OnPropertyChanged(nameof(Telephone));
-            }
-        }
-
-        /// <summary>
-        /// Номер лицевого счёта.
-        /// </summary>
-        public string NumberPersonalAccount
-        {
-            get => numberPersonalAccount;
-            set
-            {
-                numberPersonalAccount = value;
-                OnPropertyChanged(nameof(NumberPersonalAccount));
             }
         }
 
@@ -657,19 +640,6 @@ namespace OnlineApplicationMobile.UI.ViewModel
         }
 
         /// <summary>
-        /// Валидационное сообщение для лицевого счёта.
-        /// </summary>
-        public string NumberPersonalAccountValidateMessage
-        {
-            get => numberPersonalAccountValidateMessage;
-            set
-            {
-                numberPersonalAccountValidateMessage = value;
-                OnPropertyChanged(nameof(NumberPersonalAccountValidateMessage));
-            }
-        }
-
-        /// <summary>
         /// Валидационное сообщение для Региона.
         /// </summary>
         public string RegionValidateMessage
@@ -809,19 +779,6 @@ namespace OnlineApplicationMobile.UI.ViewModel
             {
                 telephoneValidateMessageIsVisible = value;
                 OnPropertyChanged(nameof(TelephoneValidateMessageIsVisible));
-            }
-        }
-
-        /// <summary>
-        /// Флаг видимости валидационного сообщения для номера лицевого счёта.
-        /// </summary>
-        public bool NumberPersonalAccountValidateMessageIsVisible
-        {
-            get => numberPersonalAccountValidateMessageIsVisible;
-            set
-            {
-                numberPersonalAccountValidateMessageIsVisible = value;
-                OnPropertyChanged(nameof(NumberPersonalAccountValidateMessageIsVisible));
             }
         }
 
@@ -967,13 +924,6 @@ namespace OnlineApplicationMobile.UI.ViewModel
                 flag = false;
             }
 
-            if (string.IsNullOrWhiteSpace(NumberPersonalAccount))
-            {
-                NumberPersonalAccountValidateMessage = "Введите номер лицевого счёта.";
-                NumberPersonalAccountValidateMessageIsVisible = true;
-                flag = false;
-            }
-
             if (string.IsNullOrWhiteSpace(Region) || SelectedRegionTypeAddressingObject == null)
             {
                 RegionValidateMessage = "Введите регион и его тип.";
@@ -1015,7 +965,6 @@ namespace OnlineApplicationMobile.UI.ViewModel
             MiddleNameValidateMessage = string.Empty;
             BirthDateValidateMessage = string.Empty;
             TelephoneValidateMessage = string.Empty;
-            NumberPersonalAccountValidateMessage = string.Empty;
             RegionValidateMessage = string.Empty;
             DistrictValidateMessage = string.Empty;
             LocalityValidateMessage = string.Empty;
@@ -1028,7 +977,6 @@ namespace OnlineApplicationMobile.UI.ViewModel
             MiddleNameValidateMessageIsVisible = false;
             BirthDateValidateMessageIsVisible = false;
             TelephoneValidateMessageIsVisible = false;
-            NumberPersonalAccountValidateMessageIsVisible = false;
             RegionValidateMessageIsVisible = false;
             DistrictValidateMessageIsVisible = false;
             LocalityValidateMessageIsVisible = false;
@@ -1065,7 +1013,6 @@ namespace OnlineApplicationMobile.UI.ViewModel
             MiddleName = CurrentUser.MiddleName;
             BirthDate = CurrentUser.BirthDate;
             Telephone = CurrentUser.Telephone;
-            NumberPersonalAccount = CurrentUser.NumberPersonalAccount;
 
             var currentUserTypeAddressingObjectRegion = CurrentUser.GetTypeAddressingObjectByAddress(LevelAddressingObjectEnum.Region);
             var currentUserTypeAddressingObjectDistrict = CurrentUser.GetTypeAddressingObjectByAddress(LevelAddressingObjectEnum.District);

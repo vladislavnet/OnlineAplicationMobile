@@ -50,15 +50,6 @@
                     ValidateMessage="{Binding TelephoneValidateMessage}"
                     IsVisibleValidateMessage="{Binding TelephoneValidateMessageIsVisible}"/>
 
-                <controls:EntryOutlined
-                    Placeholder="Номер лицевого счёта"
-                    Margin="10, 20, 10, 0"
-                    Style="{StaticResource Key=borderlessEntryStyle}"
-                    Text="{Binding NumberPersonalAccount}"
-                    ValidateMessage="{Binding NumberPersonalAccountValidateMessage}"
-                    IsVisibleValidateMessage="{Binding NumberPersonalAccountValidateMessageIsVisible}"/>
-
-
                 <Label Text="Адрес" 
                        Margin="0, 20, 0, 0"
                        HorizontalTextAlignment="Center" 

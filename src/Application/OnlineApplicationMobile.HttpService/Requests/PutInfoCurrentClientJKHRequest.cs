@@ -42,12 +42,6 @@ namespace OnlineApplicationMobile.HttpService.Requests
         public string Telephone { get; set; }
 
         /// <summary>
-        /// Номер лицевого счёта.
-        /// </summary>
-        [JsonPropertyName("numberPersonalAccount")]
-        public string NumberPersonalAccount { get; set; }
-
-        /// <summary>
         /// Адрес.
         /// </summary>
         [JsonPropertyName("address")]

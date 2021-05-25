@@ -12,5 +12,11 @@ namespace OnlineApplicationMobile.HttpService.DTO
         /// </summary>
         [JsonPropertyName("serviceTypes")]
         public ServiceTypeDto[] ServiceTypes { get; set; }
+
+        /// <summary>
+        /// Признак того, что организация предоставляет услуги данному клиенту.
+        /// </summary>
+        [JsonPropertyName("isCheckNumberAccount")]
+        public bool IsCheckNumberAccount { get; set; }
     }
 }

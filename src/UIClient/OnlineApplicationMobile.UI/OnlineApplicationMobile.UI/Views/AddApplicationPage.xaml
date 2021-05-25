@@ -32,28 +32,32 @@
                                             Style="{StaticResource Key=borderlessEntryStyle}"
                                             Text="{Binding NumberAccount}"
                                             ValidateMessage="{Binding NumberAccountValidateMessage}"
-                                            IsVisibleValidateMessage="{Binding NumberAccountValidateMessageIsVisible}"/>
+                                            IsVisibleValidateMessage="{Binding NumberAccountValidateMessageIsVisible}"
+                                            IsVisible="{Binding IsVisibleNumberAccount}"/>
 
                     <controls:EntryOutlined Margin="10, 20, 10, 0"
                                             Placeholder="Фамилия ответсвенного плательщика"
                                             Style="{StaticResource Key=borderlessEntryStyle}"
                                             Text="{Binding LastNamePayer}"
                                             ValidateMessage="{Binding LastNamePayerValidateMessage}"
-                                            IsVisibleValidateMessage="{Binding LastNamePayerValidateMessageIsVisible}"/>
+                                            IsVisibleValidateMessage="{Binding LastNamePayerValidateMessageIsVisible}"
+                                            IsVisible="{Binding IsVisibleLastNamePayer}"/>
 
                     <controls:EntryOutlined Margin="10, 20, 10, 0"
                                             Placeholder="Имя ответсвенного плательщика"
                                             Style="{StaticResource Key=borderlessEntryStyle}"
                                             Text="{Binding FirstNamePayer}"
                                             ValidateMessage="{Binding FirstNamePayerValidateMessage}"
-                                            IsVisibleValidateMessage="{Binding FirstNamePayerValidateMessageIsVisible}"/>
+                                            IsVisibleValidateMessage="{Binding FirstNamePayerValidateMessageIsVisible}"
+                                            IsVisible="{Binding IsVisibleFirstNamePayer}"/>
 
                     <controls:EntryOutlined Margin="10, 20, 10, 0"
                                             Placeholder="Отчество ответсвенного плательщика"
                                             Style="{StaticResource Key=borderlessEntryStyle}"
                                             Text="{Binding MiddleNamePayer}"
                                             ValidateMessage="{Binding MiddleNamePayerValidateMessage}"
-                                            IsVisibleValidateMessage="{Binding MiddleNamePayerValidateMessageIsVisible}"/>
+                                            IsVisibleValidateMessage="{Binding MiddleNamePayerValidateMessageIsVisible}"
+                                            IsVisible="{Binding IsVisibleMiddleNamePayer}"/>
 
                     <Label Margin="10, 10, 10, 0"
                            Text="Типы услуг:"

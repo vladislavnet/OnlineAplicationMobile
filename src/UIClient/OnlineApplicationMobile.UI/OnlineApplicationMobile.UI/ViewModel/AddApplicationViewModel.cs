@@ -29,6 +29,11 @@ namespace OnlineApplicationMobile.UI.ViewModel
         private List<ServiceTypeSelectionModelView> serviceTypes;
         private ServiceTypeSelectionModelView selectedServiceType;
 
+        private bool isVisibleNumberAccount;
+        private bool isVisibleFirstNamePayer;
+        private bool isVisibleLastNamePayer;
+        private bool isVisibleMiddleNamePayer;
+
         private string messageTextValidateMessage;
         private string numberAccountValidateMessage;
         private string firstNamePayerValidateMessage;
@@ -56,7 +61,6 @@ namespace OnlineApplicationMobile.UI.ViewModel
         {
             get => new Command(() =>
             {
-                NumberAccount = CurrentUser.NumberPersonalAccount;
                 FirstNamePayer = CurrentUser.FirstName;
                 LastNamePayer = CurrentUser.LastName;
                 MiddleNamePayer = CurrentUser.MiddleName;
@@ -81,10 +85,10 @@ namespace OnlineApplicationMobile.UI.ViewModel
                 {
                     Token = GetUserToken(),
                     MessageText = MessageText,
-                    NumberAccount = NumberAccount,
-                    FirstNamePayer = FirstNamePayer,
-                    LastNamePayer = LastNamePayer,
-                    MiddleNamePayer = MiddleNamePayer,
+                    NumberAccount = !string.IsNullOrWhiteSpace(NumberAccount) ? NumberAccount : null,
+                    FirstNamePayer = !string.IsNullOrWhiteSpace(FirstNamePayer) ? FirstNamePayer : null,
+                    LastNamePayer = !string.IsNullOrWhiteSpace(LastNamePayer) ? LastNamePayer : null,
+                    MiddleNamePayer = !string.IsNullOrWhiteSpace(MiddleNamePayer) ? MiddleNamePayer : null,
                     OrganizationId = organization.Id,
                     ServiseTypes = selectedServiceTypes.Count() > 0 ? selectedServiceTypes.Select(x => mapServiceTypeDto(x)).Select(x => x.Id).ToArray() : null,
                 });
@@ -194,6 +198,58 @@ namespace OnlineApplicationMobile.UI.ViewModel
                 {
                     value.IsSelect = !value.IsSelect;
                 }
+            }
+        }
+
+        /// <summary>
+        /// Флаг видимости поля номера счёта.
+        /// </summary>
+        public bool IsVisibleNumberAccount
+        {
+            get => isVisibleNumberAccount;
+            set
+            {
+                isVisibleNumberAccount = value;
+                OnPropertyChanged(nameof(IsVisibleNumberAccount));
+            }
+        }
+
+        /// <summary>
+        /// Флаг видимости имя отвественного плательщика.
+        /// </summary>
+        public bool IsVisibleFirstNamePayer
+        {
+            get => isVisibleFirstNamePayer;
+            set
+            {
+                isVisibleFirstNamePayer = value;
+                OnPropertyChanged(nameof(IsVisibleFirstNamePayer));
+            }
+        }
+
+        /// <summary>
+        /// Флаг видимости фамилии отвественного плательщика.
+        /// </summary>
+        public bool IsVisibleLastNamePayer
+        {
+            get => isVisibleLastNamePayer;
+            set
+            {
+                isVisibleLastNamePayer = value;
+                OnPropertyChanged(nameof(IsVisibleLastNamePayer));
+            }
+        }
+
+        /// <summary>
+        /// Флаг видимости отчества отвественного плательщика.
+        /// </summary>
+        public bool IsVisibleMiddleNamePayer
+        {
+            get => isVisibleMiddleNamePayer;
+            set
+            {
+                isVisibleMiddleNamePayer = value;
+                OnPropertyChanged(nameof(IsVisibleMiddleNamePayer));
             }
         }
 
@@ -331,7 +387,22 @@ namespace OnlineApplicationMobile.UI.ViewModel
 
         private void initialization()
         {
-            ServiceTypes = organization.ServiceTypes.Select(x => mapServiceTypeSelection(x)).ToList();
+            if (organization.IsCheckNumberAccount)
+            {
+                IsVisibleFirstNamePayer = false;
+                IsVisibleLastNamePayer = false;
+                IsVisibleNumberAccount = false;
+                IsVisibleMiddleNamePayer = false;
+            }
+            else
+            {
+                IsVisibleFirstNamePayer = true;
+                IsVisibleLastNamePayer = true;
+                IsVisibleNumberAccount = true;
+                IsVisibleMiddleNamePayer = true;
+            }
+
+            ServiceTypes = organization?.ServiceTypes?.Select(x => mapServiceTypeSelection(x)).ToList();
             clearValidateField();
         }
 
@@ -365,28 +436,28 @@ namespace OnlineApplicationMobile.UI.ViewModel
                 flag = false;
             }
 
-            if (string.IsNullOrWhiteSpace(NumberAccount))
+            if (string.IsNullOrWhiteSpace(NumberAccount) && IsVisibleNumberAccount)
             {
                 NumberAccountValidateMessage = "Введите номер счёта.";
                 NumberAccountValidateMessageIsVisible = true;
                 flag = false;
             }
 
-            if (string.IsNullOrWhiteSpace(FirstNamePayer))
+            if (string.IsNullOrWhiteSpace(FirstNamePayer) && IsVisibleFirstNamePayer)
             {
                 FirstNamePayerValidateMessage = "Введите имя ответсвенного плательщика";
                 FirstNamePayerValidateMessageIsVisible = true;
                 flag = false;
             }
 
-            if (string.IsNullOrWhiteSpace(LastNamePayer))
+            if (string.IsNullOrWhiteSpace(LastNamePayer) && IsVisibleLastNamePayer)
             {
                 LastNamePayerValidateMessage = "Введите фамилию отвественного плательщика";
                 LastNamePayerValidateMessageIsVisible = true;
                 flag = false;
             }
 
-            if (string.IsNullOrWhiteSpace(MiddleNamePayer))
+            if (string.IsNullOrWhiteSpace(MiddleNamePayer) && IsVisibleMiddleNamePayer)
             {
                 MiddleNamePayerValidateMessage = "Введите отчество ответсвенного плательщика";
                 MiddleNamePayerValidateMessageIsVisible = true;

@@ -15,11 +15,6 @@ namespace OnlineApplicationMobile.Domain.Entities
         public User User { get; set; }
 
         /// <summary>
-        /// Номер лицевого счёта.
-        /// </summary>
-        public string NumberPersonalAccount { get; set; }
-
-        /// <summary>
         /// Адрес.
         /// </summary>
         public Address Address { get; set; }

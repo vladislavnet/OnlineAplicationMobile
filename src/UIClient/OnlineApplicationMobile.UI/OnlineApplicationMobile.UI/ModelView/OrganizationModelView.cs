@@ -38,5 +38,10 @@ namespace OnlineApplicationMobile.UI.ModelView
         /// Типы предоставляемых услуг организацией.
         /// </summary>
         public List<ServiceTypeModelView> ServiceTypes { get; set; }
+
+        /// <summary>
+        /// Признак того, что организация предоставляет услуги данному клиенту.
+        /// </summary>
+        public bool IsCheckNumberAccount { get; set; }
     }
 }

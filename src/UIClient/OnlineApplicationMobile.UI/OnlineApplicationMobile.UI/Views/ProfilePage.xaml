@@ -51,11 +51,6 @@
 
                         <BoxView BackgroundColor="{StaticResource Key=mainColor}" HeightRequest="1" Margin="0,0,0,10"/>
 
-                        <controls:LabelSpan HelpText="Номер лицевого счёта:"
-                                        MainText="{Binding NumberPersonalAccount}"/>
-
-                        <BoxView BackgroundColor="{StaticResource Key=mainColor}" HeightRequest="1" Margin="0,0,0,10"/>
-
                         <controls:LabelSpan HelpText="Адрес:"
                                         MainText="{Binding AddressString}"/>
 
