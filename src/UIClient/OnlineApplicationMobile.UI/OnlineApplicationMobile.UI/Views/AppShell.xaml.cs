@@ -125,11 +125,16 @@ namespace OnlineApplicationMobile.UI.Views
 
         private async void loqoutMenuItem_Clicked(object sender, EventArgs e)
         {
-            var userInfoRepository = Startup.GetService<IUserInfoRepository>();
-            userInfoRepository.ClearToken();
-            CurrentUser.SetToken(null);
+            bool result = await DisplayAlert("Подтвердить действие", "Вы уверены, что хотите выйти?", "Да", "Нет");
 
-            await Navigation.PushModalAsync(new LoginPage());
+            if (result)
+            {
+                var userInfoRepository = Startup.GetService<IUserInfoRepository>();
+                userInfoRepository.ClearToken();
+                CurrentUser.SetToken(null);
+
+                await Navigation.PushModalAsync(new LoginPage());
+            }
         }
     }
 }
