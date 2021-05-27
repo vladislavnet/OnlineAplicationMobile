@@ -38,5 +38,10 @@ namespace OnlineApplicationMobile.UI.Views
         {
             profileViewModel = new ProfileViewModel(this, NavigationGlobalObject.Navigation);
         }
+
+        protected override bool OnBackButtonPressed()
+        {
+            return true;
+        }
     }
 }

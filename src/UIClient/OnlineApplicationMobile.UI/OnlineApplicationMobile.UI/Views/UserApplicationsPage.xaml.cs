@@ -39,6 +39,9 @@ namespace OnlineApplicationMobile.UI.Views
             userApplicationsViewModel.RefreshCommand.Execute(null);
         }
 
-        
+        protected override bool OnBackButtonPressed()
+        {
+            return true;
+        }
     }
 }
