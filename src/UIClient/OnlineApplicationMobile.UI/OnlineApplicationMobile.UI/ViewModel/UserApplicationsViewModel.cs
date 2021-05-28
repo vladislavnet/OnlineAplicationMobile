@@ -8,6 +8,7 @@ using OnlineApplicationMobile.UI.Views.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -25,6 +26,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
         {
             View = view;
             View.ViewModel = this;
+
             RefreshCommand.Execute(null);
         }
 

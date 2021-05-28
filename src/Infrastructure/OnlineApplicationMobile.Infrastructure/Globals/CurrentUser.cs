@@ -62,6 +62,8 @@ namespace OnlineApplicationMobile.Infrastructure.Globals
         /// </summary>
         public static string Token { get; private set; }
 
+        public static bool IsCheckToken => !string.IsNullOrWhiteSpace(Token);
+
         /// <summary>
         /// Устанавливает информацию текущего пользоваетеля.
         /// </summary>

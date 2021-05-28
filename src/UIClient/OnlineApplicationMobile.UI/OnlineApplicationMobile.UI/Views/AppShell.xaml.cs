@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -53,78 +54,32 @@ namespace OnlineApplicationMobile.UI.Views
 
         private void profileMenuItem_Clicked(object sender, EventArgs e)
         {
-            FlyoutIsPresented = false;
-            Items[currentItemIndex] = new FlyoutItem
-            {
-                IsVisible=false,
-                Title = "Профиль",
-                Items =
-                {
-                    new Tab
-                    {
-                        Items = { new ShellContent { Content = new ProfilePage() } }
-                    }
-                }
-            };
-            CurrentItem = Items[currentItemIndex];
+            CheckoutPage("Профиль", new ProfilePage());
         }
 
         private void applicationsMenuItem_Clicked(object sender, EventArgs e)
         {
-            FlyoutIsPresented = false;
-            Items[currentItemIndex] = new FlyoutItem
-            {
-                IsVisible = false,
-                Title = "Мои заявки",
-                Items =
-                {
-                    new Tab
-                    {
-                        Items = { new ShellContent { Content = new UserApplicationsPage() } }
-                    }
-                }
-            };
-            CurrentItem = Items[currentItemIndex];
+            CheckoutPage("Мои заявки", new UserApplicationsPage());
         }
 
         private void recomendedOrganizationsMenuItem_Clicked(object sender, EventArgs e)
         {
-            FlyoutIsPresented = false;
-            Items[currentItemIndex] = new FlyoutItem
-            {
-                IsVisible = false,
-                Title = "Рекомендованные организации",
-                Items =
-                {
-                    new Tab
-                    {
-                        Items = { new ShellContent { Content = new RecomendedOrganizationsPage() } }
-                    }
-                }
-            };
-            CurrentItem = Items[currentItemIndex];
+            CheckoutPage("Рекомендованные организации", new RecomendedOrganizationsPage());
         }
 
         private void searchOrganizationsMenuItem_Clicked(object sender, EventArgs e)
         {
-            FlyoutIsPresented = false;
-            Items[currentItemIndex] = new FlyoutItem
-            {
-                IsVisible = false,
-                Title = "Поиск организации",
-                Items =
-                {
-                    new Tab
-                    {
-                        Items = { new ShellContent { Content = new SearchOrganizationsPage() } }
-                    }
-                }
-            };
-            CurrentItem = Items[currentItemIndex];
+            CheckoutPage("Поиск организации", new SearchOrganizationsPage());
         }
 
         private async void loqoutMenuItem_Clicked(object sender, EventArgs e)
         {
+            if (!CurrentUser.IsCheckToken)
+            {
+                await Navigation.PushModalAsync(new LoginPage());
+                return;
+            }
+
             bool result = await DisplayAlert("Подтвердить действие", "Вы уверены, что хотите выйти?", "Да", "Нет");
 
             if (result)
@@ -132,9 +87,41 @@ namespace OnlineApplicationMobile.UI.Views
                 var userInfoRepository = Startup.GetService<IUserInfoRepository>();
                 userInfoRepository.ClearToken();
                 CurrentUser.SetToken(null);
+                setLoginOrLoqoutMenuItemTitle();
 
                 await Navigation.PushModalAsync(new LoginPage());
             }
+        }
+
+        private void setLoginOrLoqoutMenuItemTitle()
+        {
+            if (CurrentUser.IsCheckToken)
+            {
+                loqoutMenuItem.Text = "Выйти";
+            }
+            else
+            {
+                loqoutMenuItem.Text = "Войти";
+            }
+        }
+
+        private void CheckoutPage(string title, ContentPage page)
+        {
+            FlyoutIsPresented = false;
+            Items[currentItemIndex] = new FlyoutItem
+            {
+                IsVisible = false,
+                Title = title,
+                Items =
+                {
+                    new Tab
+                    {
+                        Items = { new ShellContent { Content = page } }
+                    }
+                }
+            };
+            CurrentItem = Items[currentItemIndex];
+            setLoginOrLoqoutMenuItemTitle();
         }
     }
 }
