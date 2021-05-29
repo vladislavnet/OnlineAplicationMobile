@@ -12,7 +12,10 @@ namespace OnlineApplicationMobile.UI.ViewModel
     public class SearchOrganizationsViewModel : OrganizationsBaseViewModel
     {
         private string searchText;
-        public SearchOrganizationsViewModel(IView view, INavigation navigation) : base(view, navigation) { }
+        public SearchOrganizationsViewModel(IView view, INavigation navigation) : base(view, navigation) 
+        {
+            IsRefreshing = true;
+        }
 
         /// <summary>
         /// Строка поиска

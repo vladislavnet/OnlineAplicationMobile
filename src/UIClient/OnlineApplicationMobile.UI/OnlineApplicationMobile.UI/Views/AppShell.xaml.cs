@@ -16,8 +16,6 @@ namespace OnlineApplicationMobile.UI.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AppShell : Shell
     {
-        private readonly ProfilePage profilePage;
-        private readonly UserApplicationsPage userApplicationsPage;
         private readonly int currentItemIndex = 5;
 
         public AppShell()
@@ -29,19 +27,27 @@ namespace OnlineApplicationMobile.UI.Views
             NavigationGlobalObject.IsLoginStart = false;
             NavigationGlobalObject.IsStart = true;
 
+            NavigationGlobalObject.GoToProfilePage += profileMenuItem_Clicked;
+            NavigationGlobalObject.GoToUserApplicationsPage += applicationsMenuItem_Clicked;
+            NavigationGlobalObject.GoToRecomendedOrganizationsPage += recomendedOrganizationsMenuItem_Clicked;
+            NavigationGlobalObject.GoToSearchOrganizationsPage += searchOrganizationsMenuItem_Clicked;
+
+            NavigationGlobalObject.Dispatcher = Dispatcher;
+
             Items.Add(new FlyoutItem
             {
                 IsVisible = false,
-                Title = "Профиль",
+                Title = "Мои заявки",
                 Items =
                 {
                     new Tab
                     {
-                        Items = { new ShellContent { Content = new ProfilePage() } }
+                        Items = { new ShellContent { Content = new UserApplicationsPage() } }
                     }
                 }
             });
             CurrentItem = Items[currentItemIndex];
+            //NavigationGlobalObject.GoToProfilePage(null, null);
 
             NavigationGlobalObject.IsStart = false;
 

@@ -5,7 +5,7 @@
              xmlns:controls="clr-namespace:OnlineApplicationMobile.UI.Views.Templates;assembly=OnlineApplicationMobile.UI"
              Title="Информация по заявке">
     <ContentPage.Content>
-        <RefreshView IsRefreshing="{Binding IsRefresing}"
+        <RefreshView IsRefreshing="{Binding IsRefreshing}"
              Command="{Binding RefreshCommand}">
             <ScrollView>
                 <StackLayout Orientation="Vertical"

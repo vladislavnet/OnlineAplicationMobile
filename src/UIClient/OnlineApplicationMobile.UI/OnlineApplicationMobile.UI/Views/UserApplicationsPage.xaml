@@ -7,80 +7,75 @@
              Shell.BackgroundColor="{StaticResource Key=mainColor}"
              Shell.TabBarBackgroundColor="{StaticResource Key=mainColor}">
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding Applications}"
-                  SelectedItem="{Binding SelectedApplication}" 
-                  RowHeight="300"
-                  IsPullToRefreshEnabled="True"
-                  RefreshCommand="{Binding RefreshCommand}"
-                  IsRefreshing="{Binding IsRefreshing}"
-                  SeparatorVisibility="None">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <controls:ExtendedViewCell SelectedBackgroundColor="White">
-                        <ViewCell.View>
-                            <Frame CornerRadius="15" BorderColor="LightGray" OutlineColor="LightGray" HasShadow="True" Margin="7" Padding="0">
-                                <Frame.Effects>
-                                    <controls:ViewShadowEffect Radius="7" DistanceX="7" DistanceY="7" Color="Gray" />
-                                </Frame.Effects>
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="40"/>
-                                        <RowDefinition Height="*"/>
-                                    </Grid.RowDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+            <ListView ItemsSource="{Binding Applications}"
+                      SelectedItem="{Binding SelectedApplication}"
+                      RowHeight="300"
+                      Grid.Column="0"
+                      Grid.Row="0"
+                      IsPullToRefreshEnabled="True"
+                      RefreshCommand="{Binding RefreshCommand}"
+                      IsRefreshing="{Binding IsRefreshing}"
+                      SeparatorVisibility="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <controls:ExtendedViewCell SelectedBackgroundColor="White">
+                            <ViewCell.View>
+                                <Frame CornerRadius="15" BorderColor="LightGray" OutlineColor="LightGray" HasShadow="True" Margin="7" Padding="0">
+                                    <Frame.Effects>
+                                        <controls:ViewShadowEffect Radius="7" DistanceX="7" DistanceY="7" Color="Gray" />
+                                    </Frame.Effects>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="40"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
 
-                                    <StackLayout Grid.Row="0" Grid.Column="0" BackgroundColor="{StaticResource Key=mainColor}">
-                                        <Label Text="{Binding OrganizationName}" 
+                                        <StackLayout Grid.Row="0" Grid.Column="0" BackgroundColor="{StaticResource Key=mainColor}">
+                                            <Label Text="{Binding OrganizationName}" 
                                                HorizontalTextAlignment="Center"
                                                FontSize="17"
                                                TextColor="White"
                                                Margin="-10, 5,0,0"/>
-                                    </StackLayout>
+                                        </StackLayout>
 
-                                    <StackLayout Grid.Row="1"
+                                        <StackLayout Grid.Row="1"
                                                  Grid.Column="0"
                                                  Orientation="Vertical"
                                                  Margin="10, 0, 10, 5">
 
-                                        <controls:LabelSpan HelpText="Статус:"
+                                            <controls:LabelSpan HelpText="Статус:"
                                                             MainText="{Binding GetStatusString}"/>
 
-                                        <controls:LabelSpan HelpText="Текст обращения:"
+                                            <controls:LabelSpan HelpText="Текст обращения:"
                                                             MainText="{Binding MessageText}"/>
 
-                                        <controls:LabelSpan HelpText="Отправлена:"
+                                            <controls:LabelSpan HelpText="Отправлена:"
                                                             MainText="{Binding CreatedAt, StringFormat='{0:G}'}"/>
 
-                                        <controls:LabelSpan HelpText="Обновлена:"
+                                            <controls:LabelSpan HelpText="Обновлена:"
                                                             MainText="{Binding UpdatedAt, StringFormat='{0:G}'}"/>
-                                        
-                                    </StackLayout>
-                                </Grid>
-                                
-                                <!--<StackLayout>
-                                <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding OrganizationName}"/>
-                                </StackLayout>
 
-                                <StackLayout Orientation="Horizontal">
-                                    <Label Text="Статус: "/>
-                                    <Label Text="{Binding GetStatusString}" />
-                                </StackLayout>
+                                        </StackLayout>
+                                    </Grid>
+                                </Frame>
+                            </ViewCell.View>
+                        </controls:ExtendedViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
-                                <StackLayout Orientation="Horizontal">
-                                    <Label Text="Дата и время публикации: "/>
-                                    <Label Text="{Binding CreatedAt, StringFormat='{0:G}'}" />
-                                </StackLayout>
+            <Button Grid.Column="0" 
+                        Margin="10, 5, 10, 5" 
+                        Grid.Row="1" 
+                        Text="Добавить заявку" 
+                        Style="{StaticResource Key=buttonStyle}"
+                        Command="{Binding AddApplication}"/>
 
-                                <StackLayout Orientation="Horizontal">
-                                    <Label Text="Дата и время обновления: "/>
-                                    <Label Text="{Binding UpdatedAt, StringFormat='{0:G}'}" />
-                                </StackLayout>
-                            </StackLayout>-->
-                            </Frame>
-                        </ViewCell.View>
-                    </controls:ExtendedViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

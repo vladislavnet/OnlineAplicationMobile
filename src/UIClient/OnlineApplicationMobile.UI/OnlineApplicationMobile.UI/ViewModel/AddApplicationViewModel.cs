@@ -4,6 +4,7 @@ using OnlineApplicationMobile.HttpService.Requests;
 using OnlineApplicationMobile.Infrastructure.Globals;
 using OnlineApplicationMobile.UI.ModelView;
 using OnlineApplicationMobile.UI.ViewModel.Interfaces;
+using OnlineApplicationMobile.UI.Views;
 using OnlineApplicationMobile.UI.Views.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -97,6 +98,8 @@ namespace OnlineApplicationMobile.UI.ViewModel
                 {
                     DisplayMessage("Заявка успешно отправлена");
                     PopModalPage();
+                    PopModalPage();
+                    NavigationGlobalObject.GoToUserApplicationsPage(null, null);
                 };
 
                 Action actionError = () =>

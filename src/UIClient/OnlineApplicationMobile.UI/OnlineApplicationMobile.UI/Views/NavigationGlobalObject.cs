@@ -10,7 +10,7 @@ namespace OnlineApplicationMobile.UI.Views
         private static INavigation navigation;
         private static AppShell currentShell;
 
-        public static INavigation Navigation 
+        public static INavigation Navigation
         {
             get => navigation;
             set
@@ -21,6 +21,8 @@ namespace OnlineApplicationMobile.UI.Views
                 navigation = value;
             }
         }
+
+        public static IDispatcher Dispatcher { get; set; }
 
         public static AppShell CurrentShell
         {
@@ -36,5 +38,10 @@ namespace OnlineApplicationMobile.UI.Views
 
         public static bool IsLoginStart { get; set; } = false;
         public static bool IsStart { get; set; } = true;
+
+        public static EventHandler GoToProfilePage { get; set; }
+        public static EventHandler GoToUserApplicationsPage { get; set; }
+        public static EventHandler GoToRecomendedOrganizationsPage { get; set; }
+        public static EventHandler GoToSearchOrganizationsPage { get; set; }
     }
 }

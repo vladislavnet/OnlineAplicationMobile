@@ -9,6 +9,7 @@ using OnlineApplicationMobile.UI.Views;
 using OnlineApplicationMobile.UI.Views.Interfaces;
 using System;
 using System.Net;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -27,13 +28,11 @@ namespace OnlineApplicationMobile.UI.ViewModel
         private string telephone;
         private string addressString;
 
-        private bool isRefreshing;
-
         public ProfileViewModel(IView view, INavigation navigation) : base(navigation)
         {
             View = view;
             View.ViewModel = this;
-            Initialize();
+            IsRefreshing = true;
         }
 
         public ICommand EditProfileCommand
@@ -51,9 +50,12 @@ namespace OnlineApplicationMobile.UI.ViewModel
         {
             get => new Command(() =>
             {
-                IsRefreshing = true;
-                Initialize();
-                IsRefreshing = false;
+                Task.Run(() => 
+                {
+                    IsRefreshing = true;
+                    Initialize();
+                    IsRefreshing = false;
+                });
             });
         }
 
@@ -148,30 +150,12 @@ namespace OnlineApplicationMobile.UI.ViewModel
             }
         }
 
-        /// <summary>
-        /// Флаг обновления.
-        /// </summary>
-        public bool IsRefreshing
-        {
-            get => isRefreshing;
-            set
-            {
-                isRefreshing = value;
-                OnPropertyChanged(nameof(IsRefreshing));
-            }
-        }
-
 
         public void Initialize()
         {
             var httpService = Startup.GetService<IHttpService>();
 
-            var response = httpService.GetInfoCurrentClientJKH(BuildRequestBase());
-
-            if ((response.StatusCode == HttpStatusCode.Forbidden || response.StatusCode == HttpStatusCode.Unauthorized) && !NavigationGlobalObject.IsLoginStart && NavigationGlobalObject.IsStart)
-            {
-                NavigationGlobalObject.IsLoginStart = true;
-            }
+            var response = httpService.GetInfoCurrentClientJKH(BuildRequestBase());          
 
             Action action = () =>
             {

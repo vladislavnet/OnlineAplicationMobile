@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -32,14 +33,13 @@ namespace OnlineApplicationMobile.UI.ViewModel
         private string addComment;
         private string addCommentValidateMessage;
         private bool addCommentValidateMessageIsVisible;
-        private bool isRefresing;
 
         public ApplicationDetailViewModel(Guid applicationId, IView view, INavigation navigation) : base(navigation)
         {
             View = view;
             View.ViewModel = this;
             this.applicationId = applicationId;
-            RefreshCommand.Execute(null);
+            IsRefreshing = true;
         }
 
         /// <summary>
@@ -82,9 +82,12 @@ namespace OnlineApplicationMobile.UI.ViewModel
         {
             get => new Command(() =>
             {
-                IsRefresing = true;
-                initialization();
-                IsRefresing = false;
+                Task.Run(() =>
+                {
+                    IsRefreshing = true;
+                    initialization();
+                    IsRefreshing = false;
+                });
             });
         }
 
@@ -252,16 +255,6 @@ namespace OnlineApplicationMobile.UI.ViewModel
             {
                 addCommentValidateMessageIsVisible = value;
                 OnPropertyChanged(nameof(AddCommentValidateMessageIsVisible));
-            }
-        }
-
-        public bool IsRefresing
-        {
-            get => isRefresing;
-            set
-            {
-                isRefresing = value;
-                OnPropertyChanged(nameof(IsRefresing));
             }
         }
 

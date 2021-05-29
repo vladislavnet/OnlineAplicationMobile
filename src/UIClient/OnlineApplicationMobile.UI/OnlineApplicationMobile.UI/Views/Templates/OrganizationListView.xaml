@@ -31,13 +31,22 @@
                                             <Image  Source="Instruments.png"/>
                                         </Frame>
                                     </Grid>
-                                    <Label Grid.Row="0" 
-                                           Grid.Column="1" 
-                                           VerticalTextAlignment="Center"
-                                           Margin="5, 0, 0, 0" 
-                                           TextColor="{StaticResource Key=mainColor}"
-                                           FontAttributes="Bold" 
-                                           Text="{Binding Name}"/>
+                                    <StackLayout Orientation="Vertical"
+                                                 Grid.Row="0" 
+                                                 Grid.Column="1" 
+                                                 VerticalOptions="Center">
+                                        <Label Margin="5, 0, 0, 0" 
+                                               TextColor="{StaticResource Key=mainColor}"
+                                               FontAttributes="Bold" 
+                                               Text="{Binding Name}"/>
+
+                                        <Label Margin="5, 0, 0, 0"
+                                               TextColor="{StaticResource Key=mainColor}"
+                                               Text="Привязан лицевой счёт"
+                                               FontSize="11"
+                                               IsVisible="{Binding IsCheckNumberAccount}"/>
+                                        
+                                    </StackLayout>
 
                                 </Grid>
                             </Frame>

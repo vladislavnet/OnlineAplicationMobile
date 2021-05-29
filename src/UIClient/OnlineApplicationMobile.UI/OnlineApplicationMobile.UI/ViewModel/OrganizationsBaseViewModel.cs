@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -14,9 +15,8 @@ namespace OnlineApplicationMobile.UI.ViewModel
 {
     public abstract class OrganizationsBaseViewModel : BaseViewModel, IViewModel
     {
-        private List<OrganizationModelView> organizations;
-        private OrganizationModelView selectedOrganization;
-        private bool isRefreshing;
+        protected List<OrganizationModelView> organizations;
+        protected OrganizationModelView selectedOrganization;
         public OrganizationsBaseViewModel(IView view, INavigation navigation) : base(navigation)
         {
             View = view;
@@ -30,9 +30,12 @@ namespace OnlineApplicationMobile.UI.ViewModel
         {
             get => new Command(() =>
             {
-                IsRefreshing = true;
-                SetOrganizations();
-                IsRefreshing = false;
+                Task.Run(() => 
+                {
+                    IsRefreshing = true;
+                    SetOrganizations();
+                    IsRefreshing = false;
+                });
             });
         }
 
@@ -64,19 +67,6 @@ namespace OnlineApplicationMobile.UI.ViewModel
 
                 selectedOrganization = null;
                 OnPropertyChanged(nameof(SelectedOrganization));
-            }
-        }
-
-        /// <summary>
-        /// Флаг обновления.
-        /// </summary>
-        public bool IsRefreshing
-        {
-            get => isRefreshing;
-            set
-            {
-                isRefreshing = value;
-                OnPropertyChanged(nameof(IsRefreshing));
             }
         }
 

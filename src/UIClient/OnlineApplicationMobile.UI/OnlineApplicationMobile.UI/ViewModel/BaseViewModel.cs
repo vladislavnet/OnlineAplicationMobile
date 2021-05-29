@@ -10,12 +10,14 @@ using System.ComponentModel;
 using System.Net;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace OnlineApplicationMobile.UI.ViewModel
 {
     public abstract class BaseViewModel : INotifyPropertyChanged
     {
+        private bool isRefreshing;
         public BaseViewModel(INavigation navigation)
         {
             Navigation = navigation;
@@ -31,12 +33,27 @@ namespace OnlineApplicationMobile.UI.ViewModel
         /// </summary>
         public INavigation Navigation { get; protected set; }
 
+
+        /// <summary>
+        /// Флаг обновления.
+        /// </summary>
+        public bool IsRefreshing
+        {
+            get => isRefreshing;
+            set
+            {
+                isRefreshing = value;
+                OnPropertyChanged(nameof(IsRefreshing));
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
+
 
         public async void PopModalPage()
         {
@@ -76,8 +93,12 @@ namespace OnlineApplicationMobile.UI.ViewModel
                 case HttpStatusCode.Forbidden:
                     if (!NavigationGlobalObject.IsLoginStart)
                     {
-                        DisplayMessage("Авторизуруйтесь");
-                        PushModalPage(new LoginPage());
+                        NavigationGlobalObject.Dispatcher.BeginInvokeOnMainThread(() =>
+                        {
+                            IsRefreshing = false;
+                            DisplayMessage("Авторизуруйтесь");
+                            PushModalPage(new LoginPage());
+                        });
                     }
                     break;
                 case HttpStatusCode.BadRequest:
@@ -85,17 +106,26 @@ namespace OnlineApplicationMobile.UI.ViewModel
                 case HttpStatusCode.InternalServerError:
                 case HttpStatusCode.MethodNotAllowed:
                 case HttpStatusCode.NonAuthoritativeInformation:
-                    actionError.Invoke();
+                    NavigationGlobalObject.Dispatcher.BeginInvokeOnMainThread(() =>
+                    {
+                        actionError.Invoke();
+                    });
                     break;
                 case HttpStatusCode.Created:
                 case HttpStatusCode.NoContent:
                 case HttpStatusCode.Accepted:
                 case HttpStatusCode.OK:
-                    action.Invoke();
+                    NavigationGlobalObject.Dispatcher.BeginInvokeOnMainThread(() =>
+                    {
+                        action.Invoke();
+                    });
                     break;
 
                 default:
-                    DisplayMessage("Произошла ошибка на сервере");
+                    NavigationGlobalObject.Dispatcher.BeginInvokeOnMainThread(() =>
+                    {
+                        DisplayMessage("Произошла ошибка на сервере");
+                    });
                     break;
             }                  
         }

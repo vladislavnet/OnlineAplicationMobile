@@ -14,13 +14,13 @@ using Xamarin.Forms.Xaml;
 namespace OnlineApplicationMobile.UI.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class RecomendedOrganizationsPage : ContentPage, IView
+    public partial class OrganizationSelectedAddApplicationPage : ContentPage, IView
     {
-        private readonly RecomendedOrganizationsViewModel recomendedOrganizationsViewModel;
-        public RecomendedOrganizationsPage()
+        private readonly OrganizationSelectedAddApplicationViewModel organizationSelectedAddApplicationViewModel;
+        public OrganizationSelectedAddApplicationPage()
         {
             InitializeComponent();
-            recomendedOrganizationsViewModel = new RecomendedOrganizationsViewModel(this, NavigationGlobalObject.Navigation);
+            organizationSelectedAddApplicationViewModel = new OrganizationSelectedAddApplicationViewModel(this, NavigationGlobalObject.Navigation);
         }
 
         public IViewModel ViewModel
@@ -28,18 +28,10 @@ namespace OnlineApplicationMobile.UI.Views
             get => BindingContext as IViewModel;
             set => BindingContext = value;
         }
-        public bool SetAutrozation { set => throw new NotImplementedException(); }
 
         public async void DisplayAlertMessage(string message)
         {
             await DisplayAlert(AlertMessageTemplate.AlertTemplate, message, AlertMessageTemplate.OkTemplate);
         }
-
-        protected override bool OnBackButtonPressed()
-        {
-            return true;
-        }
-
-        
     }
 }

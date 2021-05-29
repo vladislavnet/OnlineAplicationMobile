@@ -8,6 +8,7 @@ using OnlineApplicationMobile.UI.Views.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -21,12 +22,10 @@ namespace OnlineApplicationMobile.UI.ViewModel
     {
         private List<ApplicationShortModelView> applications;
         private ApplicationShortModelView selectedApplication;
-        private bool isRefreshing;
         public UserApplicationsViewModel(IView view, INavigation navigation) : base(navigation)
         {
             View = view;
             View.ViewModel = this;
-
             RefreshCommand.Execute(null);
         }
 
@@ -37,9 +36,20 @@ namespace OnlineApplicationMobile.UI.ViewModel
         {
             get => new Command(() =>
             {
-                IsRefreshing = true;
-                initialize();
-                IsRefreshing = false;
+                Task.Run(() => 
+                {
+                    IsRefreshing = true;
+                    initialize();
+                    IsRefreshing = false;
+                });          
+            });
+        }
+
+        public ICommand AddApplication
+        {
+            get => new Command(() =>
+            {
+                PushModalPage(new OrganizationSelectedAddApplicationPage());
             });
         }
 
@@ -71,24 +81,16 @@ namespace OnlineApplicationMobile.UI.ViewModel
             }
         }
 
-        /// <summary>
-        /// Флаг обновления.
-        /// </summary>
-        public bool IsRefreshing
-        {
-            get => isRefreshing;
-            set
-            {
-                isRefreshing = value;
-                OnPropertyChanged(nameof(IsRefreshing));
-            }
-        }
-
         private void initialize()
         {
             var httpService = Startup.GetService<IHttpService>();
 
             var response = httpService.GetApplicationsCurrentClientJKH(BuildRequestBase());
+
+            //if ((response.StatusCode == HttpStatusCode.Forbidden || response.StatusCode == HttpStatusCode.Unauthorized) && !NavigationGlobalObject.IsLoginStart && NavigationGlobalObject.IsStart)
+            //{
+            //    NavigationGlobalObject.IsLoginStart = true;
+            //}
 
             Action actionError = () =>
             {

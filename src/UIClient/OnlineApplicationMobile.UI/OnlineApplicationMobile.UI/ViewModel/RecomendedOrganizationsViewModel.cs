@@ -16,6 +16,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
     {
         public RecomendedOrganizationsViewModel(IView view, INavigation navigation) : base(view, navigation) 
         {
+            RefreshCommand.Execute(null);
         }
         
         /// <inheritdoc />
