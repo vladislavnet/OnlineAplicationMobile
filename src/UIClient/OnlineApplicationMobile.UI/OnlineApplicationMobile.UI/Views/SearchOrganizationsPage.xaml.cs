@@ -36,6 +36,7 @@ namespace OnlineApplicationMobile.UI.Views
 
         protected override bool OnBackButtonPressed()
         {
+            NavigationGlobalObject.GoToUserApplicationsPage(null, null);
             return true;
         }
     }

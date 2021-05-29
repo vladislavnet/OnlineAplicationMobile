@@ -36,9 +36,6 @@ namespace OnlineApplicationMobile.UI.Views
             }
         }
 
-        public static bool IsLoginStart { get; set; } = false;
-        public static bool IsStart { get; set; } = true;
-
         public static EventHandler GoToProfilePage { get; set; }
         public static EventHandler GoToUserApplicationsPage { get; set; }
         public static EventHandler GoToRecomendedOrganizationsPage { get; set; }

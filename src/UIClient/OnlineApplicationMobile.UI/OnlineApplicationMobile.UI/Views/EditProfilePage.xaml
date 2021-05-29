@@ -85,7 +85,7 @@
 
                 <Label Margin="10,0,10,0" Text="{Binding RegionValidateMessage}" IsVisible="{Binding RegionValidateMessageIsVisible}" TextColor="{StaticResource Key=validateMessageColor}"/>
 
-                <ListView Margin="105,-60,10,0"
+                <ListView Margin="105, 0, 10,0"
                           x:Name="searchRegionListView"
                           Style="{StaticResource Key=addressPromptListViewStyle}"
                           ItemsSource="{Binding SearchRegionCollection}" 
@@ -106,7 +106,7 @@
 
 
 
-                <Grid Margin="0" Padding="0">
+                <Grid Margin="0, 10, 0, 0" Padding="0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="100"/>
                         <ColumnDefinition Width="*"/>
@@ -137,7 +137,7 @@
                        IsVisible="{Binding DistrictValidateMessageIsVisible}" 
                        TextColor="{StaticResource Key=validateMessageColor}"/>
                 
-                <ListView Margin="100,-60,0,0"
+                <ListView Margin="100, 0, 10, 0"
                           x:Name="searchDistrictListView"
                           Style="{StaticResource Key=addressPromptListViewStyle}"
                           ItemsSource="{Binding SearchDistrictCollection}" 
@@ -159,7 +159,7 @@
 
 
 
-                <Grid Margin="0" Padding="0">
+                <Grid Margin="0, 10, 0, 0" Padding="0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="100"/>
                         <ColumnDefinition Width="*"/>
@@ -190,7 +190,7 @@
                        IsVisible="{Binding LocalityValidateMessageIsVisible}"
                        TextColor="{StaticResource Key=validateMessageColor}"/>
 
-                <ListView Margin="100,-60,0,0"
+                <ListView Margin="100, 0, 10, 0"
                           x:Name="searchLocalityListView"
                           Style="{StaticResource Key=addressPromptListViewStyle}"
                           ItemsSource="{Binding SearchLocalityCollection}" 
@@ -209,7 +209,7 @@
                     </ListView.ItemTemplate>
                 </ListView>
 
-                <Grid Margin="0" Padding="0">
+                <Grid Margin="0, 10, 0, 0" Padding="0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="100"/>
                         <ColumnDefinition Width="*"/>
@@ -240,7 +240,7 @@
                        IsVisible="{Binding StreetValidateMessageIsVisible}"
                        TextColor="{StaticResource Key=validateMessageColor}"/>
 
-                <ListView Margin="100,-60,0,0"
+                <ListView Margin="100, 0, 10, 0"
                           x:Name="searchStreetListView"
                           Style="{StaticResource Key=addressPromptListViewStyle}"
                           ItemsSource="{Binding SearchStreetCollection}" 
@@ -263,7 +263,7 @@
 
                 <controls:EntryOutlined
                     Placeholder="Номер дома"
-                    Margin="10, -15, 10, 0"
+                    Margin="10, 20, 10, 0"
                     Style="{StaticResource Key=borderlessEntryStyle}"
                     Text="{Binding HouseNumber}"
                     ValidateMessage="{Binding HouseNumberValidateMessage}"

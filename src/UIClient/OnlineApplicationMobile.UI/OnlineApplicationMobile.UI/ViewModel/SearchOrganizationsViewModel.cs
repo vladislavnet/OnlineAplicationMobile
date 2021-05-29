@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace OnlineApplicationMobile.UI.ViewModel
@@ -12,6 +13,8 @@ namespace OnlineApplicationMobile.UI.ViewModel
     public class SearchOrganizationsViewModel : OrganizationsBaseViewModel
     {
         private string searchText;
+        private bool isRefreshingListView;
+
         public SearchOrganizationsViewModel(IView view, INavigation navigation) : base(view, navigation) 
         {
             IsRefreshing = true;
@@ -28,6 +31,24 @@ namespace OnlineApplicationMobile.UI.ViewModel
                 searchText = value;
                 OnPropertyChanged(nameof(SearchText));
             }
+        }
+
+        public bool IsRefreshingListView
+        {
+            get => isRefreshingListView;
+            set
+            {
+                isRefreshingListView = value;
+                OnPropertyChanged(nameof(IsRefreshingListView));
+            }
+        }
+
+        public ICommand RefreshingListViewCommand
+        {
+            get => new Command(() =>
+            {
+                IsRefreshingListView = false;
+            });
         }
 
         /// <inheritdoc />

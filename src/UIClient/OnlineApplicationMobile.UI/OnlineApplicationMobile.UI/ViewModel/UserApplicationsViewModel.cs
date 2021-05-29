@@ -87,11 +87,6 @@ namespace OnlineApplicationMobile.UI.ViewModel
 
             var response = httpService.GetApplicationsCurrentClientJKH(BuildRequestBase());
 
-            //if ((response.StatusCode == HttpStatusCode.Forbidden || response.StatusCode == HttpStatusCode.Unauthorized) && !NavigationGlobalObject.IsLoginStart && NavigationGlobalObject.IsStart)
-            //{
-            //    NavigationGlobalObject.IsLoginStart = true;
-            //}
-
             Action actionError = () =>
             {
                 DisplayMessage(response.Message);

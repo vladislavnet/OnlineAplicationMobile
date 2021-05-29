@@ -38,9 +38,9 @@
                                                Margin="10, 15, 10, 0"/>
 
                     <controls:OrganizationListView ItemsSource="{Binding Organizations}"
-                                       SelectedItem="{Binding SelectedOrganization}" 
-                                       RefreshCommand="{Binding RefreshCommand}"
-                                       IsRefreshing="{Binding IsRefreshing}"/>
+                                                   SelectedItem="{Binding SelectedOrganization}" 
+                                                   IsRefreshing="{Binding IsRefreshingListView}" 
+                                                   RefreshCommand="{Binding RefreshingListViewCommand}"/>
                 </StackLayout>
             </ScrollView>
         </RefreshView>

@@ -91,15 +91,12 @@ namespace OnlineApplicationMobile.UI.ViewModel
             {
                 case HttpStatusCode.Unauthorized:
                 case HttpStatusCode.Forbidden:
-                    if (!NavigationGlobalObject.IsLoginStart)
+                    NavigationGlobalObject.Dispatcher.BeginInvokeOnMainThread(() =>
                     {
-                        NavigationGlobalObject.Dispatcher.BeginInvokeOnMainThread(() =>
-                        {
-                            IsRefreshing = false;
-                            DisplayMessage("Авторизуруйтесь");
-                            PushModalPage(new LoginPage());
-                        });
-                    }
+                        IsRefreshing = false;
+                        DisplayMessage("Авторизуруйтесь");
+                        PushModalPage(new LoginPage());
+                    });
                     break;
                 case HttpStatusCode.BadRequest:
                 case HttpStatusCode.NotFound:

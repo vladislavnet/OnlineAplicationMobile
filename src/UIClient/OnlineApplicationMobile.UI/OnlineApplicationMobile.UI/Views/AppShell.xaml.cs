@@ -24,8 +24,6 @@ namespace OnlineApplicationMobile.UI.Views
 
             NavigationGlobalObject.Navigation = Navigation;
             NavigationGlobalObject.CurrentShell = this;
-            NavigationGlobalObject.IsLoginStart = false;
-            NavigationGlobalObject.IsStart = true;
 
             NavigationGlobalObject.GoToProfilePage += profileMenuItem_Clicked;
             NavigationGlobalObject.GoToUserApplicationsPage += applicationsMenuItem_Clicked;
@@ -47,15 +45,6 @@ namespace OnlineApplicationMobile.UI.Views
                 }
             });
             CurrentItem = Items[currentItemIndex];
-            //NavigationGlobalObject.GoToProfilePage(null, null);
-
-            NavigationGlobalObject.IsStart = false;
-
-            if (NavigationGlobalObject.IsLoginStart)
-            {
-                Navigation.PushModalAsync(new LoginPage());
-                NavigationGlobalObject.IsLoginStart = false;
-            }
         }
 
         private void profileMenuItem_Clicked(object sender, EventArgs e)
@@ -70,7 +59,7 @@ namespace OnlineApplicationMobile.UI.Views
 
         private void recomendedOrganizationsMenuItem_Clicked(object sender, EventArgs e)
         {
-            CheckoutPage("Рекомендованные организации", new RecomendedOrganizationsPage());
+            CheckoutPage("организации с подтверждённым лицевым счётом", new RecomendedOrganizationsPage());
         }
 
         private void searchOrganizationsMenuItem_Clicked(object sender, EventArgs e)
