@@ -25,14 +25,18 @@ namespace OnlineApplicationMobile.UI.ViewModel
         private string messageText;
         private OrganizationModelView organization;
         private OrganizationNumberAccountModelView numberAccount;
-        private DateTime createdAt;
-        private DateTime? updatedAt;
+        private string createdAt;
+        private string updatedAt;
         private List<ServiceTypeModelView> serviceTypes;
         private List<CommentApplicationModelView> comments;
         private List<HistoryApplicationModelView> historyApplication;
         private string addComment;
         private string addCommentValidateMessage;
         private bool addCommentValidateMessageIsVisible;
+
+        private bool isVisibleServiceTypes;
+        private bool isVisibleComments;
+
 
         public ApplicationDetailViewModel(Guid applicationId, IView view, INavigation navigation) : base(navigation)
         {
@@ -76,6 +80,39 @@ namespace OnlineApplicationMobile.UI.ViewModel
         }
 
         /// <summary>
+        /// Команда для добавления комментария.
+        /// </summary>
+        public ICommand RevokeApplicationCommand
+        {
+            get => new Command(() =>
+            {
+                if (DisplayQuestionMessage("Вы действительно хотите отозвать заявку?").Result)
+                {
+                    var httpService = Startup.GetService<IHttpService>();
+
+                    var response = httpService.PutRevokeApplication(new PutRevokeApplicationRequest
+                    {
+                        Token = GetUserToken(),
+                        Id = applicationId
+                    });
+
+                    Action action = () =>
+                    {
+                        PopModalPage();
+                        NavigationGlobalObject.GoToUserApplicationsPage(null, null);
+                    };
+
+                    Action actionError = () =>
+                    {
+                        DisplayMessage(response.Message);
+                    };
+
+                    ToNextAction(response.StatusCode, action, actionError);
+                }
+            });
+        }
+
+        /// <summary>
         /// Команда для Обновления раздела.
         /// </summary>
         public ICommand RefreshCommand
@@ -88,6 +125,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
                     initialization();
                     IsRefreshing = false;
                 });
+
             });
         }
 
@@ -157,7 +195,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
         /// <summary>
         /// Дата создания заявки.
         /// </summary>
-        public DateTime CreatedAt
+        public string CreatedAt
         {
             get => createdAt;
             set
@@ -170,7 +208,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
         /// <summary>
         /// Дата обновления заявки.
         /// </summary>
-        public DateTime? UpdatedAt
+        public string UpdatedAt
         {
             get => updatedAt;
             set
@@ -259,6 +297,32 @@ namespace OnlineApplicationMobile.UI.ViewModel
         }
 
         /// <summary>
+        /// Флаг видимости вида услуг.
+        /// </summary>
+        public bool IsVisibleServiceTypes
+        {
+            get => isVisibleServiceTypes;
+            set
+            {
+                isVisibleServiceTypes = value;
+                OnPropertyChanged(nameof(IsVisibleServiceTypes));
+            }
+        }
+
+        /// <summary>
+        /// Флаг видимости списка комментариев.
+        /// </summary>
+        public bool IsVisibleComments
+        {
+            get => isVisibleComments;
+            set
+            {
+                isVisibleComments = value;
+                OnPropertyChanged(nameof(IsVisibleComments));
+            }
+        }
+
+        /// <summary>
         /// Инициализация данных.
         /// </summary>
         private void initialization()
@@ -275,6 +339,9 @@ namespace OnlineApplicationMobile.UI.ViewModel
             Action action = () => 
             {
                 mapField(response);
+
+                IsVisibleServiceTypes = ServiceTypes?.Any() ?? false;
+                IsVisibleComments = Comments?.Any() ?? false;
             };
 
             Action actionError = () =>
@@ -291,11 +358,11 @@ namespace OnlineApplicationMobile.UI.ViewModel
             MessageText = response.MessageText;
             Organization = mapOrganization(response.Organization);
             NumberAccount = mapNumberAccount(response.OrganizationNumberAccount);
-            CreatedAt = response.CreatedAt;
+            CreatedAt = response.CreatedAt.ToString("G");
             HistoryApplication = HistoryApplicationModelView.mapHistoryApplication(response.HistoryApplication).ToList();
-            UpdatedAt = HistoryApplicationModelView.GetUpdatedAt(HistoryApplication);
-            ServiceTypes = response.ServiceTypes.Select(x => MapServiceType(x)).ToList();
-            Comments = response.Comments.Select(x => mapComment(x)).OrderByDescending(x => x.CreatedAt).ToList();
+            UpdatedAt = HistoryApplicationModelView.GetUpdatedAt(HistoryApplication)?.ToString("G");
+            ServiceTypes = response.ServiceTypes?.Select(x => MapServiceType(x)).ToList();
+            Comments = response.Comments?.Select(x => mapComment(x)).OrderByDescending(x => x.CreatedAt).ToList();
         }
 
         private OrganizationModelView mapOrganization(OrganizationShortNotByServiceTypesDto organization)

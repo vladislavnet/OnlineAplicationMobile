@@ -17,29 +17,42 @@
                                  Orientation="Vertical"
                                  Margin="10, 20, 10, 0">
 
-                    <Label Text="Инофрмация об организации" Margin="0, 20, 0, 0" Style="{StaticResource Key=titlePageLabelStyle}"/>
+                    <Label Text="Информация об организации" 
+                           Margin="0, 20, 0, 0" 
+                           Style="{StaticResource Key=titlePageLabelStyle}"/>
 
                     <controls:LabelSpan HelpText="Наименование:"
                                         MainText="{Binding Organization.Name}"/>
 
-                    <BoxView BackgroundColor="{StaticResource Key=mainColor}" HeightRequest="1" Margin="0,0,0,10"/>
+                    <BoxView BackgroundColor="{StaticResource Key=mainColor}" 
+                             HeightRequest="1"
+                             Margin="0,0,0,10"/>
 
                     <controls:LabelSpan HelpText="Описание организации:"
                                         MainText="{Binding Organization.Description}"/>
 
-                    <BoxView BackgroundColor="{StaticResource Key=mainColor}" HeightRequest="1" Margin="0,0,0,10"/>
+                    <BoxView BackgroundColor="{StaticResource Key=mainColor}" 
+                             HeightRequest="1"
+                             Margin="0,0,0,10"/>
 
                     <controls:LabelSpan HelpText="Email:"
                                         MainText="{Binding Organization.Email}"/>
 
-                    <BoxView BackgroundColor="{StaticResource Key=mainColor}" HeightRequest="1" Margin="0,0,0,10"/>
+                    <BoxView BackgroundColor="{StaticResource Key=mainColor}"
+                             HeightRequest="1"
+                             Margin="0,0,0,10"/>
 
                     <controls:LabelSpan HelpText="Телефон:"
                                         MainText="{Binding Organization.Telephone}"/>
 
-                    <BoxView BackgroundColor="{StaticResource Key=mainColor}" HeightRequest="1" Margin="0,0,0,10"/>
+                    <BoxView BackgroundColor="{StaticResource Key=mainColor}"
+                             HeightRequest="1" 
+                             Margin="0,0,0,10"/>
 
-                    <Label Margin="0" Text="Типы услуг:" FontAttributes="Bold" FontSize="17" TextColor="{StaticResource Key=mainColor}"/>
+                    <Label Margin="0" Text="Типы услуг:"
+                           FontAttributes="Bold"
+                           FontSize="17" 
+                           TextColor="{StaticResource Key=mainColor}"/>
 
                     <controls:ServiceTypesInfoListView ItemsSource="{Binding Organization.ServiceTypes}"/>
 

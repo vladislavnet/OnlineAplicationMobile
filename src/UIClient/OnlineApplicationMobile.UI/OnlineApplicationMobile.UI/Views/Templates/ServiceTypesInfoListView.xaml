@@ -7,7 +7,7 @@
   <ContentView.Content>
         <ListView ItemsSource="{Binding ItemsSource, Source={x:Reference this},Mode=TwoWay}"
                   SelectionMode="None" 
-                  RowHeight="45"
+                  RowHeight="60"
                   SeparatorVisibility="None">
             <ListView.ItemTemplate>
                 <DataTemplate>

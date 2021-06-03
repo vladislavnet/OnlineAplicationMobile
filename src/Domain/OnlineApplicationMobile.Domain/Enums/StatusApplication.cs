@@ -13,6 +13,8 @@ namespace OnlineApplicationMobile.Domain.Enums
         Accept = 2,
         Complete = 3,
         Cancel = 4,
+        Revoke = 5,
+        Refuse = 6,
         Undefined = 99,
     }
 }

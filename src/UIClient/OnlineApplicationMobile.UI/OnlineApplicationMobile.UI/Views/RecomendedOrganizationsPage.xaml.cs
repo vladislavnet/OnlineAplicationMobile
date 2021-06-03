@@ -41,6 +41,9 @@ namespace OnlineApplicationMobile.UI.Views
             return true;
         }
 
-        
+        public async Task<bool> DisplayQuestionMessage(string title, string question, string accept, string cancel)
+        {
+            return await DisplayAlert(title, question, accept, cancel);
+        }
     }
 }

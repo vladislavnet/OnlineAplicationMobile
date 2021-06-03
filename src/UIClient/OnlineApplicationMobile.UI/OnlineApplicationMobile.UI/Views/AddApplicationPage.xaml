@@ -17,7 +17,7 @@
                                  Grid.Row="0"
                                  Orientation="Vertical">
 
-                    <Label Text="Редактировать профиль" Margin="0, 20, 0, 0" Style="{StaticResource Key=titlePageLabelStyle}"/>
+                    <Label Text="Добавить заявку" Margin="0, 20, 0, 0" Style="{StaticResource Key=titlePageLabelStyle}"/>
 
                     <controls:EditorOutline Margin="10, 20, 10, 0"
                                             HeightEditor="200"
@@ -71,6 +71,7 @@
                               RowHeight="45"
                               IsPullToRefreshEnabled="True"
                               SeparatorVisibility="None">
+                        
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <controls:ExtendedViewCell SelectedBackgroundColor="White">

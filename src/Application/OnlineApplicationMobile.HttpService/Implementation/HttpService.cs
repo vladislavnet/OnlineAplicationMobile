@@ -97,5 +97,11 @@ namespace OnlineApplicationMobile.HttpService.Implementation
         {
             return  _userHttpService.PutInfoCurrentClientJKH(request);
         }
+
+        /// <inheritdoc />
+        public ResponseBase PutRevokeApplication(PutRevokeApplicationRequest request)
+        {
+            return _applicationHttpService.PutRevokeApplication(request);
+        }
     }
 }

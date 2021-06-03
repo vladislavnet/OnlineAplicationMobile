@@ -39,24 +39,40 @@
                     <BoxView BackgroundColor="{StaticResource Key=mainColor}" HeightRequest="1" Margin="0,0,0,10"/>
 
                     <controls:LabelSpan HelpText="Отправлена:"
-                                        MainText="{Binding CreatedAt, StringFormat='{0:G}'}"/>
+                                        MainText="{Binding CreatedAt}"/>
 
                     <BoxView BackgroundColor="{StaticResource Key=mainColor}" HeightRequest="1" Margin="0,0,0,10"/>
 
                     <controls:LabelSpan HelpText="Обновлена:"
-                                        MainText="{Binding UpdatedAt, StringFormat='{0:G}'}"/>
+                                        MainText="{Binding UpdatedAt}"/>
 
                     <BoxView BackgroundColor="{StaticResource Key=mainColor}" HeightRequest="1" Margin="0,0,0,10"/>
 
                     
-                    <Label Margin="0" Text="Типы услуг:" FontAttributes="Bold" FontSize="17" TextColor="{StaticResource Key=mainColor}"/>
-                    <controls:ServiceTypesInfoListView ItemsSource="{Binding ServiceTypes}"/>
+                    <Label Margin="0" 
+                           Text="Типы услуг:"
+                           FontAttributes="Bold" 
+                           FontSize="17" 
+                           TextColor="{StaticResource Key=mainColor}"/>
+                    
+                    <controls:ServiceTypesInfoListView ItemsSource="{Binding ServiceTypes}"
+                                                       IsVisible="{Binding IsVisibleServiceTypes}"/>
+
+                    <Button Text="Отозвать" 
+                            Command="{Binding ViewHistoryApplicationCommand}"
+                            Style="{StaticResource Key=buttonStyle}"/>
 
                     <Button Text="История заявки" 
                             Command="{Binding ViewHistoryApplicationCommand}"
                             Style="{StaticResource Key=buttonStyle}"/>
 
-                    <Label Margin="0, 10, 0, 10" Text="Комментарии:" FontAttributes="Bold" FontSize="17" TextColor="{StaticResource Key=mainColor}"/>
+                    <Label Margin="0, 10, 0, 10" 
+                           Text="Комментарии:" 
+                           FontAttributes="Bold" 
+                           FontSize="17" 
+                           TextColor="{StaticResource Key=mainColor}"/>
+
+
                     <controls:EditorOutline Placeholder="Введите комментарий"
                                             Style="{StaticResource Key=borderlessEditorStyle}"
                                             Text="{Binding AddComment}"
@@ -69,7 +85,8 @@
 
                     <ListView ItemsSource="{Binding Comments}"
                               SeparatorVisibility="None"
-                              RowHeight="150">
+                              RowHeight="150"
+                              IsVisible="{Binding IsVisibleComments}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <controls:ExtendedViewCell SelectedBackgroundColor="White">

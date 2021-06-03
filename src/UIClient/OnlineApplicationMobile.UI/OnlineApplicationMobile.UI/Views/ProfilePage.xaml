@@ -24,37 +24,51 @@
                         <controls:LabelSpan HelpText="Email:"
                                         MainText="{Binding Email}"/>
 
-                        <BoxView BackgroundColor="{StaticResource Key=mainColor}" HeightRequest="1" Margin="0,0,0,10"/>
+                        <BoxView BackgroundColor="{StaticResource Key=mainColor}"
+                                 HeightRequest="1"
+                                 Margin="0,0,0,10"/>
 
                         <controls:LabelSpan HelpText="Фамилия:"
                                         MainText="{Binding LastName}"/>
 
-                        <BoxView BackgroundColor="{StaticResource Key=mainColor}" HeightRequest="1" Margin="0,0,0,10"/>
+                        <BoxView BackgroundColor="{StaticResource Key=mainColor}"
+                                 HeightRequest="1"
+                                 Margin="0,0,0,10"/>
 
                         <controls:LabelSpan HelpText="Имя:"
-                                        MainText="{Binding FirstName}"/>
+                                            MainText="{Binding FirstName}"/>
 
-                        <BoxView BackgroundColor="{StaticResource Key=mainColor}" HeightRequest="1" Margin="0,0,0,10"/>
+                        <BoxView BackgroundColor="{StaticResource Key=mainColor}"
+                                 HeightRequest="1"
+                                 Margin="0,0,0,10"/>
 
                         <controls:LabelSpan HelpText="Отчество:"
-                                        MainText="{Binding MiddleName}"/>
+                                            MainText="{Binding MiddleName}"/>
 
-                        <BoxView BackgroundColor="{StaticResource Key=mainColor}" HeightRequest="1" Margin="0,0,0,10"/>
+                        <BoxView BackgroundColor="{StaticResource Key=mainColor}"
+                                 HeightRequest="1"
+                                 Margin="0,0,0,10"/>
 
                         <controls:LabelSpan HelpText="Дата рождения:"
-                                        MainText="{Binding BirthDate}"/>
+                                            MainText="{Binding BirthDate}"/>
 
-                        <BoxView BackgroundColor="{StaticResource Key=mainColor}" HeightRequest="1" Margin="0,0,0,10"/>
+                        <BoxView BackgroundColor="{StaticResource Key=mainColor}"
+                                 HeightRequest="1"
+                                 Margin="0,0,0,10"/>
 
                         <controls:LabelSpan HelpText="Телефон:"
-                                        MainText="{Binding Telephone}"/>
+                                            MainText="{Binding Telephone}"/>
 
-                        <BoxView BackgroundColor="{StaticResource Key=mainColor}" HeightRequest="1" Margin="0,0,0,10"/>
+                        <BoxView BackgroundColor="{StaticResource Key=mainColor}"
+                                 HeightRequest="1"
+                                 Margin="0,0,0,10"/>
 
                         <controls:LabelSpan HelpText="Адрес:"
-                                        MainText="{Binding AddressString}"/>
+                                            MainText="{Binding AddressString}"/>
 
-                        <BoxView BackgroundColor="{StaticResource Key=mainColor}" HeightRequest="1" Margin="0,0,0,10"/>
+                        <BoxView BackgroundColor="{StaticResource Key=mainColor}" 
+                                 HeightRequest="1" 
+                                 Margin="0,0,0,10"/>
 
 
                     </StackLayout>

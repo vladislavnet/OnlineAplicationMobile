@@ -19,5 +19,6 @@ namespace OnlineApplicationMobile.HttpService.Templates
         public static string PostCommentApplicationUrl = BaseUrl + "api/v1/application/comment/";
         public static string GetOrganizationsByUserUrl = BaseUrl + "api/v1/client-jkh/organizations/";
         public static string GetSearchGlobalOrganizationsUrl = BaseUrl + "api/v1/organization/search/?searchText={0}";
+        public static string PutRevokeApplicationUrl = BaseUrl + "api/v1/client-jkh/revoke-application/{0}/";
     }
 }

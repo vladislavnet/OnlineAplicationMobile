@@ -16,6 +16,10 @@ namespace OnlineApplicationMobile.Infrastructure.Helpers
                     return StatusApplication.Complete;
                 case 4:
                     return StatusApplication.Cancel;
+                case 5:
+                    return StatusApplication.Revoke;
+                case 6:
+                    return StatusApplication.Refuse;
 
                 default:
                     return StatusApplication.Undefined;
@@ -29,11 +33,15 @@ namespace OnlineApplicationMobile.Infrastructure.Helpers
                 case StatusApplication.Create:
                     return "Создана";
                 case StatusApplication.Accept:
-                    return "Принята";
+                    return "В работе";
                 case StatusApplication.Complete:
                     return "Выполнена";
                 case StatusApplication.Cancel:
                     return "Отменена";
+                case StatusApplication.Revoke:
+                    return "Отозвана";
+                case StatusApplication.Refuse:
+                    return "Отказано";
 
                 default:
                     return "Неизвестно";

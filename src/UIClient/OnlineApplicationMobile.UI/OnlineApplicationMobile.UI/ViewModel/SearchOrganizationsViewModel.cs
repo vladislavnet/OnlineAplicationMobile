@@ -64,7 +64,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
 
             Action action = () =>
             {
-                Organizations = response.Organizations.Select(x => MapOrganization(x)).ToList();
+                Organizations = response.Organizations.Select(x => MapOrganization(x)).OrderByDescending(x => x.IsCheckNumberAccount).ToList();
             };
 
             Action actionError = () =>

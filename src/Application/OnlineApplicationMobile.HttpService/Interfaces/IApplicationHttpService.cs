@@ -33,5 +33,13 @@ namespace OnlineApplicationMobile.HttpService.Interfaces
         /// <param name="request">Запрос.</param>
         /// <returns>Ответ.</returns>
         ResponseBase PostApplication(PostApplicationRequest request);
+
+
+        /// <summary>
+        /// Отозывание заявки.
+        /// </summary>
+        /// <param name="request">Запрос.</param>
+        /// <returns>Ответ.</returns>
+        ResponseBase PutRevokeApplication(PutRevokeApplicationRequest request);
     }
 }

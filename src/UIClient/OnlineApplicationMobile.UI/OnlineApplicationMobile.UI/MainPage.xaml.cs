@@ -29,5 +29,10 @@ namespace OnlineApplicationMobile.UI
         {
             await DisplayAlert(AlertMessageTemplate.AlertTemplate, message, AlertMessageTemplate.OkTemplate);
         }
+
+        public async Task<bool> DisplayQuestionMessage(string title, string question, string accept, string cancel)
+        {
+            return await DisplayAlert(title, question, accept, cancel);
+        }
     }
 }

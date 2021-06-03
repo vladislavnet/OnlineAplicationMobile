@@ -80,10 +80,6 @@ namespace OnlineApplicationMobile.UI.ViewModel
             return new NavigationPage(page);
         }
 
-        public async void  GoToUserApplicationPage()
-        {
-            
-        }
 
         public void ToNextAction(HttpStatusCode httpStatusCode, Action action, Action actionError)
         {
@@ -130,6 +126,11 @@ namespace OnlineApplicationMobile.UI.ViewModel
         public void DisplayMessage(string message)
         {
             View.DisplayAlertMessage(message);
+        }
+
+        public async Task<bool> DisplayQuestionMessage(string message)
+        {
+            return await View.DisplayQuestionMessage("Подтвердить действие", message, "Да", "Нет");
         }
 
         public RequestBase BuildRequestBase()
