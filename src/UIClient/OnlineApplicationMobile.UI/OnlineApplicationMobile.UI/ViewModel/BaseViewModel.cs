@@ -90,7 +90,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
                     NavigationGlobalObject.Dispatcher.BeginInvokeOnMainThread(() =>
                     {
                         IsRefreshing = false;
-                        DisplayMessage("Авторизуруйтесь");
+                        DisplayMessage("Авторизируйтесь");
                         PushModalPage(new LoginPage());
                     });
                     break;
@@ -128,9 +128,9 @@ namespace OnlineApplicationMobile.UI.ViewModel
             View.DisplayAlertMessage(message);
         }
 
-        public async Task<bool> DisplayQuestionMessage(string message)
+        public void DisplayQuestionMessage(string message, Action action)
         {
-            return await View.DisplayQuestionMessage("Подтвердить действие", message, "Да", "Нет");
+            View.DisplayQuestionMessage("Подтвердить действие", message, "Да", "Нет", action);
         }
 
         public RequestBase BuildRequestBase()

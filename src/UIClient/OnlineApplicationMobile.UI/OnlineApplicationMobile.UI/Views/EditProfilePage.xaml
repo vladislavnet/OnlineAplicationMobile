@@ -6,11 +6,16 @@
              xmlns:controls="clr-namespace:OnlineApplicationMobile.UI.Views.Templates;assembly=OnlineApplicationMobile.UI">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="70"/>
+                </Grid.RowDefinitions>
+                <StackLayout Grid.Row="0" Grid.Column="0">
 
-                <Label Text="Редактировать профиль" Margin="0, 20, 0, 0" Style="{StaticResource Key=titlePageLabelStyle}"/>
+                    <Label Text="Редактировать профиль" Margin="0, 20, 0, 0" Style="{StaticResource Key=titlePageLabelStyle}"/>
 
-                <controls:EntryOutlined
+                    <controls:EntryOutlined
                     Placeholder="Фамилия"
                     Margin="10, 30, 10, 0"
                     Style="{StaticResource Key=borderlessEntryStyle}"
@@ -18,7 +23,7 @@
                     ValidateMessage="{Binding LastNameValidateMessage}"
                     IsVisibleValidateMessage="{Binding LastNameValidateMessageIsVisible}"/>
 
-                <controls:EntryOutlined
+                    <controls:EntryOutlined
                     Placeholder="Имя"
                     Margin="10, 20, 10, 0"
                     Style="{StaticResource Key=borderlessEntryStyle}"
@@ -26,7 +31,7 @@
                     ValidateMessage="{Binding FirstNameValidateMessage}"
                     IsVisibleValidateMessage="{Binding FirtNameValidateMessageIsVisible}"/>
 
-                <controls:EntryOutlined
+                    <controls:EntryOutlined
                     Placeholder="Отчество"
                     Margin="10, 20, 10, 0"
                     Style="{StaticResource Key=borderlessEntryStyle}"
@@ -34,7 +39,7 @@
                     ValidateMessage="{Binding MiddleNameValidateMessage}"
                     IsVisibleValidateMessage="{Binding MiddleNameValidateMessageIsVisible}"/>
 
-                <controls:DatePickerOutline
+                    <controls:DatePickerOutline
                     Placeholder="Дата рождения"
                     Margin="10, 20, 10, 0"
                     Style="{StaticResource Key=borderlessDatePickerStyle}"
@@ -42,7 +47,7 @@
                     ValidateMessage="{Binding BirthDateValidateMessage}"
                     IsVisibleValidateMessage="{Binding BirthDateValidateMessageIsVisible}"/>
 
-                <controls:EntryOutlined
+                    <controls:EntryOutlined
                     Placeholder="Телефон"
                     Margin="10, 20, 10, 0"
                     Style="{StaticResource Key=borderlessEntryStyle}"
@@ -50,11 +55,12 @@
                     ValidateMessage="{Binding TelephoneValidateMessage}"
                     IsVisibleValidateMessage="{Binding TelephoneValidateMessageIsVisible}"/>
 
-                <Label Text="Адрес" 
+                    <!--  <Label Text="Адрес" 
                        Margin="0, 20, 0, 0"
                        HorizontalTextAlignment="Center" 
                        FontSize="20" 
                        TextColor="{StaticResource Key=mainColor}"/>
+                
 
                 <Grid Margin="0" Padding="0">
                     <Grid.ColumnDefinitions>
@@ -275,14 +281,17 @@
                     Style="{StaticResource Key=borderlessEntryStyle}"
                     Text="{Binding ApartamentNumber}"
                     ValidateMessage="{Binding ApartamentNumberValidateMessage}"
-                    IsVisibleValidateMessage="{Binding ApartamentNumberValidateMessageIsVisible}"/>
+                    IsVisibleValidateMessage="{Binding ApartamentNumberValidateMessageIsVisible}"/>-->
+                </StackLayout>
 
-                <Button Text="Сохранить"
+                <Button Grid.Column="0" 
+                        Grid.Row="1"
+                        Text="Сохранить"
                         Style="{StaticResource Key=buttonStyle}"
-                        Margin="30,20,30,30"
+                        Margin="10"
                         Command="{Binding EditUserCommand}"/>
-                
-            </StackLayout>
+
+            </Grid>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

@@ -93,7 +93,7 @@ namespace OnlineApplicationMobile.HttpService.Implementation
         {
             using (var client = GetClientByHeaderAuthorization(request.Token))
             {
-                var response = client.PostAsync(string.Format(UrlTemplates.PutRevokeApplicationUrl, request.Id), null).Result;
+                var response = client.PutAsync(string.Format(UrlTemplates.PutRevokeApplicationUrl, request.Id), null).Result;
 
                 var content = JsonSerializer.Deserialize<ResponseBase>(response.Content.ReadAsStringAsync().Result, optionsSerialize);
                 content.StatusCode = response.StatusCode;

@@ -40,11 +40,5 @@ namespace OnlineApplicationMobile.HttpService.Requests
         /// </summary>
         [JsonPropertyName("telephone")]
         public string Telephone { get; set; }
-
-        /// <summary>
-        /// Адрес.
-        /// </summary>
-        [JsonPropertyName("address")]
-        public AddressDto Address { get; set; }
     }
 }

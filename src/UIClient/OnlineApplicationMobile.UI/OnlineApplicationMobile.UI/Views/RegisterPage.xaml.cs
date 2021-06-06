@@ -2,6 +2,7 @@
 using OnlineApplicationMobile.UI.ViewModel;
 using OnlineApplicationMobile.UI.ViewModel.Interfaces;
 using OnlineApplicationMobile.UI.Views.Interfaces;
+using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -29,9 +30,13 @@ namespace OnlineApplicationMobile.UI.Views
             await DisplayAlert(AlertMessageTemplate.AlertTemplate, message, AlertMessageTemplate.OkTemplate);
         }
 
-        public async Task<bool> DisplayQuestionMessage(string title, string question, string accept, string cancel)
+        public async void DisplayQuestionMessage(string title, string question, string accept, string cancel, Action action)
         {
-            return await DisplayAlert(title, question, accept, cancel);
+            var result = await DisplayAlert(title, question, accept, cancel);
+            if (result)
+            {
+                action.Invoke();
+            }
         }
     }
 }

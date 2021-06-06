@@ -162,7 +162,6 @@ namespace OnlineApplicationMobile.UI.ViewModel
                 CurrentUser.SetCurrentUser(new ClientJKH
                 {
                     User = new UserDomainBuilder().Build(response.User),
-                    Address = new AddressDomainBuilder().Build(response.Address)
                 });
 
                 setField();

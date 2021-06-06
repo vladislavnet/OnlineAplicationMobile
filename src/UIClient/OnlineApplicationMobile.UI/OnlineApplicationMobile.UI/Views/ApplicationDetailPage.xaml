@@ -59,7 +59,7 @@
                                                        IsVisible="{Binding IsVisibleServiceTypes}"/>
 
                     <Button Text="Отозвать" 
-                            Command="{Binding ViewHistoryApplicationCommand}"
+                            Command="{Binding RevokeApplicationCommand}"
                             Style="{StaticResource Key=buttonStyle}"/>
 
                     <Button Text="История заявки" 

@@ -62,7 +62,7 @@
               x:Name="applicationsMenuItem"
               Clicked="applicationsMenuItem_Clicked"/>
 
-    <MenuItem Text="Организации с подтверждённым лицевым счётом" 
+    <MenuItem Text="Мои организации" 
               IconImageSource="like.png"
               x:Name="recomendedOrganizationsMenuItem"
               Clicked="recomendedOrganizationsMenuItem_Clicked"/>

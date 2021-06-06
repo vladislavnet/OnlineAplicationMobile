@@ -104,6 +104,7 @@
                             Margin="10, 15, 10, 5" 
                             Grid.Row="1" 
                             Text="Заполнить из профиля" 
+                            IsVisible="{Binding IsVisibleSetFieldButton}"
                             Style="{StaticResource Key=buttonStyle}"
                             Command="{Binding SetFieldByProfileCommand}"/>
 

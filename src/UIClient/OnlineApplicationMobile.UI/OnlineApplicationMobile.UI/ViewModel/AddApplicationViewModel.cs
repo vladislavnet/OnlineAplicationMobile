@@ -47,6 +47,8 @@ namespace OnlineApplicationMobile.UI.ViewModel
         private bool lastNamePayerValidateMessageIsVisible;
         private bool middleNamePayerValidateMessageIsVisible;
 
+        private bool isVisibleSetFieldButton;
+
         public AddApplicationViewModel(OrganizationModelView organization, IView view, INavigation navigation) : base(navigation)
         {
             View = view;
@@ -387,6 +389,15 @@ namespace OnlineApplicationMobile.UI.ViewModel
             }
         }
 
+        public bool IsVisibleSetFieldButton
+        {
+            get => isVisibleSetFieldButton;
+            set
+            {
+                isVisibleSetFieldButton = value;
+                OnPropertyChanged(nameof(IsVisibleSetFieldButton));
+            }
+        }
 
         private void initialization()
         {
@@ -396,6 +407,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
                 IsVisibleLastNamePayer = false;
                 IsVisibleNumberAccount = false;
                 IsVisibleMiddleNamePayer = false;
+                IsVisibleSetFieldButton = false;
             }
             else
             {
@@ -403,6 +415,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
                 IsVisibleLastNamePayer = true;
                 IsVisibleNumberAccount = true;
                 IsVisibleMiddleNamePayer = true;
+                IsVisibleSetFieldButton = true;
             }
 
             ServiceTypes = organization?.ServiceTypes?.Select(x => mapServiceTypeSelection(x)).ToList();

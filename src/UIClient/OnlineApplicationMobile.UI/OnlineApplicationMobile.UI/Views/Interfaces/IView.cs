@@ -1,6 +1,5 @@
 ﻿using OnlineApplicationMobile.UI.ViewModel.Interfaces;
-using System.Threading.Tasks;
-using Xamarin.Forms;
+using System;
 
 namespace OnlineApplicationMobile.UI.Views.Interfaces
 {
@@ -10,6 +9,6 @@ namespace OnlineApplicationMobile.UI.Views.Interfaces
 
         void DisplayAlertMessage(string message);
 
-        Task<bool> DisplayQuestionMessage(string title, string question, string accept, string cancel);
+        void DisplayQuestionMessage(string title, string question, string accept, string cancel, Action action);
     }
 }

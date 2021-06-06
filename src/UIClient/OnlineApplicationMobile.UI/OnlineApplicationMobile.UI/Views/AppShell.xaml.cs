@@ -59,7 +59,7 @@ namespace OnlineApplicationMobile.UI.Views
 
         private void recomendedOrganizationsMenuItem_Clicked(object sender, EventArgs e)
         {
-            CheckoutPage("организации с подтверждённым лицевым счётом", new RecomendedOrganizationsPage());
+            CheckoutPage("Мои организации", new RecomendedOrganizationsPage());
         }
 
         private void searchOrganizationsMenuItem_Clicked(object sender, EventArgs e)

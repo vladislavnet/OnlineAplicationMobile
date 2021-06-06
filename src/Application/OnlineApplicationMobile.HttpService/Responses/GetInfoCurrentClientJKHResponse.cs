@@ -17,11 +17,5 @@ namespace OnlineApplicationMobile.HttpService.Responses
         /// </summary>
         [JsonPropertyName("user")]
         public UserDto User { get; set; }
-
-        /// <summary>
-        /// Адрес.
-        /// </summary>
-        [JsonPropertyName("address")]
-        public AddressDto Address { get; set; }
     }
 }

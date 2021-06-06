@@ -114,7 +114,6 @@ namespace OnlineApplicationMobile.UI.ViewModel
                     MiddleName = !string.IsNullOrWhiteSpace(MiddleName) ? MiddleName : null,
                     BirthDate = BirthDate?.ToString("yyyy-MM-dd"),
                     Telephone = !string.IsNullOrWhiteSpace(Telephone) ? Telephone : null,
-                    Address = buildAddress()
                 });
 
                 Action action = () =>
@@ -924,33 +923,33 @@ namespace OnlineApplicationMobile.UI.ViewModel
                 flag = false;
             }
 
-            if (string.IsNullOrWhiteSpace(Region) || SelectedRegionTypeAddressingObject == null)
-            {
-                RegionValidateMessage = "Введите регион и его тип.";
-                RegionValidateMessageIsVisible = true;
-                flag = false;
-            }
+            //if (string.IsNullOrWhiteSpace(Region) || SelectedRegionTypeAddressingObject == null)
+            //{
+            //    RegionValidateMessage = "Введите регион и его тип.";
+            //    RegionValidateMessageIsVisible = true;
+            //    flag = false;
+            //}
 
-            if (string.IsNullOrWhiteSpace(District) || SelectedDistrictTypeAddressingObject == null)
-            {
-                DistrictValidateMessage = "Введите район и его тип.";
-                DistrictValidateMessageIsVisible = true;
-                flag = false;
-            }
+            //if (string.IsNullOrWhiteSpace(District) || SelectedDistrictTypeAddressingObject == null)
+            //{
+            //    DistrictValidateMessage = "Введите район и его тип.";
+            //    DistrictValidateMessageIsVisible = true;
+            //    flag = false;
+            //}
 
-            if (string.IsNullOrWhiteSpace(Locality) || SelectedLocalityTypeAddressingObject == null)
-            {
-                LocalityValidateMessage = "Введите населённый пункт и его тип.";
-                LocalityValidateMessageIsVisible = true;
-                flag = false;
-            }
+            //if (string.IsNullOrWhiteSpace(Locality) || SelectedLocalityTypeAddressingObject == null)
+            //{
+            //    LocalityValidateMessage = "Введите населённый пункт и его тип.";
+            //    LocalityValidateMessageIsVisible = true;
+            //    flag = false;
+            //}
 
-            if (string.IsNullOrWhiteSpace(Street) || SelectedStreetTypeAddressingObject == null)
-            {
-                StreetValidateMessage = "Введите улицу и его тип.";
-                StreetValidateMessageIsVisible = true;
-                flag = false;
-            }
+            //if (string.IsNullOrWhiteSpace(Street) || SelectedStreetTypeAddressingObject == null)
+            //{
+            //    StreetValidateMessage = "Введите улицу и его тип.";
+            //    StreetValidateMessageIsVisible = true;
+            //    flag = false;
+            //}
 
             return flag;
         }

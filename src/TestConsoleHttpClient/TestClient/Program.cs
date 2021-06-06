@@ -79,7 +79,6 @@ namespace TestClient
             CurrentUser.SetCurrentUser(new ClientJKH
             {
                 User = new UserDomainBuilder().Build(response.User),
-                Address = new AddressDomainBuilder().Build(response.Address)
             });
 
             Console.WriteLine(JsonSerializator.SerializeByFormatOptions(response));
@@ -95,7 +94,7 @@ namespace TestClient
                 MiddleName = CurrentUser.MiddleName,
                 BirthDate = DateTime.Now.ToString("yyyy-MM-dd"),
                 Telephone = CurrentUser.Telephone,
-                Address = new AddressDomainBuilder().Rebuild(CurrentUser.Address)
+
             });
 
             Console.WriteLine($"Статус код: {response.StatusCode}");

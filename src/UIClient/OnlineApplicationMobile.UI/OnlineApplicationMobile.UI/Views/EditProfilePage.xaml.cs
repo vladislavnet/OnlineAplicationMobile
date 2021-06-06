@@ -109,9 +109,13 @@ namespace OnlineApplicationMobile.UI.Views
         {
         }
 
-        public async Task<bool> DisplayQuestionMessage(string title, string question, string accept, string cancel)
+        public async void DisplayQuestionMessage(string title, string question, string accept, string cancel, Action action)
         {
-            return await DisplayAlert(title, question, accept, cancel);
+            var result = await DisplayAlert(title, question, accept, cancel);
+            if (result)
+            {
+                action.Invoke();
+            }
         }
     }
 }

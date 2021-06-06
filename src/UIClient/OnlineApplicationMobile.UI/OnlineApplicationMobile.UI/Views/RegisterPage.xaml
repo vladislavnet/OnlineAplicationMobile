@@ -29,14 +29,6 @@
                         IsVisibleValidateMessage="{Binding EmailValidateMessageIsVisible}"/>
 
                     <controls:EntryOutlined
-                        Placeholder="Email"
-                        Margin="10, 20, 10, 0"
-                        Style="{StaticResource Key=borderlessEntryStyle}"
-                        Text="{Binding Email}"
-                        ValidateMessage="{Binding EmailValidateMessage}"
-                        IsVisibleValidateMessage="{Binding EmailValidateMessageIsVisible}"/>
-
-                    <controls:EntryOutlined
                         Placeholder="Пароль"
                         IsPassword="True"
                         Margin="10, 20, 10, 0"

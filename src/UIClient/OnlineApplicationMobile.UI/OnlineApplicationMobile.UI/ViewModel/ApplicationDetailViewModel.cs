@@ -86,8 +86,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
         {
             get => new Command(() =>
             {
-                if (DisplayQuestionMessage("Вы действительно хотите отозвать заявку?").Result)
-                {
+                DisplayQuestionMessage("Вы действительно хотите отозвать заявку?", () => {
                     var httpService = Startup.GetService<IHttpService>();
 
                     var response = httpService.PutRevokeApplication(new PutRevokeApplicationRequest
@@ -108,7 +107,7 @@ namespace OnlineApplicationMobile.UI.ViewModel
                     };
 
                     ToNextAction(response.StatusCode, action, actionError);
-                }
+                });
             });
         }
 
