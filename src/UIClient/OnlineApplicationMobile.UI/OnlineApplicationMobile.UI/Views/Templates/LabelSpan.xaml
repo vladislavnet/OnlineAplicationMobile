@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OnlineApplicationMobile.UI.Views.Templates.LabelSpan"
+             x:Name="this">
+  <ContentView.Content>
+        <Label LineHeight="{Binding LineHeight,Source={x:Reference this},Mode=TwoWay}">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="{Binding HelpText,Source={x:Reference this},Mode=TwoWay}" 
+                          TextColor="{Binding HelpTextColor,Source={x:Reference this},Mode=TwoWay}"
+                          FontSize="{Binding HelpTextFontSize,Source={x:Reference this},Mode=TwoWay}"
+                          FontAttributes="{Binding HelpTextFontWeight,Source={x:Reference this},Mode=TwoWay}"/>
+                    <Span Text=" "/>
+                    <Span Text="{Binding MainText,Source={x:Reference this},Mode=TwoWay}" 
+                          TextColor="{Binding MainTextColor,Source={x:Reference this},Mode=TwoWay}"
+                          FontSize="{Binding MainTextFontSize,Source={x:Reference this},Mode=TwoWay}"
+                          FontAttributes="{Binding MainTextFontWeight,Source={x:Reference this},Mode=TwoWay}"/>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+    </ContentView.Content>
+</ContentView>

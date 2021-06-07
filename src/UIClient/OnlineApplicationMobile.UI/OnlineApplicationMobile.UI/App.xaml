@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OnlineApplicationMobile.UI.App"
+             xmlns:controls="clr-namespace:OnlineApplicationMobile.UI.Views.Templates;assembly=OnlineApplicationMobile.UI"
+            >
+    <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="mainColor">#6522A6</Color>
+            <Color x:Key="mainColorAlpha">#A95DF3</Color>
+            <Color x:Key="validateMessageColor">Red</Color>
+            
+            <Style x:Key="borderlessEntryStyle" TargetType="controls:EntryOutlined">
+                <Setter Property="BorderColor" Value="{StaticResource Key=mainColor}" />
+                <Setter Property="PlaceholderColor" Value="{StaticResource Key=mainColor}" />
+            </Style>
+            
+            <Style x:Key="borderlessDatePickerStyle" TargetType="controls:DatePickerOutline">
+                <Setter Property="BorderColor" Value="{StaticResource Key=mainColor}" />
+                <Setter Property="PlaceholderColor" Value="{StaticResource Key=mainColor}" />
+            </Style>
+            
+            <Style x:Key="borderlessPickerStyle" TargetType="controls:PickerOutline">
+                <Setter Property="BorderColor" Value="{StaticResource Key=mainColor}" />
+                <Setter Property="PlaceholderColor" Value="{StaticResource Key=mainColor}" />
+            </Style>
+
+            <Style x:Key="borderlessEditorStyle" TargetType="controls:EditorOutline">
+                <Setter Property="BorderColor" Value="{StaticResource Key=mainColor}" />
+                <Setter Property="PlaceholderColor" Value="{StaticResource Key=mainColor}" />
+            </Style>
+
+            <Style x:Key="addressBorderlessEntryStyle" TargetType="controls:EntryOutlined" BasedOn="{StaticResource Key=borderlessEntryStyle}">
+
+            </Style>
+
+            <Style x:Key="addressBorderlessPickerStyle" TargetType="controls:PickerOutline" BasedOn="{StaticResource Key=borderlessPickerStyle}">
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            </Style>
+
+            <Style x:Key="addressPromptListViewStyle" TargetType="ListView">
+                <Setter Property="SeparatorColor" Value="Transparent"/>
+                <Setter Property="SelectionMode" Value="Single"/>
+                <Setter Property="RowHeight" Value="30"/>
+            </Style>
+
+            <Style x:Key="buttonStyle" TargetType="Button">
+                <Setter Property="BorderColor" Value="{StaticResource Key=mainColor}"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource Key=mainColor}"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="CornerRadius" Value="5"/>
+            </Style>
+
+            <Style x:Key="titlePageLabelStyle" TargetType="Label">
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="FontSize" Value="23"/>
+                <Setter Property="TextColor" Value="{StaticResource Key=mainColor}"/>
+            </Style>
+
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

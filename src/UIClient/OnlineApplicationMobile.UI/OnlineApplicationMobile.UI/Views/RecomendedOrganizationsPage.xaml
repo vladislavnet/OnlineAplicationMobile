@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OnlineApplicationMobile.UI.Views.RecomendedOrganizationsPage"
+             Title="Мои организации"
+             xmlns:controls="clr-namespace:OnlineApplicationMobile.UI.Views.Templates;assembly=OnlineApplicationMobile.UI"
+             Shell.BackgroundColor="{StaticResource Key=mainColor}"
+             Shell.TabBarBackgroundColor="{StaticResource Key=mainColor}">
+    <ContentPage.Content>
+        <!--<ListView ItemsSource="{Binding Organizations}"
+                  SelectedItem="{Binding SelectedOrganization}" 
+                  RowHeight="100"
+                  IsPullToRefreshEnabled="True"
+                  RefreshCommand="{Binding RefreshCommand}"
+                  IsRefreshing="{Binding IsRefreshing}"
+                  SeparatorVisibility="None">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <controls:ExtendedViewCell SelectedBackgroundColor="White">
+                        <ViewCell.View>
+                            <Frame CornerRadius="20" BorderColor="LightGray" OutlineColor="LightGray" HasShadow="True" Margin="5" Padding="0">
+                                <Frame.Effects>
+                                    <controls:ViewShadowEffect Radius="7" DistanceX="7" DistanceY="7" Color="Gray" />
+                                </Frame.Effects>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="90"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="0" Grid.Row="0" BackgroundColor="{StaticResource Key=mainColor}">
+                                        <Frame BackgroundColor="White" Margin="10" CornerRadius="40">
+                                            <Image  Source="Instruments.png"/>
+                                        </Frame>
+                                    </Grid>
+                                    <Label Grid.Row="0" 
+                                           Grid.Column="1" 
+                                           VerticalTextAlignment="Center"
+                                           Margin="5, 0, 0, 0" 
+                                           TextColor="{StaticResource Key=mainColor}"
+                                           FontAttributes="Bold" 
+                                           Text="{Binding Name}"/>
+
+                                </Grid>
+                            </Frame>
+                        </ViewCell.View>
+                    </controls:ExtendedViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>-->
+
+        <controls:OrganizationListView ItemsSource="{Binding Organizations}"
+                                       SelectedItem="{Binding SelectedOrganization}" 
+                                       RefreshCommand="{Binding RefreshCommand}"
+                                       IsRefreshing="{Binding IsRefreshing}"/>
+    </ContentPage.Content>
+</ContentPage>

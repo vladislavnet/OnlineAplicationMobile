@@ -1,0 +1,297 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OnlineApplicationMobile.UI.Views.EditProfilePage"
+             Title="Редактирования профиля"
+             xmlns:controls="clr-namespace:OnlineApplicationMobile.UI.Views.Templates;assembly=OnlineApplicationMobile.UI">
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="70"/>
+                </Grid.RowDefinitions>
+                <StackLayout Grid.Row="0" Grid.Column="0">
+
+                    <Label Text="Редактировать профиль" Margin="0, 20, 0, 0" Style="{StaticResource Key=titlePageLabelStyle}"/>
+
+                    <controls:EntryOutlined
+                    Placeholder="Фамилия"
+                    Margin="10, 30, 10, 0"
+                    Style="{StaticResource Key=borderlessEntryStyle}"
+                    Text="{Binding LastName}"
+                    ValidateMessage="{Binding LastNameValidateMessage}"
+                    IsVisibleValidateMessage="{Binding LastNameValidateMessageIsVisible}"/>
+
+                    <controls:EntryOutlined
+                    Placeholder="Имя"
+                    Margin="10, 20, 10, 0"
+                    Style="{StaticResource Key=borderlessEntryStyle}"
+                    Text="{Binding FirstName}"
+                    ValidateMessage="{Binding FirstNameValidateMessage}"
+                    IsVisibleValidateMessage="{Binding FirtNameValidateMessageIsVisible}"/>
+
+                    <controls:EntryOutlined
+                    Placeholder="Отчество"
+                    Margin="10, 20, 10, 0"
+                    Style="{StaticResource Key=borderlessEntryStyle}"
+                    Text="{Binding MiddleName}"
+                    ValidateMessage="{Binding MiddleNameValidateMessage}"
+                    IsVisibleValidateMessage="{Binding MiddleNameValidateMessageIsVisible}"/>
+
+                    <controls:DatePickerOutline
+                    Placeholder="Дата рождения"
+                    Margin="10, 20, 10, 0"
+                    Style="{StaticResource Key=borderlessDatePickerStyle}"
+                    Date="{Binding BirthDate}"
+                    ValidateMessage="{Binding BirthDateValidateMessage}"
+                    IsVisibleValidateMessage="{Binding BirthDateValidateMessageIsVisible}"/>
+
+                    <controls:EntryOutlined
+                    Placeholder="Телефон"
+                    Margin="10, 20, 10, 0"
+                    Style="{StaticResource Key=borderlessEntryStyle}"
+                    Text="{Binding Telephone}"
+                    ValidateMessage="{Binding TelephoneValidateMessage}"
+                    IsVisibleValidateMessage="{Binding TelephoneValidateMessageIsVisible}"/>
+
+                    <!--  <Label Text="Адрес" 
+                       Margin="0, 20, 0, 0"
+                       HorizontalTextAlignment="Center" 
+                       FontSize="20" 
+                       TextColor="{StaticResource Key=mainColor}"/>
+                
+
+                <Grid Margin="0" Padding="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <controls:PickerOutline
+                        Grid.Row="0" Grid.Column="0"
+                        Placeholder="Тип"
+                        Margin="10, 10, 5, 0"
+                        Style="{StaticResource Key=addressBorderlessPickerStyle}"
+                        ItemsSource="{Binding RegionTypesAddressingObject}"
+                        SelectedItem="{Binding SelectedRegionTypeAddressingObject}"/>
+
+                    <controls:EntryOutlined
+                        Grid.Row="0" Grid.Column="1"
+                        x:Name="regionEntry"
+                        Placeholder="Регион"
+                        Margin="0, 10, 10, 0"
+                        Style="{StaticResource Key=addressBorderlessEntryStyle}"
+                        Text="{Binding Region}"
+                        TextBoxUnfocused="regionEntry_Unfocused"
+                        TextBoxFocused="regionEntry_Focused"
+                        TextBoxTextChanged="regionEntry_TextBoxTextChanged"/>
+
+                </Grid>
+
+                <Label Margin="10,0,10,0" Text="{Binding RegionValidateMessage}" IsVisible="{Binding RegionValidateMessageIsVisible}" TextColor="{StaticResource Key=validateMessageColor}"/>
+
+                <ListView Margin="105, 0, 10,0"
+                          x:Name="searchRegionListView"
+                          Style="{StaticResource Key=addressPromptListViewStyle}"
+                          ItemsSource="{Binding SearchRegionCollection}" 
+                          SelectedItem="{Binding SelectedRegionCollection, Mode=TwoWay}"
+                          IsVisible="{Binding IsVisibleSearchRegionCollection}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <controls:ExtendedViewCell>
+                                <ViewCell.View>
+                                    <StackLayout Orientation="Vertical">
+                                        <Label Margin="10,4,0,0"  TextColor="{StaticResource Key=mainColor}" Text="{Binding Name, Mode=TwoWay}"/>
+                                    </StackLayout>
+                                </ViewCell.View>
+                            </controls:ExtendedViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+
+
+                <Grid Margin="0, 10, 0, 0" Padding="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <controls:PickerOutline
+                        Grid.Row="0" Grid.Column="0"
+                        Placeholder="Тип"
+                        Margin="10, 10, 5, 0"
+                        Style="{StaticResource Key=addressBorderlessPickerStyle}"
+                        ItemsSource="{Binding DistrictTypesAddressingObject}"
+                        SelectedItem="{Binding SelectedDistrictTypeAddressingObject}"/>
+
+                    <controls:EntryOutlined
+                        Grid.Row="0" Grid.Column="1"
+                        x:Name="districtEntry"
+                        Placeholder="Регион"
+                        Margin="0, 10, 10, 0"
+                        Style="{StaticResource Key=addressBorderlessEntryStyle}"
+                        Text="{Binding District}"
+                        TextBoxUnfocused="districtEntry_Unfocused"
+                        TextBoxFocused="districtEntry_Focused"/>
+
+                </Grid>
+                
+                <Label Margin="10,0,10,0"
+                       Text="{Binding DistrictValidateMessage}" 
+                       IsVisible="{Binding DistrictValidateMessageIsVisible}" 
+                       TextColor="{StaticResource Key=validateMessageColor}"/>
+                
+                <ListView Margin="100, 0, 10, 0"
+                          x:Name="searchDistrictListView"
+                          Style="{StaticResource Key=addressPromptListViewStyle}"
+                          ItemsSource="{Binding SearchDistrictCollection}" 
+                          SelectedItem="{Binding SelectedDistrictCollection}"
+                          IsVisible="{Binding IsVisibleSearchDistrictCollection}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <controls:ExtendedViewCell>
+                                <ViewCell.View>
+                                    <StackLayout Orientation="Vertical">
+                                        <Label Margin="10,4,0,0"  TextColor="{StaticResource Key=mainColor}" Text="{Binding Name, Mode=TwoWay}"/>
+                                    </StackLayout>
+                                </ViewCell.View>
+                            </controls:ExtendedViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+
+
+
+                <Grid Margin="0, 10, 0, 0" Padding="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <controls:PickerOutline
+                        Grid.Row="0" Grid.Column="0"
+                        Placeholder="Тип"
+                        Margin="10, 10, 5, 0"
+                        Style="{StaticResource Key=addressBorderlessPickerStyle}"
+                        ItemsSource="{Binding LocalityTypesAddressingObject}"
+                        SelectedItem="{Binding SelectedLocalityTypeAddressingObject}"/>
+
+                    <controls:EntryOutlined
+                        Grid.Row="0" Grid.Column="1"
+                        x:Name="localityEntry"
+                        Placeholder="Населённый пункт"
+                        Margin="0, 10, 10, 0"
+                        Style="{StaticResource Key=addressBorderlessEntryStyle}"
+                        Text="{Binding Locality}"
+                        TextBoxUnfocused="localityEntry_Unfocused"
+                        TextBoxFocused="localityEntry_Focused"/>
+
+                </Grid>
+
+                <Label Margin="10,0,10,0" 
+                       Text="{Binding LocalityValidateMessage}" 
+                       IsVisible="{Binding LocalityValidateMessageIsVisible}"
+                       TextColor="{StaticResource Key=validateMessageColor}"/>
+
+                <ListView Margin="100, 0, 10, 0"
+                          x:Name="searchLocalityListView"
+                          Style="{StaticResource Key=addressPromptListViewStyle}"
+                          ItemsSource="{Binding SearchLocalityCollection}" 
+                          SelectedItem="{Binding SelectedLocalityCollection}"
+                          IsVisible="{Binding IsVisibleSearchLocalityCollection}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <controls:ExtendedViewCell>
+                                <ViewCell.View>
+                                    <StackLayout Orientation="Vertical">
+                                        <Label Margin="10,4,0,0"  TextColor="{StaticResource Key=mainColor}" Text="{Binding Name, Mode=TwoWay}"/>
+                                    </StackLayout>
+                                </ViewCell.View>
+                            </controls:ExtendedViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <Grid Margin="0, 10, 0, 0" Padding="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <controls:PickerOutline
+                        Grid.Row="0" Grid.Column="0"
+                        Placeholder="Тип"
+                        Margin="10, 10, 5, 0"
+                        Style="{StaticResource Key=addressBorderlessPickerStyle}"
+                        ItemsSource="{Binding StreetTypesAddressingObject}"
+                        SelectedItem="{Binding SelectedStreetTypeAddressingObject}"/>
+
+                    <controls:EntryOutlined
+                        Grid.Row="0" Grid.Column="1"
+                        x:Name="streetEntry"
+                        Placeholder="Улица"
+                        Margin="0, 10, 10, 0"
+                        Style="{StaticResource Key=addressBorderlessEntryStyle}"
+                        Text="{Binding Street}"
+                        TextBoxUnfocused="streetEntry_Unfocused"
+                        TextBoxFocused="streetEntry_Focused"/>
+
+                </Grid>
+
+                <Label Margin="10,0,10,0"
+                       Text="{Binding StreetValidateMessage}"
+                       IsVisible="{Binding StreetValidateMessageIsVisible}"
+                       TextColor="{StaticResource Key=validateMessageColor}"/>
+
+                <ListView Margin="100, 0, 10, 0"
+                          x:Name="searchStreetListView"
+                          Style="{StaticResource Key=addressPromptListViewStyle}"
+                          ItemsSource="{Binding SearchStreetCollection}" 
+                          SelectedItem="{Binding SelectedStreetCollection}"
+                          IsVisible="{Binding IsVisibleSearchStreetCollection}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <controls:ExtendedViewCell>
+                                <ViewCell.View>
+                                    <StackLayout Orientation="Vertical">
+                                        <Label Margin="10,4,0,0"  TextColor="{StaticResource Key=mainColor}" Text="{Binding Name, Mode=TwoWay}"/>
+                                    </StackLayout>
+                                </ViewCell.View>
+                            </controls:ExtendedViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+
+
+                <controls:EntryOutlined
+                    Placeholder="Номер дома"
+                    Margin="10, 20, 10, 0"
+                    Style="{StaticResource Key=borderlessEntryStyle}"
+                    Text="{Binding HouseNumber}"
+                    ValidateMessage="{Binding HouseNumberValidateMessage}"
+                    IsVisibleValidateMessage="{Binding HouseNumberValidateMessageIsVisible}"/>
+
+                <controls:EntryOutlined
+                    Placeholder="Номер квартиры"
+                    Margin="10, 20, 10, 0"
+                    Style="{StaticResource Key=borderlessEntryStyle}"
+                    Text="{Binding ApartamentNumber}"
+                    ValidateMessage="{Binding ApartamentNumberValidateMessage}"
+                    IsVisibleValidateMessage="{Binding ApartamentNumberValidateMessageIsVisible}"/>-->
+                </StackLayout>
+
+                <Button Grid.Column="0" 
+                        Grid.Row="1"
+                        Text="Сохранить"
+                        Style="{StaticResource Key=buttonStyle}"
+                        Margin="10"
+                        Command="{Binding EditUserCommand}"/>
+
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

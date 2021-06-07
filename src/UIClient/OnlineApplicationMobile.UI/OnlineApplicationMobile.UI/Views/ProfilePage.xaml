@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OnlineApplicationMobile.UI.Views.ProfilePage"
+             xmlns:controls="clr-namespace:OnlineApplicationMobile.UI.Views.Templates;assembly=OnlineApplicationMobile.UI"
+             Title="Профиль" 
+             Shell.BackgroundColor="{StaticResource Key=mainColor}"
+             Shell.TabBarBackgroundColor="{StaticResource Key=mainColor}">
+    <ContentPage.Content>
+        <RefreshView IsRefreshing="{Binding IsRefreshing}"
+             Command="{Binding RefreshCommand}">
+            <ScrollView>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="70"/>
+                    </Grid.RowDefinitions>
+
+                    <StackLayout Grid.Column="0"
+                                 Grid.Row="0"
+                                 Orientation="Vertical"
+                                 Margin="10, 20, 10, 0">
+                        
+                        <controls:LabelSpan HelpText="Email:"
+                                        MainText="{Binding Email}"/>
+
+                        <BoxView BackgroundColor="{StaticResource Key=mainColor}"
+                                 HeightRequest="1"
+                                 Margin="0,0,0,10"/>
+
+                        <controls:LabelSpan HelpText="Фамилия:"
+                                        MainText="{Binding LastName}"/>
+
+                        <BoxView BackgroundColor="{StaticResource Key=mainColor}"
+                                 HeightRequest="1"
+                                 Margin="0,0,0,10"/>
+
+                        <controls:LabelSpan HelpText="Имя:"
+                                            MainText="{Binding FirstName}"/>
+
+                        <BoxView BackgroundColor="{StaticResource Key=mainColor}"
+                                 HeightRequest="1"
+                                 Margin="0,0,0,10"/>
+
+                        <controls:LabelSpan HelpText="Отчество:"
+                                            MainText="{Binding MiddleName}"/>
+
+                        <BoxView BackgroundColor="{StaticResource Key=mainColor}"
+                                 HeightRequest="1"
+                                 Margin="0,0,0,10"/>
+
+                        <controls:LabelSpan HelpText="Дата рождения:"
+                                            MainText="{Binding BirthDate}"/>
+
+                        <BoxView BackgroundColor="{StaticResource Key=mainColor}"
+                                 HeightRequest="1"
+                                 Margin="0,0,0,10"/>
+
+                        <controls:LabelSpan HelpText="Телефон:"
+                                            MainText="{Binding Telephone}"/>
+
+                        <BoxView BackgroundColor="{StaticResource Key=mainColor}"
+                                 HeightRequest="1"
+                                 Margin="0,0,0,10"/>
+
+                        <!--<controls:LabelSpan HelpText="Адрес:"
+                                            MainText="{Binding AddressString}"/>
+
+                        <BoxView BackgroundColor="{StaticResource Key=mainColor}" 
+                                 HeightRequest="1" 
+                                 Margin="0,0,0,10"/>-->
+
+
+                    </StackLayout>
+
+                    <Button Grid.Column="0" 
+                            Margin="10" 
+                            Grid.Row="1" 
+                            Text="Редактировать" 
+                            Style="{StaticResource Key=buttonStyle}"
+                            Command="{Binding EditProfileCommand}"/>
+                </Grid>
+               
+            </ScrollView>
+        </RefreshView>
+    </ContentPage.Content>
+</ContentPage>

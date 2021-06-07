@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OnlineApplicationMobile.UI.Views.RegisterPage"
+             xmlns:controls="clr-namespace:OnlineApplicationMobile.UI.Views.Templates;assembly=OnlineApplicationMobile.UI"
+             Title="Регистрация">
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="70"/>
+                </Grid.RowDefinitions>
+
+                <StackLayout Grid.Column="0"
+                             Grid.Row="0"
+                             Orientation="Vertical">
+
+                    <Label Text="Регистрация" 
+                           Margin="0, 20, 0, 0" 
+                           Style="{StaticResource Key=titlePageLabelStyle}"/>
+
+                    <controls:EntryOutlined
+                        Placeholder="Email"
+                        Margin="10, 20, 10, 0"
+                        Style="{StaticResource Key=borderlessEntryStyle}"
+                        Text="{Binding Email}"
+                        ValidateMessage="{Binding EmailValidateMessage}"
+                        IsVisibleValidateMessage="{Binding EmailValidateMessageIsVisible}"/>
+
+                    <controls:EntryOutlined
+                        Placeholder="Пароль"
+                        IsPassword="True"
+                        Margin="10, 20, 10, 0"
+                        Style="{StaticResource Key=borderlessEntryStyle}"
+                        Text="{Binding Password1}"
+                        ValidateMessage="{Binding Password1ValidateMessage}"
+                        IsVisibleValidateMessage="{Binding Password1ValidateMessageIsVisible}"/>
+
+                    <controls:EntryOutlined
+                        Placeholder="Подтверждение пароля"
+                        IsPassword="True"
+                        Margin="10, 20, 10, 0"
+                        Style="{StaticResource Key=borderlessEntryStyle}"
+                        Text="{Binding Password2}"
+                        ValidateMessage="{Binding Password2ValidateMessage}"
+                        IsVisibleValidateMessage="{Binding Password2ValidateMessageIsVisible}"/>
+
+                    <controls:EntryOutlined
+                        Placeholder="Фамилия"
+                        Margin="10, 20, 10, 0"
+                        Style="{StaticResource Key=borderlessEntryStyle}"
+                        Text="{Binding LastName}"
+                        ValidateMessage="{Binding LastNameValidateMessage}"
+                        IsVisibleValidateMessage="{Binding LastNameValidateMessageIsVisible}"/>
+
+                    <controls:EntryOutlined
+                        Placeholder="Имя"
+                        Margin="10, 20, 10, 0"
+                        Style="{StaticResource Key=borderlessEntryStyle}"
+                        Text="{Binding FirstName}"
+                        ValidateMessage="{Binding FirstNameValidateMessage}"
+                        IsVisibleValidateMessage="{Binding FirstNameValidateMessageIsVisible}"/>
+
+                    <controls:EntryOutlined
+                        Placeholder="Отчество"
+                        Margin="10, 20, 10, 0"
+                        Style="{StaticResource Key=borderlessEntryStyle}"
+                        Text="{Binding MiddleName}"/>
+
+
+                    <controls:DatePickerOutline
+                        Placeholder="Дата рождения"
+                        Margin="10, 20, 10, 0"
+                        Style="{StaticResource Key=borderlessDatePickerStyle}"
+                        Date="{Binding BirthDate}"/>
+
+                    <controls:EntryOutlined
+                        Placeholder="Телефон"
+                        Margin="10, 20, 10, 0"
+                        Style="{StaticResource Key=borderlessEntryStyle}"
+                        Text="{Binding Telephone}"/>
+
+                </StackLayout>
+
+                <Button Grid.Column="0" 
+                        Margin="10" 
+                        Grid.Row="1" 
+                        Text="Зарегистрировать" 
+                        Style="{StaticResource Key=buttonStyle}"
+                        Command="{Binding RegisterCommand}"/>
+                
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OnlineApplicationMobile.UI.Views.Templates.OrganizationListView"
+             xmlns:controls="clr-namespace:OnlineApplicationMobile.UI.Views.Templates;assembly=OnlineApplicationMobile.UI"
+             x:Name="this">
+  <ContentView.Content>
+        <ListView ItemsSource="{Binding ItemsSource, Source={x:Reference this},Mode=TwoWay}"
+                  SelectedItem="{Binding SelectedItem, Source={x:Reference this},Mode=TwoWay}" 
+                  RowHeight="100"
+                  IsPullToRefreshEnabled="True"
+                  RefreshCommand="{Binding RefreshCommand, Source={x:Reference this},Mode=TwoWay}"
+                  IsRefreshing="{Binding IsRefreshing, Source={x:Reference this},Mode=TwoWay}"
+                  SeparatorVisibility="None"
+                  x:Name="OrganizationItemsListView">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <controls:ExtendedViewCell SelectedBackgroundColor="White">
+                        <ViewCell.View>
+                            <Frame CornerRadius="20" BorderColor="LightGray" OutlineColor="LightGray" HasShadow="True" Margin="5" Padding="0">
+                                <Frame.Effects>
+                                    <controls:ViewShadowEffect Radius="7" DistanceX="7" DistanceY="7" Color="Gray" />
+                                </Frame.Effects>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="90"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="0" Grid.Row="0" BackgroundColor="{StaticResource Key=mainColor}">
+                                        <Frame BackgroundColor="White" Margin="10" CornerRadius="40">
+                                            <Image  Source="Instruments.png"/>
+                                        </Frame>
+                                    </Grid>
+                                    <StackLayout Orientation="Vertical"
+                                                 Grid.Row="0" 
+                                                 Grid.Column="1" 
+                                                 VerticalOptions="Center">
+                                        <Label Margin="5, 0, 0, 0" 
+                                               TextColor="{StaticResource Key=mainColor}"
+                                               FontAttributes="Bold" 
+                                               Text="{Binding Name}"/>
+
+                                        <Label Margin="5, 0, 0, 0"
+                                               TextColor="{StaticResource Key=mainColor}"
+                                               Text="Привязан лицевой счёт"
+                                               FontSize="11"
+                                               IsVisible="{Binding IsCheckNumberAccount}"/>
+                                        
+                                    </StackLayout>
+
+                                </Grid>
+                            </Frame>
+                        </ViewCell.View>
+                    </controls:ExtendedViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentView.Content>
+</ContentView>

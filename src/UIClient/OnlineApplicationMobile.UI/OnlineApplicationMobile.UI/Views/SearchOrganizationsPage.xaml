@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OnlineApplicationMobile.UI.Views.SearchOrganizationsPage"
+             xmlns:controls="clr-namespace:OnlineApplicationMobile.UI.Views.Templates;assembly=OnlineApplicationMobile.UI"
+             Shell.BackgroundColor="{StaticResource Key=mainColor}"
+             Shell.TabBarBackgroundColor="{StaticResource Key=mainColor}">
+    <ContentPage.Content>
+        <RefreshView IsRefreshing="{Binding IsRefreshing}"
+             Command="{Binding RefreshCommand}">
+            <ScrollView>
+                <StackLayout Orientation="Vertical">
+                    <!--<SearchBar Text="{Binding SearchText}" SearchCommand="{Binding RefreshCommand}"/>
+                    <ListView ItemsSource="{Binding Organizations}"
+                              SelectedItem="{Binding SelectedOrganization}" 
+                              RowHeight="120"
+                              IsPullToRefreshEnabled="True"
+                              RefreshCommand="{Binding RefreshCommand}"
+                              IsRefreshing="{Binding IsRefreshing}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <StackLayout>
+                                        <Label Text="{Binding Name}"/>
+                                    </StackLayout>
+                                </ViewCell.View>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>-->
+
+                    <controls:SearchBarOutline Text="{Binding SearchText}"
+                                               SearchCommand="{Binding RefreshCommand}"
+                                               Placeholder="Поиск"
+                                               BorderColor="{StaticResource Key=mainColor}"
+                                               PlaceholderColor="{StaticResource Key=mainColor}"
+                                               Margin="10, 15, 10, 0"/>
+
+                    <controls:OrganizationListView ItemsSource="{Binding Organizations}"
+                                                   SelectedItem="{Binding SelectedOrganization}" 
+                                                   IsRefreshing="{Binding IsRefreshingListView}" 
+                                                   RefreshCommand="{Binding RefreshingListViewCommand}"/>
+                </StackLayout>
+            </ScrollView>
+        </RefreshView>
+    </ContentPage.Content>
+</ContentPage>
